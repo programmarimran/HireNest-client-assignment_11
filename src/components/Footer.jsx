@@ -9,9 +9,11 @@ import {
 import { FaLinkedin } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
 import AuthContext from "../contexts/AuthContext";
+import ServiceContext from "../contexts/ServiceContext";
 
 const Footer = () => {
   const {user} =use(AuthContext)
+  const {darkIstrue}=use(ServiceContext)
   const links = (
      <>
        <li className=" my-1">
@@ -46,10 +48,25 @@ const Footer = () => {
   return (
     <footer className=" footer-horizontal text-gray-900   rounded py-10">
       <div className=" w-[200px] md:w-[300px] mx-auto flex  items-center">
-        <img
-          src="https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
-          alt=""
-        />
+        <Link to={"/"}>
+          {darkIstrue ? (
+            <>
+              <img
+                className=" "
+                src="https://i.ibb.co/HDsJBrQQ/Hire-Nest-White-removebg-preview.png"
+                alt="logo"
+              />
+            </>
+          ) : (
+            <>
+              <img
+                className=""
+                src="https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
+                alt="logo"
+              />
+            </>
+          )}
+        </Link>
       </div>
       <aside className=" md:grid text-start md:grid-cols-3 space-y-5">
         <nav className=" ">

@@ -2,8 +2,8 @@ import React from "react";
 
 import UseLayout from "../hooks/UseLayout";
 
-const RootLayout = () => {
+const DashboardLayout = () => {
   return <UseLayout></UseLayout>;
 };
 
-export default RootLayout;
+export default DashboardLayout;

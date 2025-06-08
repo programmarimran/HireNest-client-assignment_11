@@ -6,3 +6,7 @@
  @plugin "daisyui" {
    themes: light --default,dark ;
  }
+
+ .active{
+  text-decoration: underline;
+ }

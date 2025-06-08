@@ -6,7 +6,7 @@ const ServerProvider = ({children}) => {
   const service={
     darkIstrue,
     setDarkIStrue,
-    name:"imrans service"
+    
   }
   return (
     <div>

@@ -1,40 +1,42 @@
-import React from "react";
+import React, { use } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { Link, NavLink } from "react-router";
+import ServiceContext from "../contexts/ServiceContext";
 
 const Navbar = () => {
+  const { darkIstrue } = use(ServiceContext);
   const links = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink>Services</NavLink>
+        <NavLink to={"/services"}>Services</NavLink>
       </li>
       <li className="dropdown dropdown-hover">
-        <label tabIndex={0}>Dashboard</label>
+        <NavLink to={"/dashboard"} tabIndex={0}>Dashboard</NavLink>
         <ul
           tabIndex={0}
           className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-10"
         >
           <li>
-            <a>Add Service</a>
+            <NavLink to={"/dashboard/add-service"}>Add Service</NavLink>
           </li>
           <li>
-            <a>Manage Service</a>
+            <NavLink to={"/dashboard/manage-service"}>Manage Service</NavLink>
           </li>
           <li>
-            <a>Booked-Services</a>
+            <NavLink to={"/dashboard/booked-services"}>Booked-Services</NavLink>
           </li>
           <li>
-            <a>Service-To-Do</a>
+            <NavLink to={"/dashboard/service-to-do"}>Service-To-Do</NavLink>
           </li>
         </ul>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,19 +64,31 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to={"/"}>
-          <img
-            className=" w-[200px]"
-            src="https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
-            alt=""
-          />
+          {darkIstrue ? (
+            <>
+              <img
+                className=" w-[200px]"
+                src="https://i.ibb.co/HDsJBrQQ/Hire-Nest-White-removebg-preview.png"
+                alt="logo"
+              />
+            </>
+          ) : (
+            <>
+              <img
+                className=" w-[200px]"
+                src="https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
+                alt="logo"
+              />
+            </>
+          )}
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-2">
         <ThemeToggle></ThemeToggle>
-        <a className="btn">Login</a>
+        <Link className="btn btn-outline">Login</Link>
       </div>
     </div>
   );
