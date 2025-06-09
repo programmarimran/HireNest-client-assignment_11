@@ -11,6 +11,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import ManageService from "../Pages/services/dashboard/ManageService";
 import ServiceToDo from "../Pages/services/dashboard/ServiceToDo";
+import Login from "../Pages/auth/Login";
+import SignUp from "../Pages/auth/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         path:"/services",
         Component:Services
       },
+      {
+        path:"/login",
+        Component:Login
+      },
+      {
+        path:"signup",
+        Component:SignUp
+      }
       
 
     ]

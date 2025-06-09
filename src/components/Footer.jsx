@@ -125,7 +125,7 @@ const Footer = () => {
       <aside className=" mt-5 text-center">
         <p>
           Copyright © {new Date().getFullYear()} - All right reserved by{" "}
-          <span className=" font-bold">DiverseDish</span>
+          <span className=" font-bold">HireNest</span>
         </p>
       </aside>
     </footer>

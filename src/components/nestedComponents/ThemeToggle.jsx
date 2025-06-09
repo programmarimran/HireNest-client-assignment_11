@@ -1,6 +1,6 @@
 import { use, useEffect, useState } from "react";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
-import ServiceContext from "../contexts/ServiceContext";
+import ServiceContext from "../../contexts/ServiceContext";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("light");
@@ -17,6 +17,8 @@ const ThemeToggle = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
+    document.documentElement.classList.toggle('dark')
+
     localStorage.setItem("theme", newTheme);
   };
 

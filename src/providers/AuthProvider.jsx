@@ -5,6 +5,10 @@ const AuthProvider = ({children}) => {
 
     const userInfo={
         user:"false",
+        photoURL:"kisona",
+        displayName:"imran",
+        loading:false,
+        email:"esonic@gmial.com"
        
     }
     return (
