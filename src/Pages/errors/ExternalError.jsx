@@ -1,42 +1,31 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router";
-
+import { AlertTriangle } from "lucide-react";
+import errorAnimation from "../../assets/errorAnimation.json"
+import Lottie from "lottie-react";
+import { FaBackward, FaHome } from "react-icons/fa";
 const ExternalError = () => {
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
-      <Helmet><title> DiverseDish ||Error Page</title></Helmet>
-      {/* Background Image */}
-      <img
-        className="w-full opacity-40 h-full object-cover"
-        src="https://i.ibb.co/23G6bHVL/racipe.jpg"
-        alt="Background"
-      />
-
-      {/* Automatically opened modal */}
-      <input
-        type="checkbox"
-        id="my_modal_7"
-        className="modal-toggle"
-        defaultChecked // ✅ Modal will be open by default
-      />
-      <div
-        className="absolute modal inset-0 flex items-center justify-center"
-        role="dialog"
-      >
-        <div className="">
-          <div>
-            <img
-              src="https://i.ibb.co/Z404s51/404-page-not-found.png"
-              alt="404 Error"
-              className="w-2/4 mx-auto rounded-full h-full"
-            />
-          </div>
-          <Link className=" mx-auto flex justify-center items-center" to={"/"}>
-            <button className="btn btn-secondary bg-[#007200] border-none mt-4">Back to home</button>
-          </Link>
-        </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-base-200 text-center px-4">
+      <div className="max-w-md">
       
+        <div>
+            <Lottie
+                classID=" w-[300px]"
+                animationData={errorAnimation}
+                loop={true}
+              />
+        </div>
+
+        <h2 className="text-2xl my-8 font-semibold mb-2">Page Not Found</h2>
+      
+        <div className=" mt-8 flex gap-4 justify-center items-center">
+          <Link to={-1} className="btn btn-primary bg-[#2F80ED] border-none">
+         <FaBackward size={20}/> Go Back
+        </Link>
+        <Link to="/" className="btn btn-primary bg-[#2F80ED] border-none">
+          <FaHome size={20}/>Back to Home
+        </Link>
+        </div>
       </div>
     </div>
   );

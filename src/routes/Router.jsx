@@ -14,6 +14,8 @@ import ServiceToDo from "../Pages/services/dashboard/ServiceToDo";
 import Login from "../Pages/auth/Login";
 import SignUp from "../Pages/auth/SignUp";
 import AuthLayout from "../layouts/AuthLayout";
+import ExternalError from "../Pages/errors/ExternalError";
+// import InternalError from "../Pages/errors/InternalError";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +79,11 @@ const router = createBrowserRouter([
       }
     ]
 
+  },
+  {
+    path:"*",
+    element:<ExternalError></ExternalError>
+    // element:<InternalError></InternalError>
   }
 ]);
 export default router

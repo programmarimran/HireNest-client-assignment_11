@@ -2,52 +2,51 @@ import React, { use } from "react";
 import {
   FaFacebook,
   FaGithub,
-  FaInstagram,
-  FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
-import AuthContext from "../contexts/AuthContext";
+// import AuthContext from "../contexts/AuthContext";
 import ServiceContext from "../contexts/ServiceContext";
 
 const Footer = () => {
-  const {user} =use(AuthContext)
+  // const {user} =use(AuthContext)
   const {darkIstrue}=use(ServiceContext)
-  const links = (
-     <>
-       <li className=" my-1">
-         <NavLink className=" link-hover" to={"/"}>
-           Home
-         </NavLink>
-       </li>
-       <li className=" my-1">
-         {" "}
-         <NavLink className=" link-hover" to={"/all-recipes"}>
-           All Recipes
-         </NavLink>
-       </li>
-       {user && (
-         <>
-           <li className=" my-1">
-             {" "}
-             <NavLink className=" link-hover" to={"/add-recipes"}>
-               Add Recipe
-             </NavLink>
-           </li>
-           <li className=" my-1">
-             {" "}
-             <NavLink className=" link-hover" to={"/my-recipes"}>
-               My Recipes
-             </NavLink>
-           </li>
-         </>
-       )}
-     </>
-   );
+ const links = (
+    <>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/services"}>Services</NavLink>
+      </li>
+      <li className="dropdown dropdown-hover md:mb-24">
+        <NavLink to={"/dashboard"} tabIndex={0}>
+          Dashboard
+        </NavLink>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-10"
+        >
+          <li>
+            <NavLink to={"/dashboard/add-service"}>Add Service</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/manage-service"}>Manage Service</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/booked-services"}>Booked-Services</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/service-to-do"}>Service-To-Do</NavLink>
+          </li>
+        </ul>
+      </li>
+    </>
+  );
   return (
-    <footer className=" footer-horizontal text-gray-900   rounded py-10">
-      <div className=" w-[200px] md:w-[300px] mx-auto flex  items-center">
+    <footer className={`footer-horizontal  rounded py-10 ${darkIstrue?"text-gray-100 ":"text-gray-900 "}`}>
+      <div className=" w-[200px] md:w-[300px] mx-auto flex  items-center mb-8 md:mb-16">
         <Link to={"/"}>
           {darkIstrue ? (
             <>
@@ -70,7 +69,7 @@ const Footer = () => {
       </div>
       <aside className=" md:grid text-start md:grid-cols-3 space-y-5">
         <nav className=" ">
-          <h3 className=" font-bold text-xl mb-3 text-gray-700">
+          <h3 className=" font-bold text-xl mb-3 ">
             Quick Links:
           </h3>
           <ul className=" flex flex-col gap-1 md:gap-3">{links}</ul>
@@ -93,7 +92,7 @@ const Footer = () => {
           </ul>
         </nav>
         <nav className=" flex justify-start md:justify-end ">
-          <h3 className=" font-bold text-xl mb-3 text-gray-700">Social:</h3>
+          <h3 className=" font-bold text-xl mb-3">Social:</h3>
           <ul className="flex gap-4 md:gap-3">
             <li>
               <Link

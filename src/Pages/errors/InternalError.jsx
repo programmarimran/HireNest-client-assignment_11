@@ -1,45 +1,31 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router";
+import { AlertTriangle } from "lucide-react";
 
-const ExternalError = () => {
+const InternalError = () => {
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
-        <Helmet><title> DiverseDish ||Error Page</title></Helmet>
-      {/* Background Image */}
-      <img
-        className="w-full opacity-40 h-full object-cover"
-        src="https://i.ibb.co/23G6bHVL/racipe.jpg"
-        alt="Background"
-      />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-base-200 text-center px-4">
+      <div className="max-w-md">
+        <img
+          src="https://cdn.openai.com/chatgpt/404-hiring-error.png"
+          alt="404 Illustration"
+          className="w-full mb-6 rounded-lg shadow-md"
+        />
 
-      {/* Automatically opened modal */}
-      <input
-        type="checkbox"
-        id="my_modal_7"
-        className="modal-toggle"
-        defaultChecked // ✅ Modal will be open by default
-      />
-      <div
-        className="absolute modal inset-0 flex items-center justify-center"
-        role="dialog"
-      >
-        <div className="">
-          <div>
-            <img
-              src="https://i.ibb.co/Z404s51/404-page-not-found.png"
-              alt="404 Error"
-              className="w-2/4 mx-auto rounded-full h-full"
-            />
-          </div>
-          <Link className=" mx-auto flex justify-center items-center" to={"/"}>
-            <button className="btn btn-secondary bg-[#007200] border-none mt-4">Back to home</button>
-          </Link>
+        <div className="text-red-500 mb-4">
+          <AlertTriangle size={48} />
         </div>
-      
+
+        <h1 className="text-5xl font-bold text-error mb-4">404</h1>
+        <h2 className="text-2xl font-semibold mb-2">Page Not Found</h2>
+        <p className="text-base-content mb-6">
+          Sorry, the page you’re looking for doesn’t exist or has been moved.
+        </p>
+        <Link to="/" className="btn btn-primary">
+          Back to Home
+        </Link>
       </div>
     </div>
   );
 };
 
-export default ExternalError;
+export default InternalError;
