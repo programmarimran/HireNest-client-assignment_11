@@ -8,6 +8,7 @@ import Lottie from "lottie-react";
 import registerAnimation from "../../assets/registerAnimation.json";
 import AuthContext from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
   const location=useLocation();
@@ -99,14 +100,7 @@ const SignUp = () => {
             </div>
             <div className=" flex-1">
               <fieldset className=" fieldset">
-                <button
-                  
-                  type="button"
-                  className="btn bg-[#2F80ED20] mt-4"
-                >
-                  {" "}
-                  <FcGoogle size={30} /> Sign Up with Google!!
-                </button>
+               <SocialLogin from={from}></SocialLogin>
               </fieldset>
               <div className="flex my-5 items-center gap-2 w-full">
                 <hr className="flex-grow border-2 border-gray-300 border-dashed" />

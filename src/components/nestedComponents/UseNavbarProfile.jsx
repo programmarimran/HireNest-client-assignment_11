@@ -24,7 +24,7 @@ const UseNavbarProfile = ({ user, logoutUser }) => {
                   </div> */}
                 </div>
                 <div className="avatar">
-                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+                  <div className="ring-[#2F80ED] ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
                     <img src={user?.photoURL} alt="User" />
                   </div>
                 </div>

@@ -9,18 +9,15 @@ import { toast } from "react-toastify";
 import SocialLogin from "./SocialLogin";
 
 const Login = () => {
-  const location=useLocation()
-  const from=location?.state
+  const location = useLocation();
+  const from = location?.state;
   // console.log(location)
   // console.log(location.state)
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const {
-    loginUser,
-    setLoading,
-  } = use(AuthContext);
+  const { loginUser, setLoading } = use(AuthContext);
   const handleCreateUser = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -50,9 +47,8 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
-        toast.success("you have login successfuly")
-        navigate(`${from||"/"}`)
-
+        toast.success("you have login successfuly");
+        navigate(`${from || "/"}`);
       })
       .catch((error) => {
         setError(error.code);
@@ -80,7 +76,11 @@ const Login = () => {
                   <h1>
                     {" "}
                     Please
-                    <Link state={location?.state} to={"/auth/signup"} className=" ml-2 text-2xl font-extrabold text-blue-500 underline">
+                    <Link
+                      state={location?.state}
+                      to={"/auth/signup"}
+                      className=" ml-2 text-2xl font-extrabold text-blue-500 underline"
+                    >
                       SignUp
                     </Link>
                   </h1>
@@ -88,8 +88,9 @@ const Login = () => {
               </div>
             </div>
             <div className=" flex-1">
-             
-              <SocialLogin></SocialLogin>
+              <fieldset className=" fieldset">
+                <SocialLogin from={from}></SocialLogin>
+              </fieldset>
               <div className="flex my-5 items-center gap-2 w-full">
                 <hr className="flex-grow border-2 border-gray-300 border-dashed" />
                 <span className="text-gray-500 font-semibold">OR</span>
@@ -135,7 +136,6 @@ const Login = () => {
           </div>
           <div className=" text-center">
             <p className=" text-error my-3">{error}</p>
-           
           </div>
         </form>
       </div>
