@@ -62,32 +62,37 @@ const Login = () => {
     <div className="py-12">
       <div className="card mx-auto  bg-base-100 border border-gray-200  w-full  shrink-0 shadow-2xl">
         <form onSubmit={handleCreateUser} className="card-body">
-          <h1 className="text-3xl text-center font-bold mb-8">Login now!</h1>
+          <div>
+            {from && (
+              <h1 className=" text-center border border-[#2F80ED] text-[#2F80ED] text-lg rounded-2xl p-4 m-4 bg-[#2F80ED10]">
+              Please log in to access all features.
+              </h1>
+            )}
+          </div>
+          <h1 className="text-3xl text-center font-bold mb-8 ">Login now!</h1>
           <div className=" md:flex">
             <div className=" flex-1 flex flex-col justify-center items-center">
               <div className="rounded-2xl">
-                <Lottie 
-                className=" rounded-2xl overflow-hidden w-[200px] md:w-[250px]"
-                  
+                <Lottie
+                  className=" rounded-2xl overflow-hidden w-[200px] md:w-[250px]"
                   animationData={loginAnimation}
                   loop={true}
                 />
-                
               </div>
               <div className=" text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
-                  <h1 className=" text-[#2F80ED]"> Don't have an account?</h1>
-                  <h1>
-                    {" "}
-                    <span className=" text-[#2F80ED]">Please</span>
-                    <Link
-                      state={location?.state}
-                      to={"/auth/signup"}
-                      className=" ml-2 text-2xl font-extrabold text-blue-500 underline"
-                    >
-                      SignUp
-                    </Link>
-                  </h1>
-                </div>
+                <h1 className=" text-[#2F80ED]"> Don't have an account?</h1>
+                <h1>
+                  {" "}
+                  <span className=" text-[#2F80ED]">Please</span>
+                  <Link
+                    state={location?.state}
+                    to={"/auth/signup"}
+                    className=" ml-2 text-2xl font-extrabold text-blue-500 underline"
+                  >
+                    SignUp
+                  </Link>
+                </h1>
+              </div>
             </div>
             <div className=" flex-1">
               <fieldset className=" fieldset">

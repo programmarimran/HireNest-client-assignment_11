@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCc6MQsn3kQSmmQXpn_lznqpQBetFuYhL0",
-  authDomain: "hire-nest-e8488.firebaseapp.com",
-  projectId: "hire-nest-e8488",
-  storageBucket: "hire-nest-e8488.firebasestorage.app",
-  messagingSenderId: "994047917102",
-  appId: "1:994047917102:web:e2d313caf0c4b18b3f73bf"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
