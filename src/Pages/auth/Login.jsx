@@ -1,16 +1,17 @@
 import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import AuthContext from "../../contexts/AuthContext";
+
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/loginAnimation.json";
+import AuthContext from "../../contexts/AuthContext";
 
 const Login = () => {
   const {
-    createUser,
+    loginUser,
   
     createUserWithGoogleLogin,
     setLoading,
@@ -45,9 +46,9 @@ const Login = () => {
     } else {
       setPasswordError("");
     }
-    createUser(email, password)
+    loginUser(email, password)
       .then((result) => {
-        result?.user && "";
+        console.log(result.user);
        
       })
       .catch((error) => {
