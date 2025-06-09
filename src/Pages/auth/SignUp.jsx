@@ -86,7 +86,11 @@ const SignUp = () => {
         <form onSubmit={handleCreateUser} className="card-body">
           <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
           <div className=" md:flex flex-row-reverse">
-            <div className=" flex-1 flex justify-center items-center">
+            <div className=" flex-1 flex flex-col justify-center items-center">
+              <h1>Already have an account?</h1>
+              <h1>please <Link to={"/login"} className=" text-2xl font-extrabold text-blue-500 underline">
+                Login
+              </Link></h1>
               <Lottie
                 style={{ width: "300px" }}
                 animationData={registerAnimation}
@@ -166,13 +170,7 @@ const SignUp = () => {
           </div>
           <div className=" text-center">
             <p className=" text-error my-3">{error}</p>
-            <p>
-              {" "}
-              Already You have an Account?
-              <Link to={"/login"} className=" text-blue-500 underline">
-                Login
-              </Link>
-            </p>
+          
           </div>
         </form>
       </div>

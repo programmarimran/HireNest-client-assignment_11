@@ -1,6 +1,5 @@
-import React from "react";
-import AuthContext from "../../contexts/AuthContext";
-import { FaCircleUser } from "react-icons/fa6";
+
+// import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const UseNavbarProfile = ({ user, logoutUser }) => {
