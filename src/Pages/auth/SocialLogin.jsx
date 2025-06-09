@@ -12,7 +12,7 @@ const SocialLogin = ({ from }) => {
     loginUserWithGoogle()
       .then((result) => {
         console.log(result.user);
-        toast.success("You successfully google login");
+        toast.success(`${from?"Logged in with Google successfully! Redirecting to your previous page...":"Logged in with Google successfully! Redirecting to home page..."}`);
         navigate(`${from || "/"}`);
         return;
       })

@@ -1,9 +1,15 @@
-
 // import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const UseNavbarProfile = ({ user, logoutUser }) => {
   // const user=true
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      toast.info("Logged out successfully. See you again!");
+      return;
+    });
+  };
 
   return (
     <div>
@@ -42,7 +48,7 @@ const UseNavbarProfile = ({ user, logoutUser }) => {
               </li>
               <li>
                 <button
-                  onClick={() => logoutUser()}
+                  onClick={handleLogout}
                   className="btn btn-primary bg-gray-950 border-none shadow-none"
                 >
                   Logout

@@ -60,7 +60,7 @@ const SignUp = () => {
         console.log(result);
         updateUserProfile(updateInfo)
           .then(() => {
-            toast.success("you sign up successfuloly !!");
+            toast.success(`${from?"SignUp in successfully! Redirecting to your previous page...":"SingUp successfully! Redirecting to home page..."}`);
             navigate(`${from || "/"}`);
             return;
           })

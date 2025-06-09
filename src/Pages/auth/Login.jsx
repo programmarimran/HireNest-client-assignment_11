@@ -47,7 +47,8 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
-        toast.success("you have login successfuly");
+       
+        toast.success(`${from?"Logged in successfully! Redirecting to your previous page...":"Login successfully! Redirecting to home page..."}`);
         navigate(`${from || "/"}`);
       })
       .catch((error) => {
