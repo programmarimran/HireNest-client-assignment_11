@@ -3,29 +3,61 @@ import AuthContext from "../../contexts/AuthContext";
 import { FaCircleUser } from "react-icons/fa6";
 import { Link } from "react-router";
 
-const UseNavbarProfile = () => {
+const UseNavbarProfile = ({ user, logoutUser }) => {
   // const user=true
-  const user = false;
 
   return (
     <div>
       {user ? (
         <>
-          <div className="tooltip tooltip-bottom">
-            <div className="tooltip-content">
-              <div className="animate-bounce text-orange-400 -rotate-10 text-2xl font-black">
-                Wow!
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle "
+            >
+              <div className="tooltip tooltip-bottom rounded-full bg-gray-200">
+                <div className="tooltip-content">
+                  {/* <div
+                    className={"animate-bounce text-orange-400 text-lg font-black break-words"}
+                  >
+                    {user ? user.displayName : ""}
+                  </div> */}
+                </div>
+                <div className="avatar">
+                  <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+                    <img src={user?.photoURL} alt="User" />
+                  </div>
+                </div>
               </div>
             </div>
-            <button className="">
-                <FaCircleUser size={40}></FaCircleUser>
-            </button>
+
+            <ul
+              tabIndex={0}
+              className="menu border dropdown-content bg-base-300 rounded-2xl px-4 py-2"
+            >
+              <li className=" w-full">
+                <h1 className=" whitespace-nowrap w-full text-lg font-bold">
+                  {user.displayName}
+                </h1>
+              </li>
+              <li>
+                <button
+                  onClick={() => logoutUser()}
+                  className="btn btn-primary bg-gray-950 border-none shadow-none"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
           </div>
-        
         </>
       ) : (
         <>
-         <Link to={"/login"}> <button className=" btn btn-outline">Login</button></Link>
+          <Link to={"/login"}>
+            {" "}
+            <button className=" btn btn-outline">Login</button>
+          </Link>
         </>
       )}
     </div>

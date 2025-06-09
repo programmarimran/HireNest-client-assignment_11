@@ -5,10 +5,13 @@ import ServiceContext from "../contexts/ServiceContext";
 import UseHambargar from "./nestedComponents/UseHambargar";
 import ThemeToggle from "./nestedComponents/ThemeToggle";
 import UseNavbarProfile from "./nestedComponents/UseNavbarProfile";
+import AuthContext from "../contexts/AuthContext";
 
 
 const Navbar = () => {
   const { darkIstrue } = use(ServiceContext);
+  const {user,logoutUser}=use(AuthContext)
+  // console.log(user)
 
   const links = (
     <>
@@ -71,7 +74,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-2">
         <ThemeToggle></ThemeToggle>
-        <UseNavbarProfile></UseNavbarProfile>
+        <UseNavbarProfile user={user} logoutUser={logoutUser}></UseNavbarProfile>
       </div>
     </div>
   );
