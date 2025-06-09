@@ -1,22 +1,26 @@
 import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
-import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/registerAnimation.json";
 import AuthContext from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const location=useLocation();
+  const from=location?.state;
+  // console.log(location)
+  const navigate=useNavigate()
   const {
     createUser,
     updateUserProfile,
-    createUserWithGoogleLogin,
+
     setLoading,
   } = use(AuthContext);
-  const navigate = useNavigate();
+
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -29,7 +33,7 @@ const SignUp = () => {
     console.log(name, photo, email, password);
     const updateInfo = {
       displayName: name,
-      photoURL: photo
+      photoURL: photo,
     };
     //  Password authentication start with regular expression
     const uppercaseRegex = /^(?=.*[A-Z]).{1,}$/;
@@ -54,9 +58,12 @@ const SignUp = () => {
       .then((result) => {
         console.log(result);
         updateUserProfile(updateInfo).then(() => {
-          toast.success("User Sign Up Successfully!!");
-          navigate("/");
+          toast.success("you sign up successfuloly !!")
+          navigate(`${from||"/"}`)
           return;
+        })
+        .catch(error=>{
+          setError(error.code)
         });
       })
       .catch((error) => {
@@ -66,20 +73,7 @@ const SignUp = () => {
         setLoading(false);
       });
   };
-  const handleGoogleSignUp = () => {
-    createUserWithGoogleLogin()
-      .then((result) => {
-        result?.user && toast.success("You Google Sign Up Successfully!!");
-        navigate("/");
-      })
-      .catch((error) => {
-        // console.log(error.code);
-        setError(error.code);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+
   return (
     <div className="py-12">
       <div className="card mx-auto  bg-base-100 border border-gray-200  w-full  shrink-0 shadow-2xl">
@@ -88,9 +82,15 @@ const SignUp = () => {
           <div className=" md:flex flex-row-reverse">
             <div className=" flex-1 flex flex-col justify-center items-center">
               <h1>Already have an account?</h1>
-              <h1>please <Link to={"/login"} className=" text-2xl font-extrabold text-blue-500 underline">
-                Login
-              </Link></h1>
+              <h1>
+                please{" "}
+                <Link
+                  to={"/auth/login"}
+                  className=" text-2xl font-extrabold text-blue-500 underline"
+                >
+                  Login
+                </Link>
+              </h1>
               <Lottie
                 style={{ width: "300px" }}
                 animationData={registerAnimation}
@@ -100,7 +100,7 @@ const SignUp = () => {
             <div className=" flex-1">
               <fieldset className=" fieldset">
                 <button
-                  onClick={handleGoogleSignUp}
+                  
                   type="button"
                   className="btn bg-[#2F80ED20] mt-4"
                 >
@@ -170,7 +170,6 @@ const SignUp = () => {
           </div>
           <div className=" text-center">
             <p className=" text-error my-3">{error}</p>
-          
           </div>
         </form>
       </div>

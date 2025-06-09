@@ -13,6 +13,7 @@ import ManageService from "../Pages/services/dashboard/ManageService";
 import ServiceToDo from "../Pages/services/dashboard/ServiceToDo";
 import Login from "../Pages/auth/Login";
 import SignUp from "../Pages/auth/SignUp";
+import AuthLayout from "../layouts/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -26,14 +27,6 @@ const router = createBrowserRouter([
       {
         path:"/services",
         Component:Services
-      },
-      {
-        path:"/login",
-        Component:Login
-      },
-      {
-        path:"signup",
-        Component:SignUp
       }
       
 
@@ -65,6 +58,25 @@ const router = createBrowserRouter([
         Component:ServiceToDo
       }
     ]
+  },
+  {
+    path:"/auth",
+    Component:AuthLayout,
+    children:[
+      {
+        index:true,
+        Component:Login
+      },
+      {
+        path:"/auth/login",
+        Component:Login
+      },
+      {
+        path:"/auth/signup",
+        Component:SignUp
+      }
+    ]
+
   }
 ]);
 export default router

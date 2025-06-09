@@ -1,25 +1,26 @@
 import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
-
-import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
+import { Link, useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoMdEyeOff } from "react-icons/io";
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/loginAnimation.json";
 import AuthContext from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
-  const {
-    loginUser,
-
-    createUserWithGoogleLogin,
-    setLoading,
-  } = use(AuthContext);
+  const location=useLocation()
+  const from=location?.state
+  // console.log(location)
+  // console.log(location.state)
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const {
+    loginUser,
+    setLoading,
+  } = use(AuthContext);
   const handleCreateUser = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -49,6 +50,9 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("you have login successfuly")
+        navigate(`${from||"/"}`)
+
       })
       .catch((error) => {
         setError(error.code);
@@ -57,20 +61,7 @@ const Login = () => {
         setLoading(false);
       });
   };
-  const handleGoogleLogin = () => {
-    createUserWithGoogleLogin()
-      .then((result) => {
-        result?.user && toast.success("You Google Sign Up Successfully!!");
-        navigate("/");
-      })
-      .catch((error) => {
-        // console.log(error.code);
-        setError(error.code);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+
   return (
     <div className="py-12">
       <div className="card mx-auto  bg-base-100 border border-gray-200  w-full  shrink-0 shadow-2xl">
@@ -89,7 +80,7 @@ const Login = () => {
                   <h1>
                     {" "}
                     Please
-                    <Link to={"/signup"} className=" ml-2 text-2xl font-extrabold text-blue-500 underline">
+                    <Link state={location?.state} to={"/auth/signup"} className=" ml-2 text-2xl font-extrabold text-blue-500 underline">
                       SignUp
                     </Link>
                   </h1>
@@ -97,16 +88,8 @@ const Login = () => {
               </div>
             </div>
             <div className=" flex-1">
-              <fieldset className=" fieldset">
-                <button
-                  onClick={handleGoogleLogin}
-                  type="button"
-                  className="btn bg-[#2F80ED20] mt-4"
-                >
-                  {" "}
-                  <FcGoogle size={30} />Login with Google!!
-                </button>
-              </fieldset>
+             
+              <SocialLogin></SocialLogin>
               <div className="flex my-5 items-center gap-2 w-full">
                 <hr className="flex-grow border-2 border-gray-300 border-dashed" />
                 <span className="text-gray-500 font-semibold">OR</span>

@@ -53,7 +53,7 @@ const UseNavbarProfile = ({ user, logoutUser }) => {
         </>
       ) : (
         <>
-          <Link to={"/login"}>
+          <Link to={"/auth/login"}>
             {" "}
             <button className=" btn btn-outline">Login</button>
           </Link>
