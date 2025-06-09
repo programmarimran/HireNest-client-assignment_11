@@ -11,10 +11,10 @@ import { toast } from "react-toastify";
 import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
-  const location=useLocation();
-  const from=location?.state;
+  const location = useLocation();
+  const from = location?.state;
   // console.log(location)
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const {
     createUser,
     updateUserProfile,
@@ -58,14 +58,15 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result);
-        updateUserProfile(updateInfo).then(() => {
-          toast.success("you sign up successfuloly !!")
-          navigate(`${from||"/"}`)
-          return;
-        })
-        .catch(error=>{
-          setError(error.code)
-        });
+        updateUserProfile(updateInfo)
+          .then(() => {
+            toast.success("you sign up successfuloly !!");
+            navigate(`${from || "/"}`);
+            return;
+          })
+          .catch((error) => {
+            setError(error.code);
+          });
       })
       .catch((error) => {
         setError(error.code);
@@ -82,25 +83,30 @@ const SignUp = () => {
           <h1 className="text-3xl text-center font-bold">SignUp now!</h1>
           <div className=" md:flex flex-row-reverse">
             <div className=" flex-1 flex flex-col justify-center items-center">
-              <h1>Already have an account?</h1>
-              <h1>
-                please{" "}
-                <Link
-                  to={"/auth/login"}
-                  className=" text-2xl font-extrabold text-blue-500 underline"
-                >
-                  Login
-                </Link>
-              </h1>
               <Lottie
                 style={{ width: "300px" }}
                 animationData={registerAnimation}
                 loop={true}
               />
+
+              <div className=" text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
+                <h1 className=" text-[#2F80ED]"> Already have an account?</h1>
+                <h1>
+                  {" "}
+                  <span className=" text-[#2F80ED]">Please</span>
+                  <Link
+                    state={location?.state}
+                    to={"/auth/login"}
+                    className=" ml-2 text-2xl font-extrabold text-blue-500 underline"
+                  >
+                    Login
+                  </Link>
+                </h1>
+              </div>
             </div>
             <div className=" flex-1">
               <fieldset className=" fieldset">
-               <SocialLogin from={from}></SocialLogin>
+                <SocialLogin from={from}></SocialLogin>
               </fieldset>
               <div className="flex my-5 items-center gap-2 w-full">
                 <hr className="flex-grow border-2 border-gray-300 border-dashed" />

@@ -62,20 +62,23 @@ const Login = () => {
     <div className="py-12">
       <div className="card mx-auto  bg-base-100 border border-gray-200  w-full  shrink-0 shadow-2xl">
         <form onSubmit={handleCreateUser} className="card-body">
-          <h1 className="text-3xl text-center font-bold">Login now!</h1>
+          <h1 className="text-3xl text-center font-bold mb-8">Login now!</h1>
           <div className=" md:flex">
             <div className=" flex-1 flex flex-col justify-center items-center">
-              <div className=" relative">
-                <Lottie
-                  style={{ width: "300px" }}
+              <div className="rounded-2xl">
+                <Lottie 
+                className=" rounded-2xl overflow-hidden w-[200px] md:w-[250px]"
+                  
                   animationData={loginAnimation}
                   loop={true}
                 />
-                <div className=" absolute top-0 left-[25%] text-center">
-                  <h1> Don't have an account?</h1>
+                
+              </div>
+              <div className=" text-center border border-[#2F80ED] rounded-2xl p-4 m-4 bg-[#2F80ED10]">
+                  <h1 className=" text-[#2F80ED]"> Don't have an account?</h1>
                   <h1>
                     {" "}
-                    Please
+                    <span className=" text-[#2F80ED]">Please</span>
                     <Link
                       state={location?.state}
                       to={"/auth/signup"}
@@ -85,7 +88,6 @@ const Login = () => {
                     </Link>
                   </h1>
                 </div>
-              </div>
             </div>
             <div className=" flex-1">
               <fieldset className=" fieldset">
