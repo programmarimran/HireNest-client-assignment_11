@@ -40,7 +40,7 @@ sincerely (${user?.displayName})
       <div className="flex justify-center mb-6">
         <Link to={"/"}>
           <img
-            className="w-40"
+            className="w-70"
             src={
               darkIstrue
                 ? "https://i.ibb.co/HDsJBrQQ/Hire-Nest-White-removebg-preview.png"
@@ -52,10 +52,11 @@ sincerely (${user?.displayName})
       </div>
 
       {/* Links Section */}
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left pb-8">
+      <div className=" grid grid-cols-1 md:grid-cols-3 gap-8 text-left pb-8">
         {/* Quick Links */}
-        <div>
-          <h3 className="font-semibold mb-2 text-lg">Quick Links:</h3>
+        <div className=" flex justify-start">
+         <div>
+           <h3 className="font-semibold mb-2 text-lg">Quick Links:</h3>
           <ul className="space-y-1">
             <li>
               <NavLink to={"/"}>Home</NavLink>
@@ -67,11 +68,13 @@ sincerely (${user?.displayName})
               <NavLink to={"/dashboard"}>Dashboard</NavLink>
             </li>
           </ul>
+         </div>
         </div>
 
         {/* Dashboard Links */}
-        <div>
-          <h3 className="font-semibold mb-2 text-lg">Dashboard:</h3>
+        <div className=" flex justify-center">
+         <div>
+           <h3 className="font-semibold mb-2 text-lg">Dashboard:</h3>
           <ul className="space-y-1">
             <li>
               <NavLink to={"/dashboard/add-service"}>Add Service</NavLink>
@@ -88,11 +91,13 @@ sincerely (${user?.displayName})
               <NavLink to={"/dashboard/service-to-do"}>Service To Do</NavLink>
             </li>
           </ul>
+         </div>
         </div>
 
         {/* Contact Info */}
-        <div className="">
-          <h3 className="font-semibold mb-2 text-lg">Contact:</h3>
+        <div className=" flex justify-end">
+         <div>
+           <h3 className="font-semibold mb-2 text-lg">Contact:</h3>
           <ul className="text-sm space-y-1 leading-relaxed">
             <li>
               📞 <span className="font-medium">+8801715994657</span>
@@ -116,6 +121,7 @@ sincerely (${user?.displayName})
               🕒 <span>sat - fri: 9AM - 6PM</span>
             </li>
           </ul>
+         </div>
         </div>
       </div>
 

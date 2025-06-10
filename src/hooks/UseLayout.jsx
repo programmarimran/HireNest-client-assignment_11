@@ -26,9 +26,11 @@ const UseLayout = () => {
         </section>
       </main>
       <footer className=" bg-base-300 shadow-md border-t border-gray-200">
-        <div className=" w-11/12 mx-auto">
+       <section className=" max-w-7xl mx-auto">
+         <div className=" w-11/12 mx-auto">
           <Footer></Footer>
         </div>
+       </section>
       </footer>
     </div>
   );
