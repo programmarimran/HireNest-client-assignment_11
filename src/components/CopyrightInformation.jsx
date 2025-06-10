@@ -7,7 +7,7 @@ import AuthContext from "../contexts/AuthContext";
 const copyrightDataPromise = fetch("/copyright.json").then((res) => res.json());
 const CopyrightInformation = () => {
   const copyrightData = use(copyrightDataPromise);
-  console.log(copyrightData);
+  // console.log(copyrightData);
   const currentYear = new Date().getFullYear();
   //******************************************************* */
   const { user } = use(AuthContext);

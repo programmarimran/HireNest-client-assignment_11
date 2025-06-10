@@ -1,204 +1,121 @@
-import React, { use, useState } from "react";
+import React, { use } from "react";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router";
 
 import AuthContext from "../../../contexts/AuthContext";
-import ServiceContext from "../../../contexts/ServiceContext";
-
+// import ServiceContext from "../../../contexts/ServiceContext";
+import axios from "axios";
 
 const AddService = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const { user } = use(AuthContext);
-  const {setDisplayRecipes,displayRecipes,displayRecipeFunction}=use(ServiceContext)
+
   // const {darkIstrue}=use(ProductContext)
-  const [value, setValue] = useState(0);
-  const [error, setError] = useState("");
+
   //handle Addd to db
-  const handleAddRecipe = (e) => {
+  const handleAddService = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const recipeData = Object.fromEntries(formData.entries());
+    const serviceData = Object.fromEntries(formData.entries());
 
-    const ingredientsData = form.ingredients.value;
-    const arryingredients = ingredientsData
-      .split(",")
-      .map((item) => item.trim());
-    recipeData.ingredients = arryingredients;
-    recipeData.user= {name:user?.displayName,email:user?.email,photo:user?.photoURL}
+    serviceData.provider = {
+      name: user?.displayName,
+      email: user?.email,
+      photoUrl: user?.photoURL,
+    };
 
-    // Like count should be number and start from 0
-    recipeData.likeCount = parseInt(recipeData.likeCount);
-    recipeData.preparationTime = parseInt(recipeData.preparationTime);
-
-    // Convert checkbox values to array
-    recipeData.categories = formData.getAll("categories");
-
-    if (recipeData?.categories.length < 1) {
-      setError("Please select at least one");
-      return;
-    } else {
-      setError("");
-    }
-
-    // console.log(recipeData);
+    console.log(serviceData);
 
     // POST to server
-    fetch("https://diverse-dish-server.vercel.app/recipes", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(recipeData),
-    })
-      .then((res) => res.json())
+    axios
+      .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData)
       .then((data) => {
-        // console.log("Server response:", data);
-        if (data.insertedId) {
-          displayRecipeFunction()
-          const finalDisplayRecipe=[...displayRecipes,recipeData]
-          setDisplayRecipes(finalDisplayRecipe)
-
+        console.log(data.data);
+        if (data?.data?.insertedId) {
           Swal.fire({
             title: "Recipe Added Successfully!",
             icon: "success",
             confirmButtonText: "OK",
           });
-          navigate("/my-recipes")
+          navigate("/services");
         }
       });
   };
- // Custom text colors for dark/light mode
- 
+  // Custom text colors for dark/light mode
 
   return (
     <div className="py-12">
-
       <div className="text-center space-y-4 p-6">
-        <h1 className="text-2xl font-bold">Add New Recipe</h1>
+        <h1 className="text-2xl font-bold">Add Service</h1>
         <p className={`text-base`}>
-          Fill out the form to add a delicious new recipe to the collection.
+          Fill out the form to add a valuable new service to the{" "}
+          <span className=" font-bold">HireNest</span> platform.
         </p>
       </div>
       {/* bg-base-300 */}
-      <form onSubmit={handleAddRecipe}>
+      <form onSubmit={handleAddService}>
         <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
+          <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+            <label className="label">Service Name</label>
+            <input
+              type="text"
+              className="input bg-[#2F80ED20] w-full"
+              name="serviceName"
+              placeholder="Enter Your Service Name"
+              required
+            />
+          </fieldset>
           <fieldset className="fieldset bg-base-300  border-base-300 rounded-box border p-4">
-            <label className={`label `} >Image URL</label>
+            <label className={`label `}>Image URL</label>
             <input
               type="text"
-              className="input bg-[#70e00020] w-full"
-              name="image"
-              placeholder="Enter image URL"
+              className="input bg-[#2F80ED20] w-full"
+              name="imageUrl"
+              placeholder="Enter Your Service image URL"
               required
             />
           </fieldset>
 
           <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-            <label className="label">Title</label>
+            <label className="label">Price</label>
             <input
               type="text"
-              className="input bg-[#70e00020] w-full"
-              name="title"
-              placeholder="Enter recipe title"
+              className="input bg-[#2F80ED20] w-full"
+              name="price"
+              placeholder="Enter Your Service Cost"
               required
             />
           </fieldset>
 
           <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-            <label className="label">Ingredients</label>
+            <label className="label">Service Area</label>
             <input
               type="text"
-              className="input bg-[#70e00020] w-full"
-              name="ingredients"
-              placeholder="Example: Chicken, Pasta, Cream,"
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-            <label className="label">Instructions</label>
-            <input
-              type="text"
-              className="input bg-[#70e00020] w-full"
-              name="instructions"
-              placeholder="Example:1.Boil pasta 2.Add cream and spices. 4. Mix pasta and cook for 5 minutes."
-              required
-            />
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-            <label className="label">Cuisine Type</label>
-            <select
-              name="cuisineType"
-              required
-              defaultValue=""
-              className="select select-bordered w-full"
-            >
-              <option value={""} disabled>
-                Select cuisine
-              </option>
-              <option>BanglaDeshi</option>
-              <option>Italian</option>
-              <option>Mexican</option>
-              <option>Indian</option>
-              <option>Chinese</option>
-              <option>Others</option>
-            </select>
-          </fieldset>
-
-          <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-            <label className="label">Preparation Time (minutes)</label>
-            <input
-              type="number"
-              min={1}
-              value={`${value < 0 ? 0 : value}`}
-              onChange={(e) => setValue(e.target.value)}
-              className="input bg-[#70e00020] w-full"
-              name="preparationTime"
-              placeholder="Time in minutes"
+              className="input bg-[#2F80ED20] w-full"
+              name="serviceArea"
+              placeholder="Enter Your Service Area"
               required
             />
           </fieldset>
         </div>
 
-        <fieldset className="fieldset my-6 bg-base-300 border-base-300 rounded-box border p-4">
-          <label className="label">Categories </label>
-          <span className=" text-center text-2xl text-error">
-            {error && error}
-          </span>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
-            {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map((cat) => (
-              <label key={cat} className="cursor-pointer label">
-                <input
-                  type="checkbox"
-                  className="checkbox bg-[#70e00020] checkbox-primary mr-2"
-                  name="categories"
-                  value={cat}
-                />
-                <span className="label-text">{cat}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        <fieldset className="fieldset mb-6 bg-base-300 border-base-300 rounded-box border p-4">
-          <label className="label">Like Count (default 0)</label>
-          <input
-            type="number"
-            className="input bg-[#70e00020]  w-full"
-            name="likeCount"
-            value={0}
-            readOnly
-          />
+        <fieldset className="fieldset bg-base-300 my-6 border-base-300 rounded-box border p-4">
+          <label className="label">Description</label>
+          <textarea
+            name="description"
+            className="input bg-[#2F80ED20] w-full"
+            rows="5"
+            placeholder="Write a detailed description of your service..."
+          ></textarea>
         </fieldset>
 
         <button
           type="submit"
-          className="btn bg-[#70e00080] hover:bg-[#70e000] w-full"
+          className="btn bg-[#2F80ED80] hover:bg-[#2F80ED] w-full"
         >
-          Add Recipe
+          Add Service
         </button>
       </form>
     </div>
