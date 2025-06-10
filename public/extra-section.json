@@ -1,0 +1,70 @@
+{
+  "hireNestInfo": {
+    "whyChooseUs": {
+      "title": "Why Choose HireNest for Your Service Needs?",
+      "description": "Trusted by thousands, we connect you with skilled professionals to make your daily tasks easy, efficient, and affordable.",
+      "features": [
+        {
+          "id": 1,
+          "icon": "\u26a1",
+          "title": "Quick Response",
+          "description": "Get connected with local experts within minutes of your request."
+        },
+        {
+          "id": 2,
+          "icon": "\u2705",
+          "title": "Verified Professionals",
+          "description": "All service providers are background checked and rated by users."
+        },
+        {
+          "id": 3,
+          "icon": "\ud83d\udcb0",
+          "title": "Transparent Pricing",
+          "description": "No hidden costs \u2013 only fair and upfront pricing."
+        },
+        {
+          "id": 4,
+          "icon": "\ud83d\udccd",
+          "title": "Location Based Matching",
+          "description": "We match you with nearby service providers to ensure faster delivery."
+        }
+      ]
+    },
+    "userReviews": {
+      "reviews": [
+        {
+          "id": 1,
+          "comment": "The electrician arrived on time and solved the problem quickly.",
+          "location": "Dhaka",
+          "rating": 5,
+          "image": "https://randomuser.me/api/portraits/men/11.jpg",
+          "name": "Rafiq Hossain"
+        },
+        {
+          "id": 2,
+          "comment": "I loved how the plumber explained everything clearly before starting.",
+          "location": "Chattogram",
+          "rating": 4,
+          "image": "https://randomuser.me/api/portraits/women/21.jpg",
+          "name": "Nusrat Jahan"
+        },
+        {
+          "id": 3,
+          "comment": "Booked a cleaner for my office\u2014super professional and polite.",
+          "location": "Sylhet",
+          "rating": 5,
+          "image": "https://randomuser.me/api/portraits/men/31.jpg",
+          "name": "Habib Rahman"
+        },
+        {
+          "id": 4,
+          "comment": "Very satisfied with the AC servicing. Will use again.",
+          "location": "Khulna",
+          "rating": 4,
+          "image": "https://randomuser.me/api/portraits/women/41.jpg",
+          "name": "Shanta Akter"
+        }
+      ]
+    }
+  }
+}

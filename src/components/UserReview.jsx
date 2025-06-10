@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 
-const diverseDishPromise = fetch("/diverse-dish.json").then((res) =>
+const diverseDishPromise = fetch("/extra-section.json").then((res) =>
   res.json()
 );
 
@@ -9,27 +9,27 @@ const CustomerReviews = () => {
   const { darkIstrue } = use(ServiceContext);
   const info = use(diverseDishPromise);
 
-  const { diverseDishInfo } = info;
-  const data = diverseDishInfo.userReviews;
+  const { hireNestInfo } = info;
+  const data = hireNestInfo.userReviews;
   const features = data.reviews;
 
   return (
     <div>
-      <div className="text-center w-3/4 mx-auto mb-8">
-        <h1
-          className={`text-3xl font-extrabold mb-2 ${
-            darkIstrue ? "text-green-200" : "text-green-900"
+   
+      <div>
+         <h2
+          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
+            darkIstrue ? "text-white" : "text-black"
           }`}
         >
-          What Our Home Cooks Are Saying About Diverse Dish
-        </h1>
+          Hear From Our Happy Clients
+        </h2>
         <p
-          className={`text-md font-medium max-w-xl mx-auto ${
-            darkIstrue ? "text-green-300" : "text-green-700"
+          className={`text-center max-w-xl mx-auto mb-6 ${
+            darkIstrue ? "text-gray-300" : "text-gray-600"
           }`}
         >
-          Home cooks worldwide love Diverse Dish for easy, authentic recipes
-          that bring joy to every meal.
+          Real feedback from our satisfied customers who trusted our services. See what they have to say about their experience with HireNest!
         </p>
       </div>
 
@@ -38,11 +38,11 @@ const CustomerReviews = () => {
           <div
             key={item.id}
             className="flex flex-col justify-between p-8 space-y-4 rounded-2xl
-             shadow-lg bg-green-100 border-2 border-green-200 hover:border-green-300"
+             shadow-lg bg-[#2F80ED40] border-2 border-[#2F80ED40] hover:border-[#2F80ED50]"
           >
             <p
               className={`text-lg font-medium first-letter:text-3xl first-letter:font-bold first-letter:uppercase ${
-                darkIstrue ? "text-green-700" : "text-green-900"
+                darkIstrue ? "text-white" : "text-black"
               }`}
             >
               {item.comment}
@@ -50,14 +50,14 @@ const CustomerReviews = () => {
 
             <h1
               className={`text-xl font-bold ${
-                darkIstrue ? "text-green-700" : "text-green-900"
+                darkIstrue ? "text-white" : "text-black"
               }`}
             >
               Location:{" "}
               <span
                 className={`${
-                  darkIstrue ? "text-green-700" : "text-green-900"
-                } font-semibold`}
+                darkIstrue ? "text-white" : "text-black"
+              } font-semibold`}
               >
                 {item.location}
               </span>
@@ -65,7 +65,9 @@ const CustomerReviews = () => {
 
             <div className="flex space-x-1 items-center">
               <span
-                className={darkIstrue ? "text-green-700" : "text-green-900"}
+                className={`${
+                darkIstrue ? "text-white" : "text-black"
+              }`}
               >
                 Rating:
               </span>
@@ -74,7 +76,9 @@ const CustomerReviews = () => {
                   <p
                     key={i}
                     className={
-                      darkIstrue ? "text-yellow-400" : "text-yellow-500"
+                     `${
+                darkIstrue ? "text-white" : "text-black"
+              }`
                     }
                   >
                     ⭐
@@ -82,7 +86,9 @@ const CustomerReviews = () => {
                 ) : (
                   <p
                     key={i}
-                    className={darkIstrue ? "text-green-700" : "text-green-400"}
+                    className={`${
+                darkIstrue ? "text-white" : "text-black"
+              }`}
                   >
                     ☆
                   </p>
@@ -90,18 +96,18 @@ const CustomerReviews = () => {
               )}
             </div>
 
-            <hr className={`border-2 border-dashed border-green-300`} />
+            <hr className={`border-2 border-dashed border-[#2F80ED40]`} />
 
             <div className="flex items-center space-x-4">
               <img
-                className="h-10 w-10 rounded-full border-2 border-green-300"
+                className="h-10 w-10 rounded-full border-2 border-[#2F80ED40]"
                 src={item.image}
                 alt={item.name}
               />
               <h3
                 className={`font-bold text-2xl ${
-                  darkIstrue ? "text-green-700" : "text-green-900"
-                }`}
+                darkIstrue ? "text-white" : "text-black"
+              }`}
               >
                 {item.name}
               </h3>

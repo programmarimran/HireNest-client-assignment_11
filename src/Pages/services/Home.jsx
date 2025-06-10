@@ -3,13 +3,15 @@ import { useLoaderData } from "react-router";
 import ServiceCard from "../../components/ServiceCard";
 import Hero from "../../components/Hero";
 import ServiceContext from "../../contexts/ServiceContext";
+import WhyChooseUs from "../../components/WhyChooseUs";
+import UserReview from "../../components/UserReview";
 
 const Home = () => {
   const {darkIstrue}=use(ServiceContext)
   const services = useLoaderData();
   console.log(services);
   return (
-    <>
+    <div className=" pb-12">
       <div className=" pt-6">
         <Hero services={services}></Hero>
       </div>
@@ -37,7 +39,13 @@ const Home = () => {
           ))}
         </div>
       </section>
-    </>
+      <section className="py-16 pb-4">
+        <WhyChooseUs></WhyChooseUs>
+      </section>
+      <section className="py-16 pb-4">
+        <UserReview></UserReview>
+      </section>
+    </div>
   );
 };
 

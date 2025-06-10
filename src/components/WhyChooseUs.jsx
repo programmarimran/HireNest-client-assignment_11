@@ -1,23 +1,33 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 
-const diverseDishPromise = fetch("/diverse-dish.json").then((res) => res.json());
+const diverseDishPromise = fetch("/extra-section.json").then((res) =>
+  res.json()
+);
 
 const WhyChooseUs = () => {
   const { darkIstrue } = use(ServiceContext);
   const info = use(diverseDishPromise);
 
-  const { diverseDishInfo } = info;
-  const data = diverseDishInfo.whyChooseUs;
+  const { hireNestInfo } = info;
+  const data = hireNestInfo.whyChooseUs;
   const features = data.features;
 
   return (
     <div>
-      <div className="text-center w-3/4 mx-auto mb-12 space-y-4">
-        <h1 className={`text-2xl font-bold ${darkIstrue ? "text-gray-200" : "text-gray-800"}`}>
+      <div>
+        <h2
+          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
+            darkIstrue ? "text-white" : "text-black"
+          }`}
+        >
           {data.title}
-        </h1>
-        <p className={`text-sm font-medium ${darkIstrue ? "text-gray-400" : "text-gray-500"}`}>
+        </h2>
+        <p
+          className={`text-center max-w-xl mx-auto mb-6 ${
+            darkIstrue ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           {data.description}
         </p>
       </div>
@@ -31,7 +41,7 @@ const WhyChooseUs = () => {
               ${
                 darkIstrue
                   ? "bg-gradient-to-t from-slate-900 to-slate-800 text-gray-300"
-                  : "bg-gradient-to-t from-[#f0fff1] to-[#dbeafe] text-gray-800"
+                  : "bg-gradient-to-t from-[#2F80ED40] to-[#dbeafe] text-gray-800"
               }`}
           >
             <p className="text-7xl">{item?.icon && item.icon}</p>
