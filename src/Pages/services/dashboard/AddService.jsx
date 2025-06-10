@@ -35,7 +35,7 @@ const AddService = () => {
         console.log(data.data);
         if (data?.data?.insertedId) {
           Swal.fire({
-            title: "Recipe Added Successfully!",
+            title: "Service Added Successfully!",
             icon: "success",
             confirmButtonText: "OK",
           });

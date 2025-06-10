@@ -54,7 +54,7 @@ sincerely (${user?.displayName})
       {/* Links Section */}
       <div className=" grid grid-cols-1 md:grid-cols-3 gap-8 text-left pb-8">
         {/* Quick Links */}
-        <div className=" flex justify-start">
+        <div className=" flex md:justify-start">
          <div>
            <h3 className="font-semibold mb-2 text-lg">Quick Links:</h3>
           <ul className="space-y-1">
@@ -72,7 +72,7 @@ sincerely (${user?.displayName})
         </div>
 
         {/* Dashboard Links */}
-        <div className=" flex justify-center">
+        <div className=" flex md:justify-center">
          <div>
            <h3 className="font-semibold mb-2 text-lg">Dashboard:</h3>
           <ul className="space-y-1">
@@ -95,7 +95,7 @@ sincerely (${user?.displayName})
         </div>
 
         {/* Contact Info */}
-        <div className=" flex justify-end">
+        <div className=" flex md:justify-end">
          <div>
            <h3 className="font-semibold mb-2 text-lg">Contact:</h3>
           <ul className="text-sm space-y-1 leading-relaxed">
