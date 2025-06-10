@@ -1,132 +1,128 @@
 import React, { use } from "react";
-import {
-  FaFacebook,
-  FaGithub,
-  FaYoutube,
-} from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
-// import AuthContext from "../contexts/AuthContext";
 import ServiceContext from "../contexts/ServiceContext";
+import CopyrightInformation from "./CopyrightInformation";
+import AuthContext from "../contexts/AuthContext";
 
 const Footer = () => {
-  // const {user} =use(AuthContext)
-  const {darkIstrue}=use(ServiceContext)
- const links = (
-    <>
-      <li>
-        <NavLink to={"/"}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/services"}>Services</NavLink>
-      </li>
-      <li className="dropdown dropdown-hover md:mb-24">
-        <NavLink to={"/dashboard"} tabIndex={0}>
-          Dashboard
-        </NavLink>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-10"
-        >
-          <li>
-            <NavLink to={"/dashboard/add-service"}>Add Service</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/manage-service"}>Manage Service</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/booked-services"}>Booked-Services</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/service-to-do"}>Service-To-Do</NavLink>
-          </li>
-        </ul>
-      </li>
-    </>
-  );
+  const { darkIstrue } = use(ServiceContext);
+  const { user } = use(AuthContext);
+  const subject = `Service Query from ${user?.displayName}`;
+  const body = `
+Assalamu Alaikum Vaiya,
+
+I am ${user?.displayName}, a user of your platform "HireNest".
+
+🔽 My Main Question is:
+----------------------------------
+[Write your main question here...]
+
+
+
+----------------------------------
+I would like to get some support regarding your services. Please let me know when you are available to respond.
+Looking forward to your reply.
+JazakAllah Khair.
+
+----------------------------
+Sent from HireNest User Panel
+sincerely (${user?.displayName})
+`;
+
+  const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=programmarimran@gmail.com&su=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
   return (
-    <footer className={`footer-horizontal  rounded py-10 ${darkIstrue?"text-gray-100 ":"text-gray-900 "}`}>
-      <div className=" w-[200px] md:w-[300px] mx-auto flex  items-center mb-8 md:mb-16">
+    <footer
+      className={`pt-10 ${darkIstrue ? " text-gray-100" : " text-gray-900"}`}
+    >
+      {/* Logo */}
+      <div className="flex justify-center mb-6">
         <Link to={"/"}>
-          {darkIstrue ? (
-            <>
-              <img
-                className=" "
-                src="https://i.ibb.co/HDsJBrQQ/Hire-Nest-White-removebg-preview.png"
-                alt="logo"
-              />
-            </>
-          ) : (
-            <>
-              <img
-                className=""
-                src="https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
-                alt="logo"
-              />
-            </>
-          )}
+          <img
+            className="w-40"
+            src={
+              darkIstrue
+                ? "https://i.ibb.co/HDsJBrQQ/Hire-Nest-White-removebg-preview.png"
+                : "https://i.ibb.co/vxg5K5vK/Hire-Nest-title-removebg-preview.png"
+            }
+            alt="HireNest Logo"
+          />
         </Link>
       </div>
-      <aside className=" md:grid text-start md:grid-cols-3 space-y-5">
-        <nav className=" ">
-          <h3 className=" font-bold text-xl mb-3 ">
-            Quick Links:
-          </h3>
-          <ul className=" flex flex-col gap-1 md:gap-3">{links}</ul>
-        </nav>
-        <nav className=" mx-auto ">
-          <ul className=" md:space-y-5">
-            <li className=" font-medium">
-              <NavLink className={" link-hover"} to={"/copyright-notice"}>
-                {" "}
-                Copyright notice
-              </NavLink>
-            </li>
 
-            <li className=" font-medium">
-              <NavLink className={" link-hover"} to={"/contact-informaion"}>
-                {" "}
-                Contact information
-              </NavLink>
+      {/* Links Section */}
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left pb-8">
+        {/* Quick Links */}
+        <div>
+          <h3 className="font-semibold mb-2 text-lg">Quick Links:</h3>
+          <ul className="space-y-1">
+            <li>
+              <NavLink to={"/"}>Home</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/services"}>Services</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard"}>Dashboard</NavLink>
             </li>
           </ul>
-        </nav>
-        <nav className=" flex justify-start md:justify-end ">
-          <h3 className=" font-bold text-xl mb-3">Social:</h3>
-          <ul className="flex gap-4 md:gap-3">
+        </div>
+
+        {/* Dashboard Links */}
+        <div>
+          <h3 className="font-semibold mb-2 text-lg">Dashboard:</h3>
+          <ul className="space-y-1">
             <li>
-              <Link
-                to={"https://web.facebook.com/mdimran.hasan.79827803"}
+              <NavLink to={"/dashboard/add-service"}>Add Service</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/manage-service"}>Manage Service</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/booked-services"}>
+                Booked Services
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/service-to-do"}>Service To Do</NavLink>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Info */}
+        <div className="">
+          <h3 className="font-semibold mb-2 text-lg">Contact:</h3>
+          <ul className="text-sm space-y-1 leading-relaxed">
+            <li>
+              📞 <span className="font-medium">+8801715994657</span>
+            </li>
+            <li>
+              📧{" "}
+              <a
+                href={gmailLink}
                 target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline text-blue-500"
               >
-                <FaFacebook className=" text-blue-500" size={30}></FaFacebook>
-              </Link>
+                programmarimran@gmail.com
+              </a>
+            </li>
+
+            <li>
+              📍 <span>Dhaka, Bangladesh</span>
             </li>
             <li>
-              <Link to={"https://www.youtube.com/@techmorebd1"} target="_blank">
-                <FaYoutube className=" text-red-600" size={30}></FaYoutube>
-              </Link>
-            </li>
-            <li>
-              <Link to={"https://www.linkedin.com/in/md-imran-hasan-664907354/"} target="_blank">
-                <FaLinkedin className=" text-blue-600" size={30}></FaLinkedin>
-              </Link>
-            </li>
-            <li>
-              <Link to={"https://github.com/programmarimran"} target="_blank">
-                <FaGithub className=" text-black" size={30}></FaGithub>
-              </Link>
+              🕒 <span>sat - fri: 9AM - 6PM</span>
             </li>
           </ul>
-        </nav>
-      </aside>
+        </div>
+      </div>
 
-      <aside className=" mt-5 text-center">
-        <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by{" "}
-          <span className=" font-bold">HireNest</span>
-        </p>
-      </aside>
+      {/* Bottom Section */}
+      <div className="bg-base-300 py-4 px-2">
+        <CopyrightInformation />
+      </div>
     </footer>
   );
 };
