@@ -1,7 +1,13 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
+import AuthContext from "../contexts/AuthContext";
 
-const PurchaseServiceModal = () => {
+const PurchaseServiceModal = ({ service }) => {
+  const { user } = use(AuthContext);
+  console.log(service);
+  console.log(user);
+  const { email, displayName } = user;
+  const { _id, serviceName, price, provider, imageUrl } = service;
   const { darkIstrue } = use(ServiceContext);
   const handleAddService = (e) => {
     e.preventDefault();
@@ -32,7 +38,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service ID</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={_id}
                   name="serviceId"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -42,7 +49,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service Name</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={serviceName}
                   name="serviceName"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -52,7 +60,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service Image URL</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={imageUrl}
                   name="imageUrl"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -62,7 +71,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Provider Email</label>
                 <input
-                  type="email"
+                  type="email" 
+                  value={provider?.email}
                   name="providerEmail"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -72,7 +82,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Provider Name</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={provider?.name}
                   name="providerName"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -82,7 +93,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Your Email</label>
                 <input
-                  type="email"
+                  type="email" 
+                  value={email}
                   name="userEmail"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -92,7 +104,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Your Name</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={displayName}
                   name="userName"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly
@@ -102,7 +115,8 @@ const PurchaseServiceModal = () => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Price</label>
                 <input
-                  type="text"
+                  type="text" 
+                  value={price}
                   name="price"
                   className="input bg-[#2F80ED20] w-full"
                   readOnly

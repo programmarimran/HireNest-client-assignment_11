@@ -64,7 +64,7 @@ const ServiceDetails = () => {
               </Link>
 
               <div>
-               <PurchaseServiceModal></PurchaseServiceModal>
+               <PurchaseServiceModal service={service}></PurchaseServiceModal>
               </div>
             </div>
           </div>
