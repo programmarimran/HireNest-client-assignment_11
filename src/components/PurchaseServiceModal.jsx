@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
 const PurchaseServiceModal = ({ service }) => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const { user } = use(AuthContext);
   const { email, displayName } = user;
   const { _id, serviceName, price, provider, imageUrl, serviceArea } = service;
@@ -17,8 +17,8 @@ const PurchaseServiceModal = ({ service }) => {
     const formData = new FormData(form);
     const serviceBookingData = Object.fromEntries(formData.entries());
     serviceBookingData.serviceArea = serviceArea;
-
-    console.log(serviceBookingData);
+    serviceBookingData.serviceStatus = "pending";
+    // console.log(serviceBookingData);
     axios
       .post(
         `${import.meta.env.VITE_BasicServer}/book-service`,
@@ -33,7 +33,7 @@ const PurchaseServiceModal = ({ service }) => {
             icon: "success",
             confirmButtonText: "OK",
           });
-          navigate("/dashboard/booked-services")
+          navigate("/dashboard/booked-services");
         }
         //******************** */
       });

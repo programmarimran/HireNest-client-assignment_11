@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 
-const ManageServiceCard = ({ service }) => {
+const ManageServiceCard = ({ service,handleDelete }) => {
   const { darkIstrue } = useContext(ServiceContext);
 
   const {
@@ -21,11 +21,13 @@ const ManageServiceCard = ({ service }) => {
 
   return (
     <div className={`card shadow-md rounded-lg border p-4 ${cardBg} ${borderColor}`}>
-      <img
+    <div className={` shadow border rounded-lg ${darkIstrue?"border-gray-500":"border-gray-200"}`}>
+        <img
         src={imageUrl}
         alt={serviceName}
         className="h-48 w-full object-cover rounded-md"
       />
+    </div>
       <div className="mt-4">
         <h2 className="text-xl font-semibold">{serviceName}</h2>
         <p className={`mt-1 ${textMuted}`}>{description}</p>
@@ -46,7 +48,8 @@ const ManageServiceCard = ({ service }) => {
         >
           Edit
         </button>
-        <button
+        <button 
+        onClick={()=>handleDelete(_id)}
           className={`px-4 py-2 rounded transition ${
             darkIstrue
               ? "bg-red-600 hover:bg-red-500"
