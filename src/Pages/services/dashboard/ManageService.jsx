@@ -9,7 +9,7 @@ const ManageService = () => {
   const { user } = use(AuthContext);
   const { darkIstrue } = use(ServiceContext);
   const [userServices, setUserServices] = useState([]);
-  
+
   console.log(userServices);
   useEffect(() => {
     axios
@@ -36,6 +36,10 @@ const ManageService = () => {
         axios
           .delete(`${import.meta.env.VITE_BasicServer}/services/${_id}`)
           .then((res) => {
+            const reminingServices = userServices.filter(
+              (service) => service._id !== _id
+            );
+            setUserServices(reminingServices);
             console.log(res.data);
           });
         Swal.fire({
