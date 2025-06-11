@@ -106,6 +106,7 @@ const AddService = () => {
           <label className="label">Description</label>
           <textarea
             name="description"
+            required
             className="input bg-[#2F80ED20] w-full"
             rows="5"
             placeholder="Write a detailed description of your service..."

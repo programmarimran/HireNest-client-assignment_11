@@ -4,6 +4,7 @@ import ServiceContext from "../../../contexts/ServiceContext";
 import axios from "axios";
 import AuthContext from "../../../contexts/AuthContext";
 import Swal from "sweetalert2";
+import EditServiceModal from "../../../components/EditserviceModal";
 
 const ManageService = () => {
   const { user } = use(AuthContext);
@@ -79,6 +80,7 @@ const ManageService = () => {
             service={service}
           ></ManageServiceCard>
         ))}
+        <EditServiceModal userServices={userServices}></EditServiceModal>
       </div>
     </div>
   );

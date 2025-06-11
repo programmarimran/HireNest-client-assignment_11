@@ -42,6 +42,7 @@ const router = createBrowserRouter([
   {
     path:'/dashboard',
     element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    errorElement:<ExternalError></ExternalError>,
     children:[
       {
         index:true,
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
   {
     path:"/auth",
     Component:AuthLayout,
+    errorElement:<ExternalError></ExternalError>,
     children:[
       {
         index:true,

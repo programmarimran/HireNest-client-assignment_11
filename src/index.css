@@ -13,3 +13,9 @@
   --color-primary:blue;
   --color-secondary: teal;
 }
+
+
+.custom-modal-box {
+  width: 90%;
+  max-width: 1000px;
+}

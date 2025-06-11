@@ -45,7 +45,6 @@ const PurchaseServiceModal = ({ service }) => {
   return (
     <>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-
       <button
         onClick={() => document.getElementById("modal").showModal()}
         className={` flex items-center gap-2 mt-4 px-6 py-2 rounded font-medium transition ${
@@ -57,7 +56,7 @@ const PurchaseServiceModal = ({ service }) => {
         Book Now
       </button>
       <dialog id="modal" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box custom-modal-box mx-auto">
           {/* bg-base-300 */}
           <form onSubmit={handlePurchaseService}>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">

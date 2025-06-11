@@ -2,10 +2,15 @@ import React, { useContext } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 
 const ManageServiceCard = ({ service, handleDelete }) => {
-  const { darkIstrue } = useContext(ServiceContext);
+  const { darkIstrue, setEditServiceId } = useContext(ServiceContext);
 
   const { _id, serviceName, imageUrl, price, serviceArea, description } =
     service;
+
+  const handleEditButton = (id) => {
+    setEditServiceId(id);
+    document.getElementById("modal_edit").showModal();
+  };
 
   const cardBg = darkIstrue
     ? "bg-gray-600 text-white"
@@ -31,7 +36,9 @@ const ManageServiceCard = ({ service, handleDelete }) => {
             className="h-48 w-full object-cover rounded-md"
           />
         </div>
-        <h2 className="text-2xl font-semibold text-center my-2">{serviceName}</h2>
+        <h2 className="text-2xl font-semibold text-center my-2">
+          {serviceName}
+        </h2>
         <p className={`mt-1 break-words ${textMuted}`}>{description}</p>
       </div>
       <div>
@@ -44,18 +51,20 @@ const ManageServiceCard = ({ service, handleDelete }) => {
           </p>
         </div>
         <div className="mt-4 flex justify-between gap-3">
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
           <button
-            className={`px-4 py-2 rounded transition ${
+            onClick={() => handleEditButton(_id)}
+            className={`btn ${
               darkIstrue
-                ? "bg-blue-600 hover:bg-blue-500"
-                : "bg-blue-500 hover:bg-blue-600"
-            } text-white`}
+                ? "bg-blue-600 hover:bg-blue-500 text-white"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
           >
             Edit
           </button>
           <button
             onClick={() => handleDelete(_id)}
-            className={`px-4 py-2 rounded transition ${
+            className={` btn ${
               darkIstrue
                 ? "bg-red-600 hover:bg-red-500"
                 : "bg-red-500 hover:bg-red-600"

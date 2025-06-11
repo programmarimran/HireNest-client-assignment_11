@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const ServerProvider = ({children}) => {
   const [allServices,setAllServices]=useState([])
+  const [editServiceId,setEditServiceId]=useState("")
   useEffect(()=>{
     axios.get(`${import.meta.env.VITE_BasicServer}/services`)
     .then(data=>{
@@ -14,7 +15,9 @@ const ServerProvider = ({children}) => {
   const serviceInfo={
     darkIstrue,
     setDarkIStrue,
-    allServices
+    allServices,
+    editServiceId,
+    setEditServiceId
     
   }
   return (
