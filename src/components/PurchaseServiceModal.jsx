@@ -1,37 +1,101 @@
-import React from "react";
+import React, { use } from "react";
+import ServiceContext from "../contexts/ServiceContext";
 
 const PurchaseServiceModal = () => {
+  const { darkIstrue } = use(ServiceContext);
+  const handleAddService = (e) => {
+    e.preventDefault();
+  };
   const handleClose = () => {
-    document.getElementById("my_modal_1").close();
+    document.getElementById("modal").close();
   };
   return (
     <>
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box max-w-4xl w-full">
-          <h3 className=" my-12 text-center bg-green-100 text-green-600 border border-green-200  rounded-lg py-2 px-4 text-2xl font-bold">
-            Update Recipe
-          </h3>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-          <form>
+      <button
+        onClick={() => document.getElementById("modal").showModal()}
+        className={` flex items-center gap-2 mt-4 px-6 py-2 rounded font-medium transition ${
+          darkIstrue
+            ? "bg-blue-600 hover:bg-blue-500 text-white"
+            : "bg-blue-500 hover:bg-blue-600 text-white"
+        }`}
+      >
+        Book Now
+      </button>
+      <dialog id="modal" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          {/* bg-base-300 */}
+          <form onSubmit={handleAddService}>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
+              {/* Not Editable Fields */}
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Service ID</label>
+                <input
+                  type="text"
+                  name="serviceId"
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
+                />
+              </fieldset>
+
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service Name</label>
                 <input
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
                   name="serviceName"
-                  placeholder="Enter Your Service Name"
-                  required
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
                 />
               </fieldset>
-              <fieldset className="fieldset bg-base-300  border-base-300 rounded-box border p-4">
-                <label className={`label `}>Image URL</label>
+
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Service Image URL</label>
                 <input
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
                   name="imageUrl"
-                  placeholder="Enter Your Service image URL"
-                  required
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
+                />
+              </fieldset>
+
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Provider Email</label>
+                <input
+                  type="email"
+                  name="providerEmail"
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
+                />
+              </fieldset>
+
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Provider Name</label>
+                <input
+                  type="text"
+                  name="providerName"
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
+                />
+              </fieldset>
+
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Your Email</label>
+                <input
+                  type="email"
+                  name="userEmail"
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
+                />
+              </fieldset>
+
+              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
+                <label className="label">Your Name</label>
+                <input
+                  type="text"
+                  name="userName"
+                  className="input bg-[#2F80ED20] w-full"
+                  readOnly
                 />
               </fieldset>
 
@@ -39,58 +103,47 @@ const PurchaseServiceModal = () => {
                 <label className="label">Price</label>
                 <input
                   type="text"
-                  className="input bg-[#2F80ED20] w-full"
                   name="price"
-                  placeholder="Enter Your Service Cost"
-                  required
-                />
-              </fieldset>
-
-              <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
-                <label className="label">Service Area</label>
-                <input
-                  type="text"
                   className="input bg-[#2F80ED20] w-full"
-                  name="serviceArea"
-                  placeholder="Enter Your Service Area"
-                  required
+                  readOnly
                 />
               </fieldset>
             </div>
-
-            <fieldset className="fieldset bg-base-300 my-6 border-base-300 rounded-box border p-4">
-              <label className="label">Description</label>
-              <textarea
-                name="description"
+            {/* Editable Fields */}
+            <fieldset className="fieldset mt-6 bg-base-300 border-base-300 rounded-box border p-4">
+              <label className="label">Service Taking Date</label>
+              <input
+                type="date"
+                name="takingDate"
                 className="input bg-[#2F80ED20] w-full"
-                rows="5"
-                placeholder="Write a detailed description of your service..."
+                required
+              />
+            </fieldset>
+
+            {/* Editable: Special Instruction */}
+            <fieldset className="fieldset bg-base-300 my-6 border-base-300 rounded-box border p-4">
+              <label className="label">Special Instruction</label>
+              <textarea
+                name="specialInstruction"
+                className="textarea bg-[#2F80ED20] w-full"
+                rows="4"
+                placeholder="Anything like address, area, customized service plan..."
               ></textarea>
             </fieldset>
 
-            <button
-              type="submit"
-              className="btn bg-[#2F80ED80] hover:bg-[#2F80ED] w-full"
-            >
-              Add Service
-            </button>
-            {/* modal end */}
-            <div className=" flex items-center justify-between">
-              <div className="modal-action">
-                <button
-                  type="button"
-                  onClick={() => handleClose()}
-                  className="btn bg-green-100 text-green-600 border border-green-400 hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
-                >
-                  Close
-                </button>
-              </div>
+            <div className="modal-action flex justify-between items-center">
               <button
-                className=" btn bg-green-100 text-green-600 border border-green-400 hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
-                type="submit"
-                onClick={() => document.getElementById("my_modal_1").close()}
+                type="button"
+                onClick={() => handleClose()}
+                className="btn bg-[#2F80ED20] text-[#2F80ED] border border-[#2F80ED70] hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
               >
-                update
+                Close
+              </button>
+              <button
+                type="submit"
+                className="btn bg-[#2F80ED20] text-[#2F80ED] border border-[#2F80ED70] hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
+              >
+                Purchase
               </button>
             </div>
           </form>

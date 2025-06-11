@@ -3,8 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import ServiceContext from "../../contexts/ServiceContext";
 import Loading from "../../components/Loading";
 import { FaBackward } from "react-icons/fa6";
-import PurchaseFinalServiceModal from "../../components/PurchaseFinalServiceModal";
-// import PurchaseFinalServiceModal from "../../components/PurchaseFinalServiceModal";
+import PurchaseServiceModal from "../../components/PurchaseServiceModal";
 
 const ServiceDetails = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -51,7 +50,7 @@ const ServiceDetails = () => {
             </div>
 
             <p className="text-xl font-bold text-blue-500">৳{service?.price}</p>
-            <div className=" flex justify-between">
+            <div className=" flex justify-between items-center">
               <Link to={-1}>
                 <button
                   className={` flex items-center gap-2 mt-4 px-6 py-2 rounded font-medium transition ${
@@ -65,7 +64,7 @@ const ServiceDetails = () => {
               </Link>
 
               <div>
-                <PurchaseFinalServiceModal></PurchaseFinalServiceModal>
+               <PurchaseServiceModal></PurchaseServiceModal>
               </div>
             </div>
           </div>
