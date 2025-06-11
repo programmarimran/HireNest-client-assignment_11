@@ -16,6 +16,7 @@ import SignUp from "../Pages/auth/SignUp";
 import AuthLayout from "../layouts/AuthLayout";
 import ExternalError from "../Pages/errors/ExternalError";
 import ServiceDetails from "../Pages/services/ServiceDetails";
+import InternalError from "../Pages/errors/InternalError";
 // import InternalError from "../Pages/errors/InternalError";
 
 const router = createBrowserRouter([
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/service-details/:id",
         loader:({params})=>fetch(`${import.meta.env.VITE_BasicServer}/services/${params.id}`),
+        errorElement:<InternalError></InternalError>,
         Component:ServiceDetails
       }
     ]
