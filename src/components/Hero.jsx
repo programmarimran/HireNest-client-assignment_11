@@ -8,7 +8,7 @@ import { Link } from "react-router";
 
 const Hero = ({ services }) => {
   const { darkIstrue } = use(ServiceContext);
-  console.log(services[0].imageUrl);
+  // console.log(services[0].imageUrl);
   return (
     <>
       <Swiper

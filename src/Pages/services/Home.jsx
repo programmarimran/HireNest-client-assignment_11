@@ -9,7 +9,7 @@ import UserReview from "../../components/UserReview";
 const Home = () => {
   const { darkIstrue } = use(ServiceContext);
   const services = useLoaderData();
-  console.log(services);
+  // console.log(services);
   return (
     <div className=" pb-12">
       <div className=" pt-6">
