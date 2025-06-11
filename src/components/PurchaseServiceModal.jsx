@@ -1,17 +1,44 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import AuthContext from "../contexts/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const PurchaseServiceModal = ({ service }) => {
+  const navigate=useNavigate()
   const { user } = use(AuthContext);
-  console.log(service);
-  console.log(user);
   const { email, displayName } = user;
-  const { _id, serviceName, price, provider, imageUrl } = service;
+  const { _id, serviceName, price, provider, imageUrl, serviceArea } = service;
   const { darkIstrue } = use(ServiceContext);
-  const handleAddService = (e) => {
+  const handlePurchaseService = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const serviceBookingData = Object.fromEntries(formData.entries());
+    serviceBookingData.serviceArea = serviceArea;
+
+    console.log(serviceBookingData);
+    axios
+      .post(
+        `${import.meta.env.VITE_BasicServer}/book-service`,
+        serviceBookingData
+      )
+      .then((data) => {
+        console.log(data.data);
+        //************************** */
+        if (data?.data?.insertedId) {
+          Swal.fire({
+            title: "Service Booking Successfully!",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+          navigate("/dashboard/booked-services")
+        }
+        //******************** */
+      });
   };
+
   const handleClose = () => {
     document.getElementById("modal").close();
   };
@@ -32,13 +59,13 @@ const PurchaseServiceModal = ({ service }) => {
       <dialog id="modal" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           {/* bg-base-300 */}
-          <form onSubmit={handleAddService}>
+          <form onSubmit={handlePurchaseService}>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-6">
               {/* Not Editable Fields */}
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service ID</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={_id}
                   name="serviceId"
                   className="input bg-[#2F80ED20] w-full"
@@ -49,7 +76,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service Name</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={serviceName}
                   name="serviceName"
                   className="input bg-[#2F80ED20] w-full"
@@ -60,7 +87,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Service Image URL</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={imageUrl}
                   name="imageUrl"
                   className="input bg-[#2F80ED20] w-full"
@@ -71,7 +98,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Provider Email</label>
                 <input
-                  type="email" 
+                  type="email"
                   value={provider?.email}
                   name="providerEmail"
                   className="input bg-[#2F80ED20] w-full"
@@ -82,7 +109,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Provider Name</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={provider?.name}
                   name="providerName"
                   className="input bg-[#2F80ED20] w-full"
@@ -93,7 +120,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Your Email</label>
                 <input
-                  type="email" 
+                  type="email"
                   value={email}
                   name="userEmail"
                   className="input bg-[#2F80ED20] w-full"
@@ -104,7 +131,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Your Name</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={displayName}
                   name="userName"
                   className="input bg-[#2F80ED20] w-full"
@@ -115,7 +142,7 @@ const PurchaseServiceModal = ({ service }) => {
               <fieldset className="fieldset bg-base-300 border-base-300 rounded-box border p-4">
                 <label className="label">Price</label>
                 <input
-                  type="text" 
+                  type="text"
                   value={price}
                   name="price"
                   className="input bg-[#2F80ED20] w-full"
@@ -129,6 +156,7 @@ const PurchaseServiceModal = ({ service }) => {
               <input
                 type="date"
                 name="takingDate"
+                placeholder="Enter Your Date"
                 className="input bg-[#2F80ED20] w-full"
                 required
               />

@@ -25,8 +25,9 @@ const AddService = () => {
       email: user?.email,
       photoUrl: user?.photoURL,
     };
-
-    console.log(serviceData);
+    const priceString = form.price.value;
+    // console.log(priceString);
+    serviceData.price = parseInt(priceString);
 
     // POST to server
     axios
@@ -39,7 +40,7 @@ const AddService = () => {
             icon: "success",
             confirmButtonText: "OK",
           });
-          navigate("/services");
+          navigate("/dashboard/manage-service");
         }
       });
   };
