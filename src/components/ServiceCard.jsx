@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
+import { Link } from "react-router";
 
 const ServiceCard = ({ service }) => {
   const { darkIstrue } = use(ServiceContext);
@@ -10,6 +11,7 @@ const ServiceCard = ({ service }) => {
     price,
     provider,
     serviceArea,
+    _id
   } = service;
 
   return (
@@ -78,6 +80,7 @@ const ServiceCard = ({ service }) => {
             >
               ৳ {price}
             </p>
+           <Link to={`/dashboard/service-details/${_id}`}>
             <button
               className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
                 darkIstrue
@@ -87,6 +90,7 @@ const ServiceCard = ({ service }) => {
             >
               View Detail
             </button>
+           </Link>
           </div>
         </div>
       </div>

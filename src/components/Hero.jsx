@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import ServiceContext from "../contexts/ServiceContext";
+import { Link } from "react-router";
 
 const Hero = ({ services }) => {
   const { darkIstrue } = use(ServiceContext);
@@ -44,6 +45,7 @@ const Hero = ({ services }) => {
                   <p className="text-sm md:text-base mt-1">
                     💰 <span className="font-semibold">৳{service.price}</span>
                   </p>
+                  <Link to={`/dashboard/service-details/${service?._id}`}>
                   <button
                     className={`mt-3 px-4 py-1 text-sm rounded transition duration-200 ${
                       darkIstrue
@@ -53,6 +55,7 @@ const Hero = ({ services }) => {
                   >
                     View Detail
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

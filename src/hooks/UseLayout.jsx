@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Outlet, useNavigation } from "react-router";
 import Footer from "../components/Footer";
 import ServiceContext from "../contexts/ServiceContext";
+import Loading from "../components/Loading";
 
 const UseLayout = () => {
   const navigation = useNavigation();
@@ -18,7 +19,7 @@ const UseLayout = () => {
         <section className="max-w-7xl mx-auto ">
           <div className=" w-11/12 mx-auto min-h-[calc(100vh-429px)]">
             {navigation.state === "loading" ? (
-              <p className=" text-red-500">loadingloadingloadingloading</p>
+              <Loading></Loading>
             ) : (
               <Outlet></Outlet>
             )}

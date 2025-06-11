@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import ServiceCard from "../../components/ServiceCard";
 import Hero from "../../components/Hero";
 import ServiceContext from "../../contexts/ServiceContext";
@@ -7,7 +7,7 @@ import WhyChooseUs from "../../components/WhyChooseUs";
 import UserReview from "../../components/UserReview";
 
 const Home = () => {
-  const {darkIstrue}=use(ServiceContext)
+  const { darkIstrue } = use(ServiceContext);
   const services = useLoaderData();
   console.log(services);
   return (
@@ -38,6 +38,19 @@ const Home = () => {
             <ServiceCard key={service._id} service={service}></ServiceCard>
           ))}
         </div>
+      </section>
+      <section className="py-8 pb-4 flex justify-center items-center">
+        <Link to={"/services"}>
+        <button
+          className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
+            darkIstrue
+              ? "bg-blue-600 hover:bg-blue-500 text-white"
+              : "bg-blue-500 hover:bg-blue-600 text-white"
+          }`}
+        >
+          Show All Service
+        </button>
+        </Link>
       </section>
       <section className="py-16 pb-4">
         <WhyChooseUs></WhyChooseUs>
