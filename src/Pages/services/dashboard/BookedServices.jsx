@@ -4,6 +4,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import BookedServiceCard from "../../../components/BookedServiceCard";
 import ServiceContext from "../../../contexts/ServiceContext";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const BookedServices = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -53,27 +54,48 @@ const BookedServices = () => {
   };
   return (
     <div className=" py-12">
+        <title>HireNest||Booked_Service</title>
       <div className="pb-6">
-  <h2
-    className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
-      darkIstrue ? "text-white" : "text-black"
-    }`}
-  >
-    Booked Services Overview
-  </h2>
+        <h2
+          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
+            darkIstrue ? "text-white" : "text-black"
+          }`}
+        >
+          Booked Services Overview
+        </h2>
 
-  <p
-    className={`text-center max-w-xl mx-auto mb-6 ${
-      darkIstrue ? "text-gray-300" : "text-gray-600"
-    }`}
-  >
-    {bookedServices.length > 0
-      ? `You have successfully booked ${bookedServices.length} service${
-          bookedServices.length > 1 ? "s" : ""
-        }. Review the details below and stay updated with their current status.`
-      : "You haven't booked any services yet. Once you book a service, it will appear here for your reference and tracking."}
-  </p>
-</div>
+        <div
+          className={`text-center max-w-xl mx-auto mb-6 ${
+            darkIstrue ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
+          {bookedServices.length > 0 ? (
+            `You have successfully booked ${bookedServices.length} service${
+              bookedServices.length > 1 ? "s" : ""
+            }. Review the details below and stay updated with their current status.`
+          ) : (
+            <div>
+              <p>
+                "You haven't booked any services yet. Once you book a service,
+                it will appear here for your reference and tracking."
+              </p>
+              <div className="py-8 pb-4 flex justify-center items-center">
+                <Link to={"/services"}>
+                  <button
+                    className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
+                      darkIstrue
+                        ? "bg-blue-600 hover:bg-blue-500 text-white"
+                        : "bg-blue-500 hover:bg-blue-600 text-white"
+                    }`}
+                  >
+                    View All Service
+                  </button>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
         {bookedServices?.map((service) => (

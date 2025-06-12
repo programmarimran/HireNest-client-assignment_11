@@ -9,6 +9,7 @@ const Services = () => {
   console.log(allServices);
   return (
     <div className="py-16 ">
+      <title>HireNest||All Services</title>
       <h2
         className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
           darkIstrue ? "text-white" : "text-black"

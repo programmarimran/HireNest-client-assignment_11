@@ -12,6 +12,7 @@ const Home = () => {
   // console.log(services);
   return (
     <div className=" pb-12">
+      <title>HireNest||Home-Page</title>
       <div className=" pt-6">
         <Hero services={services}></Hero>
       </div>

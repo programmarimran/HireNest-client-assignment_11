@@ -48,6 +48,7 @@ const AddService = () => {
 
   return (
     <div className="py-12">
+      <title>HireNest||Add-Service</title>
       <div className="text-center space-y-4 p-6">
         <h1 className="text-2xl font-bold">Add Service</h1>
         <p className={`text-base`}>

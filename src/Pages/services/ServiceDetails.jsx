@@ -12,6 +12,7 @@ const ServiceDetails = () => {
   if (!service) return <Loading></Loading>;
   return (
     <div className=" py-24">
+      <title>{service?.serviceName}</title>
       <div
         className={`max-w-5xl mx-auto border rounded-2xl py-4 px-4 ${
           darkIstrue
@@ -64,7 +65,7 @@ const ServiceDetails = () => {
               </Link>
 
               <div>
-               <PurchaseServiceModal service={service}></PurchaseServiceModal>
+                <PurchaseServiceModal service={service}></PurchaseServiceModal>
               </div>
             </div>
           </div>
