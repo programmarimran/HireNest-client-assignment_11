@@ -1,12 +1,28 @@
-import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import React, { use, useEffect, useState } from "react";
+// import { useLoaderData } from "react-router";
 import ServiceContext from "../../contexts/ServiceContext";
 import ServiceCard from "../../components/ServiceCard";
+import axios from "axios";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
-  const allServices = useLoaderData();
-  console.log(allServices);
+  const [allServices, setAllServices] = useState([]);
+  // fetch data all services
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BasicServer}/services`).then((res) => {
+      setAllServices(res.data);
+    });
+  }, []);
+  //handle search intregation
+  const handleSearch = (search) => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BasicServer}/search/services?search=${search}`
+      )
+      .then((res) => {
+        setAllServices(res.data);
+      });
+  };
   return (
     <div className="py-16 ">
       <title>HireNest||All Services</title>
@@ -45,7 +61,12 @@ const Services = () => {
               <path d="m21 21-4.3-4.3"></path>
             </g>
           </svg>
-          <input type="search" required placeholder="Search" />
+          <input
+            onChange={(e) => handleSearch(e.target.value)}
+            type="search"
+            required
+            placeholder="Search"
+          />
         </label>
       </div>
       <div className=" grid grid-cols-1  gap-6 pb-4">
