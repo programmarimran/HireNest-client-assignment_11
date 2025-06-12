@@ -1,14 +1,14 @@
-import React, { use } from "react";
+import React, { use} from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import { FaX } from "react-icons/fa6";
 
-const ServiceToDoCard = ({ service, handleBookedDeleteButton, handleStatusChange }) => {
+
+const ServiceToDoCard = ({ service,handleServiceStatus }) => {
   const { darkIstrue } = use(ServiceContext);
   const {
     serviceName,
     imageUrl,
     specialInstruction,
-  
     providerName,
     serviceStatus,
     serviceArea,
@@ -46,10 +46,7 @@ const ServiceToDoCard = ({ service, handleBookedDeleteButton, handleStatusChange
       </div>
 
       {/* Delete Button */}
-      <button
-        onClick={() => handleBookedDeleteButton(_id)}
-        className="btn absolute top-4 right-4"
-      >
+      <button className="btn absolute top-4 right-4">
         <FaX size={20} />
       </button>
 
@@ -69,14 +66,28 @@ const ServiceToDoCard = ({ service, handleBookedDeleteButton, handleStatusChange
           </div>
 
           {/* Special Instruction */}
+
           {specialInstruction && (
-            <p
-              className={`mt-1 text-sm ${
-                darkIstrue ? "text-yellow-200" : "text-yellow-700"
-              }`}
-            >
-              📌 Instruction: {specialInstruction}
-            </p>
+            <>
+              <hr
+                className={`text-sm mt-6 mb-4 border border-dashed ${
+                  darkIstrue ? "border-gray-300" : "border-gray-600"
+                }`}
+              />
+              <p
+                className={`mt-1 text-sm  ${
+                  darkIstrue ? "text-yellow-200" : "text-yellow-700"
+                }`}
+              >
+                📌 <span className=" text-lg font-bold">Instruction:</span>{" "}
+                {specialInstruction}
+              </p>
+              <hr
+                className={`text-sm my-4 border border-dashed ${
+                  darkIstrue ? "border-gray-300" : "border-gray-600"
+                }`}
+              />
+            </>
           )}
 
           {/* Taking Date */}
@@ -95,8 +106,8 @@ const ServiceToDoCard = ({ service, handleBookedDeleteButton, handleStatusChange
           <div className="mt-2">
             🟠 Status:{" "}
             <select
-              value={serviceStatus}
-              onChange={(e) => handleStatusChange(_id, e.target.value)}
+              defaultValue={serviceStatus}
+              onChange={(e) => handleServiceStatus(e.target.value,_id)}
               className={`ml-2 px-2 py-1 rounded ${
                 darkIstrue
                   ? "bg-gray-600 text-gray-100 border border-gray-400"
