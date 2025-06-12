@@ -3,7 +3,7 @@ import ServiceContext from "../contexts/ServiceContext";
 import { FaX } from "react-icons/fa6";
 
 
-const ServiceToDoCard = ({ service,handleServiceStatus }) => {
+const ServiceToDoCard = ({ service,handleServiceStatus,handleDelete }) => {
   const { darkIstrue } = use(ServiceContext);
   const {
     serviceName,
@@ -46,7 +46,7 @@ const ServiceToDoCard = ({ service,handleServiceStatus }) => {
       </div>
 
       {/* Delete Button */}
-      <button className="btn absolute top-4 right-4">
+      <button onClick={()=>handleDelete(_id)} className="btn absolute top-4 right-4">
         <FaX size={20} />
       </button>
 
