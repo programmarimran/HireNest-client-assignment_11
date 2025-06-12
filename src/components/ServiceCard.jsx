@@ -17,7 +17,7 @@ const ServiceCard = ({ service }) => {
   return (
     <div
       className={`rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row p-4 gap-4 transition duration-300 ${
-        darkIstrue ? "bg-gray-800 text-gray-100 border border-gray-500" : "bg-gray-100 border border-gray-300 text-gray-900"
+        darkIstrue ? "bg-gray-700 text-gray-100 border border-gray-500" : "bg-gray-100 border border-gray-300 text-gray-900"
       }`}
     >
       {/* Service Image */}

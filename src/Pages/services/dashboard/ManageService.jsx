@@ -68,11 +68,14 @@ const ManageService = () => {
               darkIstrue ? "text-gray-300" : "text-gray-600"
             }`}
           >
-            Easily update or remove the services you’ve added to maintain full
-            control. Keep your service offerings up-to-date and relevant for
-            your clients.
+            {userServices.length > 0
+              ? `You are currently offering ${userServices.length} service${
+                  userServices.length > 1 ? "s" : ""
+                }. Use the panel below to view, edit, or update them as needed.`
+              : "You are not offering any services at the moment. Add a new service to start reaching potential customers."}
           </p>
         </div>
+
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
           {userServices?.map((service) => (
             <ManageServiceCard
