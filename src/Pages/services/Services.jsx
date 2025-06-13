@@ -1,18 +1,14 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useState } from "react";
 // import { useLoaderData } from "react-router";
 import ServiceContext from "../../contexts/ServiceContext";
 import ServiceCard from "../../components/ServiceCard";
 import axios from "axios";
+import { useLoaderData } from "react-router";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
-  const [allServices, setAllServices] = useState([]);
-  // fetch data all services
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BasicServer}/services`).then((res) => {
-      setAllServices(res.data);
-    });
-  }, []);
+  const initialServices = useLoaderData();
+  const [allServices, setAllServices] = useState(initialServices);
   //handle search intregation
   const handleSearch = (search) => {
     axios
