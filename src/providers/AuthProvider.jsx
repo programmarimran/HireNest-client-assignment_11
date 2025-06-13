@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -27,7 +28,7 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const loginUserWithGoogle = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   const logoutUser = () => {
@@ -36,6 +37,11 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      // sent jwt user token
+      axios
+        .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser,{withCredentials:true})
+        .then((res) => console.log(res.data))
+        .catch(error=>console.log(error));
       setLoading(false);
     });
     return () => {
