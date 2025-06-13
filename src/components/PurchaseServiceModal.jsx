@@ -22,7 +22,7 @@ const PurchaseServiceModal = ({ service }) => {
     axios
       .post(
         `${import.meta.env.VITE_BasicServer}/book-service`,
-        serviceBookingData
+        serviceBookingData,{withCredentials:true}
       )
       .then((data) => {
         console.log(data.data);

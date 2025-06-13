@@ -15,7 +15,7 @@ const BookedServices = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/users/booked/services?email=${
           user?.email
-        }`
+        }`,{withCredentials:true}
       )
       .then((res) => {
         setBookedServices(res.data);

@@ -2,8 +2,10 @@ import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import AuthContext from "../contexts/AuthContext";
 
 const EditServiceModal = ({ userServices, setUserServices }) => {
+  const {user}=use(AuthContext)
   const { editServiceId } = use(ServiceContext);
   // const withOutServices=userServices?.filter(service=>service._id!==editServiceId)
   // console.log(withOutServices)
@@ -11,18 +13,18 @@ const EditServiceModal = ({ userServices, setUserServices }) => {
     (service) => service._id == editServiceId
   );
   // console.log(editservice);
-
   const handleUpdateService = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const editServerData = Object.fromEntries(formData.entries());
+    editServerData.userEmail=user?.email;
     // const uiRenderingData={...editServerData,_id:editServiceId}
-    console.log(editServerData);
+    // console.log(editServerData);
     axios
       .put(
         `${import.meta.env.VITE_BasicServer}/services/${editservice?._id}`,
-        editServerData
+        editServerData,{withCredentials:true}
       )
       .then((res) => {
         if (res?.data.modifiedCount > 0) {

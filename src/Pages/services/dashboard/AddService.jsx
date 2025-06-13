@@ -31,7 +31,7 @@ const AddService = () => {
 
     // POST to server
     axios
-      .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData)
+      .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData,{withCredentials:true})
       .then((data) => {
         console.log(data.data);
         if (data?.data?.insertedId) {

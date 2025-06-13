@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import ServiceContext from '../contexts/ServiceContext';
-import axios from 'axios';
+// import axios from 'axios';
 
 const ServerProvider = ({children}) => {
-  const [allServices,setAllServices]=useState([])
+  // const [allServices,setAllServices]=useState([])
   const [editServiceId,setEditServiceId]=useState("")
-  useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_BasicServer}/services`)
-    .then(data=>{
-      setAllServices(data.data)
-    })
-  },[])
+  // useEffect(()=>{
+  //   axios.get(`${import.meta.env.VITE_BasicServer}/services`)
+  //   .then(data=>{
+  //     setAllServices(data.data)
+  //   })
+  // },[])
   const [darkIstrue,setDarkIStrue]=useState(false)
   const serviceInfo={
     darkIstrue,
     setDarkIStrue,
-    allServices,
+    // allServices,
     editServiceId,
     setEditServiceId
     

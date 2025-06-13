@@ -15,7 +15,7 @@ const ServiceToDo = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/provider/booked-services?email=${
           user?.email
-        }`
+        }`,{withCredentials:true}
       )
       .then((res) => {
         setProvideBookedServices(res.data);
@@ -24,13 +24,13 @@ const ServiceToDo = () => {
   console.log(provideBookedServices);
   //handle service status updated 
   const handleServiceStatus = (value, _id) => {
-    console.log(value);
-
+    // console.log(value);
     //update patch with status DB
     axios
       .patch(`${import.meta.env.VITE_BasicServer}/book-service/${_id}`, {
         serviceStatus: value,
-      })
+        providerEmail:user.email
+      },{withCredentials:true})
       .then((res) => {
         // console.log(res.data);
         if (res.data.modifiedCount > 0) {
