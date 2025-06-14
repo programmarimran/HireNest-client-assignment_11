@@ -61,8 +61,11 @@ npm install tailwindcss daisyui framer-motion
 npm install -D vite eslint @vitejs/plugin-react @types/react @types/react-dom eslint-plugin-react-hooks
 
 
+...
+
 ## 🧑‍💻 Developer Information
-👨‍💻 Developed by Md Imran Hasan
-💼 Full-stack Web Developer | Passionate about React & MERN stack
-📬 Email: programmarimran@gmail.com
+
+👨‍💻 Developed by: Md Imran Hasan  
+💼 Role: Full-stack Web Developer | Passionate about React & MERN stack  
+📬 Email: programmarimran@gmail.com  
 🌐 Portfolio: Coming Soon
