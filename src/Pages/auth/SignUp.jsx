@@ -60,7 +60,13 @@ const SignUp = () => {
         console.log(result);
         updateUserProfile(updateInfo)
           .then(() => {
-            toast.success(`${from?"SignUp in successfully! Redirecting to your previous page...":"SingUp successfully! Redirecting to home page..."}`);
+            toast.success(
+              `${
+                from
+                  ? "SignUp in successfully! Redirecting to your previous page..."
+                  : "SingUp successfully! Redirecting to home page..."
+              }`
+            );
             navigate(`${from || "/"}`);
             return;
           })
@@ -69,8 +75,42 @@ const SignUp = () => {
           });
       })
       .catch((error) => {
-        setError(error.code);
+        console.error("Firebase Auth Error:", error.code, error.message);
+
+        switch (error.code) {
+          case "auth/invalid-credential":
+            setError("Invalid email or password. Please check and try again.");
+            break;
+          case "auth/user-not-found":
+            setError("No user found with this email. Please sign up first.");
+            break;
+          case "auth/wrong-password":
+            setError("Incorrect password. Please try again.");
+            break;
+          case "auth/email-already-in-use":
+            setError(
+              "This email is already registered. Please login or use another email."
+            );
+            break;
+          case "auth/too-many-requests":
+            setError(
+              "Too many login attempts. Please wait and try again later."
+            );
+            break;
+          case "auth/network-request-failed":
+            setError("Network error. Please check your internet connection.");
+            break;
+          case "auth/invalid-email":
+            setError("Invalid email format. Please enter a valid email.");
+            break;
+          case "auth/user-disabled":
+            setError("This account has been disabled. Please contact support.");
+            break;
+          default:
+            setError("An unexpected error occurred. Please try again.");
+        }
       })
+
       .finally(() => {
         setLoading(false);
       });

@@ -7,7 +7,6 @@ import loginAnimation from "../../assets/loginAnimation.json";
 import AuthContext from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import SocialLogin from "./SocialLogin";
-
 const Login = () => {
   const location = useLocation();
   const from = location?.state;
@@ -18,13 +17,12 @@ const Login = () => {
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const { loginUser, setLoading } = use(AuthContext);
-  const handleCreateUser = (e) => {
+  const handleLoginUser = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
     const { email, password } = userData;
-
     //  Password authentication start with regular expression
     const uppercaseRegex = /^(?=.*[A-Z]).{1,}$/;
     const lowercaseRegex = /^(?=.*[a-z]).{1,}$/;
@@ -47,13 +45,53 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
-       
-        toast.success(`${from?"Logged in successfully! Redirecting to your previous page...":"Login successfully! Redirecting to home page..."}`);
+
+        toast.success(
+          `${
+            from
+              ? "Logged in successfully! Redirecting to your previous page..."
+              : "Login successfully! Redirecting to home page..."
+          }`
+        );
         navigate(`${from || "/"}`);
       })
       .catch((error) => {
-        setError(error.code);
+        console.error("Firebase Auth Error:", error.code, error.message);
+
+        switch (error.code) {
+          case "auth/invalid-credential":
+            setError("Invalid email or password. Please check and try again.");
+            break;
+          case "auth/user-not-found":
+            setError("No user found with this email. Please sign up first.");
+            break;
+          case "auth/wrong-password":
+            setError("Incorrect password. Please try again.");
+            break;
+          case "auth/email-already-in-use":
+            setError(
+              "This email is already registered. Please login or use another email."
+            );
+            break;
+          case "auth/too-many-requests":
+            setError(
+              "Too many login attempts. Please wait and try again later."
+            );
+            break;
+          case "auth/network-request-failed":
+            setError("Network error. Please check your internet connection.");
+            break;
+          case "auth/invalid-email":
+            setError("Invalid email format. Please enter a valid email.");
+            break;
+          case "auth/user-disabled":
+            setError("This account has been disabled. Please contact support.");
+            break;
+          default:
+            setError("An unexpected error occurred. Please try again.");
+        }
       })
+
       .finally(() => {
         setLoading(false);
       });
@@ -62,11 +100,11 @@ const Login = () => {
   return (
     <div className="py-12">
       <div className="card mx-auto  bg-base-100 border border-gray-200  w-full  shrink-0 shadow-2xl">
-        <form onSubmit={handleCreateUser} className="card-body">
+        <form onSubmit={handleLoginUser} className="card-body">
           <div>
             {from && (
               <h1 className=" text-center border border-[#2F80ED] text-[#2F80ED] text-lg rounded-2xl p-4 m-4 bg-[#2F80ED10]">
-              Please log in to access all features.
+                Please log in to access all features.
               </h1>
             )}
           </div>
