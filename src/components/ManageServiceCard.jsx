@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ManageServiceCard = ({ service, handleDelete }) => {
   const { darkIstrue, setEditServiceId } = useContext(ServiceContext);
 
@@ -19,9 +21,14 @@ const ManageServiceCard = ({ service, handleDelete }) => {
   const borderColor = darkIstrue ? "border-gray-700" : "border-gray-200";
   const areaColor = "text-blue-400";
   const priceColor = "text-green-400";
-
+ useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
   return (
-    <div
+    <div data-aos="fade-up-right"
       className={`card flex flex-col justify-between shadow-md  rounded-lg border p-4 ${cardBg} ${borderColor}`}
     >
       <div>

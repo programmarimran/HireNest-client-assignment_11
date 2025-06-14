@@ -14,7 +14,7 @@ const WhyChooseUs = () => {
   const features = data.features;
 
   return (
-    <div>
+    <div >
       <div>
         <h2
           className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6">
+      <div data-aos= "flip-left" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6">
         {features.map((item) => (
           <div
             key={item.id}
