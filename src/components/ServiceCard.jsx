@@ -1,7 +1,8 @@
 import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import { Link } from "react-router";
-
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react";
 const ServiceCard = ({ service }) => {
   const { darkIstrue } = use(ServiceContext);
   const {
@@ -81,7 +82,11 @@ const ServiceCard = ({ service }) => {
               ৳ {price}
             </p>
            <Link to={`/dashboard/service-details/${_id}`}>
-            <button
+            <motion.button whileHover={{
+                          scale: 1.2,
+                          transition: { duration: 0 },
+                        }}
+                        whileTap={{ scale: 0.9 }}
               className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
                 darkIstrue
                   ? "bg-blue-600 hover:bg-blue-500 text-white"
@@ -89,7 +94,7 @@ const ServiceCard = ({ service }) => {
               }`}
             >
               View Detail
-            </button>
+            </motion.button>
            </Link>
           </div>
         </div>

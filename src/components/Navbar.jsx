@@ -19,7 +19,7 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/services"}>Services</NavLink>
+        <NavLink to={"/services"}>All Services</NavLink>
       </li>
       <li className="dropdown dropdown-hover">
         <NavLink to={"/dashboard"} tabIndex={0}>

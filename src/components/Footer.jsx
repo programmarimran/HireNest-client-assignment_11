@@ -62,7 +62,7 @@ sincerely (${user?.displayName})
               <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
-              <NavLink to={"/services"}>Services</NavLink>
+              <NavLink to={"/services"}>All Services</NavLink>
             </li>
             <li>
               <NavLink to={"/dashboard"}>Dashboard</NavLink>
