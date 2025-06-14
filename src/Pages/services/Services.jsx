@@ -22,23 +22,24 @@ const Services = () => {
   return (
     <div className="py-16 ">
       <title>HireNest||All Services</title>
-      <div>
-        <h2
-          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
-            darkIstrue ? "text-white" : "text-black"
-          }`}
-        >
-          Explore All Services in One Place
-        </h2>
-        <p
-          className={`text-center max-w-xl mx-auto mb-6 ${
-            darkIstrue ? "text-gray-300" : "text-gray-600"
-          }`}
-        >
-          Find trusted services for every need in one place. Browse, compare,
-          and book professionals with confidence.
-        </p>
-      </div>
+     <div className="text-center my-8">
+  <h2
+    className={`text-2xl md:text-3xl font-bold mb-2 ${
+      darkIstrue ? "text-white" : "text-black"
+    }`}
+  >
+    Explore All Services in One Place
+  </h2>
+  <p
+    className={`max-w-xl mx-auto mb-6 ${
+      darkIstrue ? "text-gray-300" : "text-gray-600"
+    }`}
+  >
+    {allServices.length > 0
+      ? `Total ${allServices.length} service${allServices.length > 1 ? 's' : ''} found`
+      : "No service found."}
+  </p>
+</div>
       <div className=" flex justify-center items-center my-4">
         <label className="input">
           <svg

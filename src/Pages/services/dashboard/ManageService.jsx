@@ -6,10 +6,14 @@ import AuthContext from "../../../contexts/AuthContext";
 import Swal from "sweetalert2";
 import EditServiceModal from "../../../components/EditserviceModal";
 import { Link } from "react-router";
+import Loading from "../../../components/Loading";
 
 const ManageService = () => {
   const { user } = use(AuthContext);
   const { darkIstrue } = use(ServiceContext);
+
+  const [loading, setLoading] = useState(true);
+
   const [userServices, setUserServices] = useState([]);
 
   console.log(userServices);
@@ -18,9 +22,10 @@ const ManageService = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/users/services?email=${
           user?.email
-        }`
+        }`,{withCredentials:true}
       )
       .then((res) => {
+        setLoading(false);
         setUserServices(res.data);
       });
   }, []);
@@ -53,6 +58,11 @@ const ManageService = () => {
     });
     //********************************* */
   };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <>
       <div className=" py-12">
