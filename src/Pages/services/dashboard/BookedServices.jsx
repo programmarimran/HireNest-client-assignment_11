@@ -5,9 +5,11 @@ import BookedServiceCard from "../../../components/BookedServiceCard";
 import ServiceContext from "../../../contexts/ServiceContext";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../../../components/Loading";
 
 const BookedServices = () => {
   const { darkIstrue } = use(ServiceContext);
+  const [loading, setLoading] = useState(true);
   const { user } = use(AuthContext);
   const [bookedServices, setBookedServices] = useState([]);
   useEffect(() => {
@@ -15,10 +17,12 @@ const BookedServices = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/users/booked/services?email=${
           user?.email
-        }`,{withCredentials:true}
+        }`,
+        { withCredentials: true }
       )
       .then((res) => {
         setBookedServices(res.data);
+        setLoading(false);
       });
   }, []);
   console.log(bookedServices);
@@ -52,9 +56,12 @@ const BookedServices = () => {
       }
     });
   };
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className=" py-12">
-        <title>HireNest||Booked_Service</title>
+      <title>HireNest||Booked_Service</title>
       <div className="pb-6">
         <h2
           className={`text-2xl md:text-3xl font-bold text-center mb-2 ${

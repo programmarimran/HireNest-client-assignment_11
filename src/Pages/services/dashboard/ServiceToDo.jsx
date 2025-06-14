@@ -5,9 +5,11 @@ import ServiceToDoCard from "../../../components/ServiceToDoCard";
 import ServiceContext from "../../../contexts/ServiceContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Loading from "../../../components/Loading";
 
 const ServiceToDo = () => {
   const { darkIstrue } = use(ServiceContext);
+  const [loading, setLoading] = useState(true);
   const { user } = use(AuthContext);
   const [provideBookedServices, setProvideBookedServices] = useState([]);
   useEffect(() => {
@@ -15,22 +17,28 @@ const ServiceToDo = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/provider/booked-services?email=${
           user?.email
-        }`,{withCredentials:true}
+        }`,
+        { withCredentials: true }
       )
       .then((res) => {
         setProvideBookedServices(res.data);
+        setLoading(false);
       });
   }, []);
   console.log(provideBookedServices);
-  //handle service status updated 
+  //handle service status updated
   const handleServiceStatus = (value, _id) => {
     // console.log(value);
     //update patch with status DB
     axios
-      .patch(`${import.meta.env.VITE_BasicServer}/book-service/${_id}`, {
-        serviceStatus: value,
-        providerEmail:user.email
-      },{withCredentials:true})
+      .patch(
+        `${import.meta.env.VITE_BasicServer}/book-service/${_id}`,
+        {
+          serviceStatus: value,
+          providerEmail: user.email,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         // console.log(res.data);
         if (res.data.modifiedCount > 0) {
@@ -39,7 +47,7 @@ const ServiceToDo = () => {
       });
   };
   //handle users service aje baje fake service delete
-    const handleDelete = (_id) => {
+  const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -68,6 +76,9 @@ const ServiceToDo = () => {
     });
     //********************************* */
   };
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className=" py-12">
       <title>HireNest||ServiceToDo</title>
@@ -95,7 +106,7 @@ const ServiceToDo = () => {
       <div className=" grid grid-cols-1 md:grid-cols-2  gap-6">
         {provideBookedServices?.map((service) => (
           <ServiceToDoCard
-            handleServiceStatus={handleServiceStatus} 
+            handleServiceStatus={handleServiceStatus}
             handleDelete={handleDelete}
             key={service._id}
             service={service}

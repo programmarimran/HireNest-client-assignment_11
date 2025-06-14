@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router";
@@ -9,17 +9,15 @@ import axios from "axios";
 
 const AddService = () => {
   const navigate = useNavigate();
+  const [loading,setLoading]=useState(false)
   const { user } = use(AuthContext);
-
-  // const {darkIstrue}=use(ProductContext)
-
   //handle Addd to db
   const handleAddService = (e) => {
     e.preventDefault();
+    setLoading(true)
     const form = e.target;
     const formData = new FormData(form);
     const serviceData = Object.fromEntries(formData.entries());
-
     serviceData.provider = {
       name: user?.displayName,
       email: user?.email,
@@ -28,7 +26,6 @@ const AddService = () => {
     const priceString = form.price.value;
     // console.log(priceString);
     serviceData.price = parseInt(priceString);
-
     // POST to server
     axios
       .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData,{withCredentials:true})
@@ -40,6 +37,7 @@ const AddService = () => {
             icon: "success",
             confirmButtonText: "OK",
           });
+          setLoading(false)
           navigate("/dashboard/manage-service");
         }
       });
@@ -118,7 +116,7 @@ const AddService = () => {
           type="submit"
           className="btn bg-[#2F80ED80] hover:bg-[#2F80ED] w-full"
         >
-          Add Service
+          {loading?<span className="loading loading-spinner text-accent"></span>:"Add Service"}
         </button>
       </form>
     </div>

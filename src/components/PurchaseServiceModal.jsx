@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import AuthContext from "../contexts/AuthContext";
 import axios from "axios";
@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
 const PurchaseServiceModal = ({ service }) => {
+  const [loading,setLoading]=useState(false)
   const navigate = useNavigate();
   const { user } = use(AuthContext);
   const { email, displayName } = user;
@@ -13,6 +14,7 @@ const PurchaseServiceModal = ({ service }) => {
   const { darkIstrue } = use(ServiceContext);
   const handlePurchaseService = (e) => {
     e.preventDefault();
+    setLoading(true)
     const form = e.target;
     const formData = new FormData(form);
     const serviceBookingData = Object.fromEntries(formData.entries());
@@ -33,6 +35,7 @@ const PurchaseServiceModal = ({ service }) => {
             icon: "success",
             confirmButtonText: "OK",
           });
+          setLoading(false)
           navigate("/dashboard/booked-services");
         }
         //******************** */
@@ -185,6 +188,7 @@ const PurchaseServiceModal = ({ service }) => {
                 className="btn bg-[#2F80ED20] text-[#2F80ED] border border-[#2F80ED70] hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
               >
                 Purchase
+                {loading&&<span className="loading loading-spinner text-accent"></span>}
               </button>
             </div>
           </form>
