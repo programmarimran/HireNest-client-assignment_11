@@ -10,7 +10,7 @@ import Loading from "../../../components/Loading";
 const BookedServices = () => {
   const { darkIstrue } = use(ServiceContext);
   const [loading, setLoading] = useState(true);
-  const { user } = use(AuthContext);
+  const { user,logoutUser } = use(AuthContext);
   const [bookedServices, setBookedServices] = useState([]);
   useEffect(() => {
     axios
@@ -20,10 +20,19 @@ const BookedServices = () => {
         }`,
         { withCredentials: true }
       )
+       //********token handling start******* */
       .then((res) => {
-        setBookedServices(res.data);
+        // console.log(res.status);
         setLoading(false);
+        setBookedServices(res?.data);
+      })
+      .catch((error) => {
+        // console.log(error.status);
+        if (error.status === 401 || error.status===403) {
+          logoutUser();
+        }
       });
+    //********token handling end********* */
   }, []);
   console.log(bookedServices);
   const handleBookedDeleteButton = (_id) => {

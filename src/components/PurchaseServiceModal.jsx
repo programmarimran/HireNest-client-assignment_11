@@ -6,15 +6,15 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
 const PurchaseServiceModal = ({ service }) => {
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user } = use(AuthContext);
+  const { user, logoutUser } = use(AuthContext);
   const { email, displayName } = user;
   const { _id, serviceName, price, provider, imageUrl, serviceArea } = service;
   const { darkIstrue } = use(ServiceContext);
   const handlePurchaseService = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const form = e.target;
     const formData = new FormData(form);
     const serviceBookingData = Object.fromEntries(formData.entries());
@@ -24,22 +24,29 @@ const PurchaseServiceModal = ({ service }) => {
     axios
       .post(
         `${import.meta.env.VITE_BasicServer}/book-service`,
-        serviceBookingData,{withCredentials:true}
+        serviceBookingData,
+        { withCredentials: true }
       )
-      .then((data) => {
-        console.log(data.data);
-        //************************** */
-        if (data?.data?.insertedId) {
+      //********token handling start******* */
+      .then((res) => {
+        // console.log(res.status);
+        if (res?.data?.insertedId) {
           Swal.fire({
             title: "Service Booking Successfully!",
             icon: "success",
             confirmButtonText: "OK",
           });
-          setLoading(false)
+          setLoading(false);
           navigate("/dashboard/booked-services");
         }
-        //******************** */
+      })
+      .catch((error) => {
+        // console.log(error.status);
+        if (error.status === 401 || error.status === 403) {
+          logoutUser();
+        }
       });
+    //********token handling end********* */
   };
 
   const handleClose = () => {
@@ -188,7 +195,9 @@ const PurchaseServiceModal = ({ service }) => {
                 className="btn bg-[#2F80ED20] text-[#2F80ED] border border-[#2F80ED70] hover:shadow-md rounded-lg py-2 px-4 text-2xl font-bold"
               >
                 Purchase
-                {loading&&<span className="loading loading-spinner text-accent"></span>}
+                {loading && (
+                  <span className="loading loading-spinner text-accent"></span>
+                )}
               </button>
             </div>
           </form>

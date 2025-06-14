@@ -9,12 +9,12 @@ import axios from "axios";
 
 const AddService = () => {
   const navigate = useNavigate();
-  const [loading,setLoading]=useState(false)
-  const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const { user, logoutUser } = use(AuthContext);
   //handle Addd to db
   const handleAddService = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const form = e.target;
     const formData = new FormData(form);
     const serviceData = Object.fromEntries(formData.entries());
@@ -28,19 +28,29 @@ const AddService = () => {
     serviceData.price = parseInt(priceString);
     // POST to server
     axios
-      .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData,{withCredentials:true})
-      .then((data) => {
-        console.log(data.data);
-        if (data?.data?.insertedId) {
+      .post(`${import.meta.env.VITE_BasicServer}/services`, serviceData, {
+        withCredentials: true,
+      })
+      //********token handling start******* */
+      .then((res) => {
+        // console.log(res.status);
+        if (res?.data?.insertedId) {
           Swal.fire({
             title: "Service Added Successfully!",
             icon: "success",
             confirmButtonText: "OK",
           });
-          setLoading(false)
+          setLoading(false);
           navigate("/dashboard/manage-service");
         }
+      })
+      .catch((error) => {
+        // console.log(error.status);
+        if (error.status === 401 || error.status === 403) {
+          logoutUser();
+        }
       });
+    //********token handling end********* */
   };
   // Custom text colors for dark/light mode
 
@@ -116,7 +126,11 @@ const AddService = () => {
           type="submit"
           className="btn bg-[#2F80ED80] hover:bg-[#2F80ED] w-full"
         >
-          {loading?<span className="loading loading-spinner text-accent"></span>:"Add Service"}
+          {loading ? (
+            <span className="loading loading-spinner text-accent"></span>
+          ) : (
+            "Add Service"
+          )}
         </button>
       </form>
     </div>

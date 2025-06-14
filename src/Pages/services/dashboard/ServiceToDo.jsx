@@ -10,7 +10,7 @@ import Loading from "../../../components/Loading";
 const ServiceToDo = () => {
   const { darkIstrue } = use(ServiceContext);
   const [loading, setLoading] = useState(true);
-  const { user } = use(AuthContext);
+  const { user,logoutUser } = use(AuthContext);
   const [provideBookedServices, setProvideBookedServices] = useState([]);
   useEffect(() => {
     axios
@@ -20,10 +20,19 @@ const ServiceToDo = () => {
         }`,
         { withCredentials: true }
       )
+       //********token handling start******* */
       .then((res) => {
-        setProvideBookedServices(res.data);
+        // console.log(res.status);
         setLoading(false);
+        setProvideBookedServices(res?.data);
+      })
+      .catch((error) => {
+        // console.log(error.status);
+        if (error.status === 401 || error.status===403) {
+          logoutUser();
+        }
       });
+    //********token handling end********* */
   }, []);
   console.log(provideBookedServices);
   //handle service status updated
