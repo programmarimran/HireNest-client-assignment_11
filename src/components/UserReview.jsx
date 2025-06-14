@@ -33,7 +33,7 @@ const CustomerReviews = () => {
         </p>
       </div>
 
-      <div data-aos="flip-right" className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6 px-4 md:px-0">
+      <div data-aos="fade-up-right" className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6 px-4 md:px-0">
         {features?.map((item) => (
           <div
             key={item.id}

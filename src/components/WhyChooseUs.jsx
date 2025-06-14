@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
         </p>
       </div>
 
-      <div data-aos= "flip-left" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6">
+      <div data-aos="fade-up-right" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6">
         {features.map((item) => (
           <div
             key={item.id}
