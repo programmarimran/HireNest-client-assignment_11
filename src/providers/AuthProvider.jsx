@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import axios from "axios";
+import { toast } from "react-toastify";
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -31,17 +32,52 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
+  // const logoutUser = () => {
+  //   return signOut(auth).then(() => {
+  //     axios
+  //       .post(
+  //         `${import.meta.env.VITE_BasicServer}/logout`,
+  //         {},
+  //         { withCredentials: true }
+  //       )
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         if (res.data.status) {
+  //           toast.info("Logged out successfully. See you again!");
+  //         }
+  //       });
+  //   });
+  // };
   const logoutUser = () => {
-    return signOut(auth);
+    axios
+      .post(
+        `${import.meta.env.VITE_BasicServer}/logout`,
+        {},
+        { withCredentials: true }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.status) {
+          signOut(auth).then(() => {
+            toast.info("Logged out successfully. See you again!");
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.info("logout failed");
+      });
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       // sent jwt user token
       axios
-        .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser,{withCredentials:true})
+        .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser, {
+          withCredentials: true,
+        })
         .then((res) => console.log(res.data))
-        .catch(error=>console.log(error));
+        .catch((error) => console.log(error));
       setLoading(false);
     });
     return () => {

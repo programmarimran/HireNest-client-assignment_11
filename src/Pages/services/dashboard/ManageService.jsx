@@ -9,7 +9,7 @@ import { Link } from "react-router";
 import Loading from "../../../components/Loading";
 
 const ManageService = () => {
-  const { user } = use(AuthContext);
+  const { user, logoutUser } = use(AuthContext);
   const { darkIstrue } = use(ServiceContext);
 
   const [loading, setLoading] = useState(true);
@@ -22,12 +22,22 @@ const ManageService = () => {
       .get(
         `${import.meta.env.VITE_BasicServer}/users/services?email=${
           user?.email
-        }`,{withCredentials:true}
+        }`,
+        { withCredentials: true }
       )
+      //********token handling start******* */
       .then((res) => {
+        // console.log(res.status);
         setLoading(false);
-        setUserServices(res.data);
+        setUserServices(res?.data);
+      })
+      .catch((error) => {
+        // console.log(error.status);
+        if (error.status === 401 || error.status===403) {
+          logoutUser();
+        }
       });
+    //********token handling end********* */
   }, []);
   const handleDelete = (_id) => {
     Swal.fire({
@@ -80,9 +90,9 @@ const ManageService = () => {
               darkIstrue ? "text-gray-300" : "text-gray-600"
             }`}
           >
-            {userServices.length > 0 ? (
-              `You are currently offering ${userServices.length} service${
-                userServices.length > 1 ? "s" : ""
+            {userServices?.length > 0 ? (
+              `You are currently offering ${userServices?.length} service${
+                userServices?.length > 1 ? "s" : ""
               }. Use the panel below to view, edit, or update them as needed.`
             ) : (
               <div>
