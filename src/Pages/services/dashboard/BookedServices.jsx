@@ -34,7 +34,7 @@ const BookedServices = () => {
       });
     //********token handling end********* */
   }, []);
-  console.log(bookedServices);
+  // console.log(bookedServices);
   const handleBookedDeleteButton = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -49,7 +49,7 @@ const BookedServices = () => {
         axios
           .delete(`${import.meta.env.VITE_BasicServer}/book-service/${_id}`)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.deletedCount > 0) {
               const reminingBookedService = bookedServices.filter(
                 (service) => service._id !== _id

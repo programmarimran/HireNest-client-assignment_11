@@ -22,7 +22,7 @@ const BookedServiceCard = ({ service,handleBookedDeleteButton }) => {
  
   return (
  
-      <div
+      <div data-aos="fade-up-right"
         className={` relative rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row p-4 gap-4 transition duration-300 ${
           darkIstrue
             ? "bg-gray-700 text-gray-100 border border-gray-500"

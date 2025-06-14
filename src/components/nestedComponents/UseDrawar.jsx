@@ -11,7 +11,7 @@ const UseDrawar = () => {
       useEffect(() => {
         const handleClickOutside = (event) => {
           // console.log(dropdownRef.current)
-          console.log(dropdownRef.current.contains(event.target))
+          // console.log(dropdownRef.current.contains(event.target))
           if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
             setActive(false);
           }

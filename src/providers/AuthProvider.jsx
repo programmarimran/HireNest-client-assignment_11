@@ -64,8 +64,10 @@ const AuthProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
-        toast.info("logout failed");
+        // console.log(error);
+        if (error) {
+          toast.info("logout failed");
+        }
       });
   };
   useEffect(() => {
@@ -76,8 +78,8 @@ const AuthProvider = ({ children }) => {
         .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser, {
           withCredentials: true,
         })
-        .then((res) => console.log(res.data))
-        .catch((error) => console.log(error));
+        // .then((res) => console.log(res.data))
+        // .catch((error) => console.log(error));
       setLoading(false);
     });
     return () => {

@@ -10,7 +10,7 @@ import Loading from "../../../components/Loading";
 const ServiceToDo = () => {
   const { darkIstrue } = use(ServiceContext);
   const [loading, setLoading] = useState(true);
-  const { user,logoutUser } = use(AuthContext);
+  const { user, logoutUser } = use(AuthContext);
   const [provideBookedServices, setProvideBookedServices] = useState([]);
   useEffect(() => {
     axios
@@ -20,7 +20,7 @@ const ServiceToDo = () => {
         }`,
         { withCredentials: true }
       )
-       //********token handling start******* */
+      //********token handling start******* */
       .then((res) => {
         // console.log(res.status);
         setLoading(false);
@@ -28,13 +28,13 @@ const ServiceToDo = () => {
       })
       .catch((error) => {
         // console.log(error.status);
-        if (error.status === 401 || error.status===403) {
+        if (error.status === 401 || error.status === 403) {
           logoutUser();
         }
       });
     //********token handling end********* */
   }, []);
-  console.log(provideBookedServices);
+  // console.log(provideBookedServices);
   //handle service status updated
   const handleServiceStatus = (value, _id) => {
     // console.log(value);
@@ -73,8 +73,10 @@ const ServiceToDo = () => {
             const reminingServices = provideBookedServices.filter(
               (service) => service._id !== _id
             );
-            setProvideBookedServices(reminingServices);
-            console.log(res.data);
+            if (res.data) {
+              setProvideBookedServices(reminingServices);
+            }
+            // console.log(res.data);
           });
         Swal.fire({
           title: "Deleted!",

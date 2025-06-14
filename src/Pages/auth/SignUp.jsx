@@ -31,7 +31,7 @@ const SignUp = () => {
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
     const { email, password, name, photo } = userData;
-    console.log(name, photo, email, password);
+    // console.log(name, photo, email, password);
     const updateInfo = {
       displayName: name,
       photoURL: photo,
@@ -56,8 +56,9 @@ const SignUp = () => {
       setPasswordError("");
     }
     createUser(email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         updateUserProfile(updateInfo)
           .then(() => {
             toast.success(
@@ -75,7 +76,7 @@ const SignUp = () => {
           });
       })
       .catch((error) => {
-        console.error("Firebase Auth Error:", error.code, error.message);
+        // console.error("Firebase Auth Error:", error.code, error.message);
 
         switch (error.code) {
           case "auth/invalid-credential":

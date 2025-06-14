@@ -16,7 +16,7 @@ const ManageService = () => {
 
   const [userServices, setUserServices] = useState([]);
 
-  console.log(userServices);
+  // console.log(userServices);
   useEffect(() => {
     axios
       .get(
@@ -53,11 +53,12 @@ const ManageService = () => {
         axios
           .delete(`${import.meta.env.VITE_BasicServer}/services/${_id}`)
           .then((res) => {
+            res.data&&""
             const reminingServices = userServices.filter(
               (service) => service._id !== _id
             );
             setUserServices(reminingServices);
-            console.log(res.data);
+            // console.log(res.data);
           });
         Swal.fire({
           title: "Deleted!",

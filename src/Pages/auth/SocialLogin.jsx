@@ -1,27 +1,36 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import AuthContext from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
 const SocialLogin = ({ from }) => {
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { loginUserWithGoogle,setLoading } = use(AuthContext);
+  const { loginUserWithGoogle, setLoading } = use(AuthContext);
   // console.log(user);
   const handleGoogleLogin = () => {
     loginUserWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        toast.success(`${from?"Logged in with Google successfully! Redirecting to your previous page...":"Logged in with Google successfully! Redirecting to home page..."}`);
-        navigate(`${from || "/"}`);
-        return;
+        // console.log(result.user);
+        if (result) {
+          toast.success(
+            `${
+              from
+                ? "Logged in with Google successfully! Redirecting to your previous page..."
+                : "Logged in with Google successfully! Redirecting to home page..."
+            }`
+          );
+          navigate(`${from || "/"}`);
+          return;
+        }
       })
       .catch((error) => {
-        console.log(error.code);
+        setError(error.code);
       })
-      .finally(()=>{
-        setLoading(false)
-      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -37,6 +46,7 @@ const SocialLogin = ({ from }) => {
           Login with Google!!
         </button>
       </fieldset>
+      <p className=" text-error">{error && error}</p>
     </div>
   );
 };

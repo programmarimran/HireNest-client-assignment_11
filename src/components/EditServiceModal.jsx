@@ -43,13 +43,13 @@ const EditServiceModal = ({ userServices, setUserServices }) => {
           document.getElementById("modal_edit").close();
           form.reset();
         }
-        console.log(res.data);
+        // console.log(res.data);
       });
   };
   const handleClose = () => {
     document.getElementById("modal_edit").close();
   };
-  console.log(userServices);
+  // console.log(userServices);
   return (
     <>
       <dialog id="modal_edit" className="modal modal-bottom sm:modal-middle">

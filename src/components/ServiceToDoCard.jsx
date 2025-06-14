@@ -17,7 +17,7 @@ const ServiceToDoCard = ({ service, handleServiceStatus, handleDelete }) => {
   } = service;
 
   return (
-    <div
+    <div data-aos="fade-up-right"
       className={`relative rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row gap-4 p-4 transition duration-300 ${
         darkIstrue
           ? "bg-gray-700 text-gray-100 border border-gray-500"
