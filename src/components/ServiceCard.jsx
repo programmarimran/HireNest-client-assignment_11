@@ -1,19 +1,19 @@
-import React, { use, useEffect } from "react";
+import React, { use } from "react";
 import ServiceContext from "../contexts/ServiceContext";
 import { Link } from "react-router";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 //**********AOS********* */
 
-import AOS from "aos";
-import "aos/dist/aos.css";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
 const ServiceCard = ({ service }) => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 1000,
+  //     once: true,
+  //   });
+  // }, []);
   const { darkIstrue } = use(ServiceContext);
   const {
     serviceName,

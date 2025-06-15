@@ -21,7 +21,7 @@ const Hero = ({ services }) => {
     <>
       <Swiper
         modules={[Autoplay]}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 2000 }}
         loop={true}
         className="my-4"
       >

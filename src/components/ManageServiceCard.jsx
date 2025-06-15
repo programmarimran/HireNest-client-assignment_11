@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import ServiceContext from "../contexts/ServiceContext";
-
+import { RiDeleteBin5Fill } from "react-icons/ri";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaEdit } from "react-icons/fa";
 const ManageServiceCard = ({ service, handleDelete }) => {
   const { darkIstrue, setEditServiceId } = useContext(ServiceContext);
 
@@ -61,23 +62,19 @@ const ManageServiceCard = ({ service, handleDelete }) => {
           {/* Open the modal using document.getElementById('ID').showModal() method */}
           <button
             onClick={() => handleEditButton(_id)}
-            className={`btn ${
-              darkIstrue
-                ? "bg-blue-600 hover:bg-blue-500 text-white"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
-            }`}
+           
           >
-            Edit
+            <FaEdit className="text-blue-600" size={40} />
           </button>
           <button
             onClick={() => handleDelete(_id)}
-            className={` btn ${
-              darkIstrue
-                ? "bg-red-600 hover:bg-red-500"
-                : "bg-red-500 hover:bg-red-600"
-            } text-white`}
+            // className={` btn ${
+            //   darkIstrue
+            //     ? "bg-red-600 hover:bg-red-500"
+            //     : "bg-red-500 hover:bg-red-600"
+            // } text-white`}
           >
-            Delete
+            <RiDeleteBin5Fill className=" text-red-500" size={40} />
           </button>
         </div>
       </div>
