@@ -70,17 +70,22 @@ const AuthProvider = ({ children }) => {
         }
       });
   };
+  // console.log(user);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       // sent jwt user token
-      axios
-        .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser, {
-          withCredentials: true,
-        })
-        // .then((res) => console.log(res.data))
-        // .catch((error) => console.log(error));
-      setLoading(false);
+      // console.log(currentUser);
+      if (currentUser) {
+        axios.post(
+          `${import.meta.env.VITE_BasicServer}/jwt`,
+          { email: currentUser?.email },
+          {
+            withCredentials: true,
+          }
+        );
+        setLoading(false);
+      }
     });
     return () => {
       unsubscribe();
@@ -89,6 +94,7 @@ const AuthProvider = ({ children }) => {
 
   const userInfo = {
     user,
+    setUser,
     createUser,
     updateUserProfile,
     loginUser,

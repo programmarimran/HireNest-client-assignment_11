@@ -21,7 +21,7 @@ const ManageService = () => {
     axios
       .get(
         `${import.meta.env.VITE_BasicServer}/users/services?email=${
-          user?.email
+          user.email
         }`,
         { withCredentials: true }
       )
@@ -32,6 +32,7 @@ const ManageService = () => {
         setUserServices(res?.data);
       })
       .catch((error) => {
+        // console.log(error.response.status)
         // console.log(error.status);
         if (error.status === 401 || error.status===403) {
           logoutUser();

@@ -7,13 +7,14 @@ import { useNavigate } from "react-router";
 const SocialLogin = ({ from }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { loginUserWithGoogle, setLoading } = use(AuthContext);
+  const { loginUserWithGoogle, setLoading,setUser } = use(AuthContext);
   // console.log(user);
   const handleGoogleLogin = () => {
     loginUserWithGoogle()
       .then((result) => {
         // console.log(result.user);
         if (result) {
+          setUser(result.user)
           toast.success(
             `${
               from

@@ -16,7 +16,7 @@ const Login = () => {
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { loginUser, setLoading } = use(AuthContext);
+  const { loginUser, setLoading,setUser } = use(AuthContext);
   const handleLoginUser = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -46,6 +46,7 @@ const Login = () => {
       .then((result) => {
         // console.log(result.user);
         if (result.user) {
+          setUser(result.user)
           toast.success(
             `${
               from

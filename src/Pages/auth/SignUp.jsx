@@ -15,12 +15,8 @@ const SignUp = () => {
   const from = location?.state;
   // console.log(location)
   const navigate = useNavigate();
-  const {
-    createUser,
-    updateUserProfile,
-
-    setLoading,
-  } = use(AuthContext);
+  const { createUser, updateUserProfile, setUser, setLoading } =
+    use(AuthContext);
 
   const [show, setShow] = useState(true);
   const [error, setError] = useState("");
@@ -61,6 +57,7 @@ const SignUp = () => {
         // console.log(result);
         updateUserProfile(updateInfo)
           .then(() => {
+            setUser(result.user)
             toast.success(
               `${
                 from
