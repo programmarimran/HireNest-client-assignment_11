@@ -10,28 +10,30 @@ import Loading from "../../../components/Loading";
 const BookedServices = () => {
   const { darkIstrue } = use(ServiceContext);
   const [loading, setLoading] = useState(true);
-  const { user,logoutUser } = use(AuthContext);
+  const { user, logoutUser } = use(AuthContext);
   const [bookedServices, setBookedServices] = useState([]);
   useEffect(() => {
-    axios
-      .get(
-        `${import.meta.env.VITE_BasicServer}/users/booked/services?email=${
-          user?.email
-        }`,
-        { withCredentials: true }
-      )
-       //********token handling start******* */
-      .then((res) => {
-        // console.log(res.status);
-        setLoading(false);
-        setBookedServices(res?.data);
-      })
-      .catch((error) => {
-        // console.log(error.status);
-        if (error.status === 401 || error.status===403) {
-          logoutUser();
-        }
-      });
+    setTimeout(() => {
+      axios
+        .get(
+          `${import.meta.env.VITE_BasicServer}/users/booked/services?email=${
+            user?.email
+          }`,
+          { withCredentials: true }
+        )
+        //********token handling start******* */
+        .then((res) => {
+          // console.log(res.status);
+          setLoading(false);
+          setBookedServices(res?.data);
+        })
+        .catch((error) => {
+          // console.log(error.status);
+          if (error.status === 401 || error.status === 403) {
+            logoutUser();
+          }
+        });
+    }, 1000);
     //********token handling end********* */
   }, []);
   // console.log(bookedServices);

@@ -18,26 +18,28 @@ const ManageService = () => {
 
   // console.log(userServices);
   useEffect(() => {
-    axios
-      .get(
-        `${import.meta.env.VITE_BasicServer}/users/services?email=${
-          user.email
-        }`,
-        { withCredentials: true }
-      )
-      //********token handling start******* */
-      .then((res) => {
-        // console.log(res.status);
-        setLoading(false);
-        setUserServices(res?.data);
-      })
-      .catch((error) => {
-        // console.log(error.response.status)
-        // console.log(error.status);
-        if (error.status === 401 || error.status===403) {
-          logoutUser();
-        }
-      });
+    setTimeout(() => {
+      axios
+        .get(
+          `${import.meta.env.VITE_BasicServer}/users/services?email=${
+            user.email
+          }`,
+          { withCredentials: true }
+        )
+        //********token handling start******* */
+        .then((res) => {
+          // console.log(res.status);
+          setLoading(false);
+          setUserServices(res?.data);
+        })
+        .catch((error) => {
+          // console.log(error.response.status)
+          // console.log(error.status);
+          if (error.status === 401 || error.status === 403) {
+            logoutUser();
+          }
+        });
+    }, 1000);
     //********token handling end********* */
   }, []);
   const handleDelete = (_id) => {
@@ -54,7 +56,7 @@ const ManageService = () => {
         axios
           .delete(`${import.meta.env.VITE_BasicServer}/services/${_id}`)
           .then((res) => {
-            res.data&&""
+            res.data && "";
             const reminingServices = userServices.filter(
               (service) => service._id !== _id
             );

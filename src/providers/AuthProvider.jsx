@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
         // console.log(res.data);
         if (res.data.status) {
           signOut(auth).then(() => {
-            setUser("")
+            setUser("");
             toast.info("Logged out successfully. See you again!");
           });
         }
@@ -76,14 +76,15 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        axios.post(
-          `${import.meta.env.VITE_BasicServer}/jwt`,
-          { email: currentUser?.email },
-          {
+        axios
+          .post(`${import.meta.env.VITE_BasicServer}/jwt`, currentUser, {
             withCredentials: true,
-          }
-        );
-        setLoading(false);
+          })
+          .then((res) => {
+            console.log(res.data);
+            // setUser(currentUser)
+            setLoading(false);
+          });
       } else {
         setLoading(false);
       }
@@ -92,7 +93,7 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-// console.log(user)
+  // console.log(user)
   const userInfo = {
     user,
     setUser,

@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/dashboard/manage-service",
-        Component:ManageService
+        element:<PrivateRoute><ManageService></ManageService></PrivateRoute>
       },
       {
         path:"/dashboard/service-to-do",
