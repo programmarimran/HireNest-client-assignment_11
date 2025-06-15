@@ -68,6 +68,6 @@ npm install -D vite eslint @vitejs/plugin-react @types/react @types/react-dom es
 | Detail         | Info                                                               |
 |----------------|--------------------------------------------------------------------|
 | 👨‍💻 Developer   | Md Imran Hasan                                                    |
-| 💼 Role         | Full-stack Web Developer, MERN Stack Enthusiast                   |
+| 💼 Role         | MERN Stack Web Developer,            |
 | 📬 Email        | programmarimran@gmail.com                                         |
 | 🌐 Portfolio    | Coming Soon                
