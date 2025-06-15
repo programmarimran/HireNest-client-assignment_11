@@ -26,7 +26,7 @@ const UseHambargar = () => {
       </li>
       <li>
         <NavLink onClick={handleHambargarFalse} to={"/services"}>
-          Services
+          All Services
         </NavLink>
       </li>
       <li className="dropdown dropdown-hover">
