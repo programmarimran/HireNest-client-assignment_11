@@ -6,7 +6,7 @@ import DownloadInvoiceButton from "../pdfCreate/DowndoadInvoiceButton";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 const BookedServiceCard = ({ service, handleBookedDeleteButton }) => {
-  console.log(service);
+  // console.log(service);
   const { darkIstrue } = use(ServiceContext);
   const {
     serviceId,
