@@ -59,6 +59,7 @@ const AuthProvider = ({ children }) => {
         // console.log(res.data);
         if (res.data.status) {
           signOut(auth).then(() => {
+            setUser("")
             toast.info("Logged out successfully. See you again!");
           });
         }
@@ -91,7 +92,7 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-
+// console.log(user)
   const userInfo = {
     user,
     setUser,
