@@ -64,15 +64,11 @@ const ManageServiceCard = ({ service, handleDelete }) => {
             onClick={() => handleEditButton(_id)}
            
           >
-            <FaEdit className="text-blue-600" size={40} />
+            <FaEdit className={`${darkIstrue?"text-green-600":"text-blue-600"}`} size={40} />
           </button>
           <button
             onClick={() => handleDelete(_id)}
-            // className={` btn ${
-            //   darkIstrue
-            //     ? "bg-red-600 hover:bg-red-500"
-            //     : "bg-red-500 hover:bg-red-600"
-            // } text-white`}
+          
           >
             <RiDeleteBin5Fill className=" text-red-500" size={40} />
           </button>

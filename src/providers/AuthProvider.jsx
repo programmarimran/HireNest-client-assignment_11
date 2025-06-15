@@ -73,10 +73,8 @@ const AuthProvider = ({ children }) => {
   // console.log(user);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      // sent jwt user token
-      // console.log(currentUser);
       if (currentUser) {
+        setUser(currentUser);
         axios.post(
           `${import.meta.env.VITE_BasicServer}/jwt`,
           { email: currentUser?.email },
@@ -84,6 +82,8 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           }
         );
+        setLoading(false);
+      } else {
         setLoading(false);
       }
     });
