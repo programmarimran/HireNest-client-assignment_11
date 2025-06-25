@@ -3,6 +3,7 @@
 🌐 **Live Website:** [https://hire-nest-by-imran.web.app/](https://hire-nest-by-imran.web.app/)  
 📦 **Client Repo:** [GitHub - HireNest-client-assignment_11](https://github.com/programmarimran/HireNest-client-assignment_11)  
 🛠️ **Server Repo:** [GitHub - HireNest-server-assignment_11](https://github.com/programmarimran/HireNest-server-assignment_11)  
+
 ---
 
 ## 📌 Overview
@@ -13,10 +14,9 @@
 
 ## 🖼️ Preview
 
-![HireNest Preview](https://i.ibb.co/BVQr3GLY/Screenshot-2025-06-25-114535.png)
-others section:(https://i.ibb.co/6VPDzBW/Screenshot-2025-06-25-115940.png)
-mobile:(https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
-
+![HireNest Preview](https://i.ibb.co/BVQr3GLY/Screenshot-2025-06-25-114535.png)  
+![Others Section](https://i.ibb.co/6VPDzBW/Screenshot-2025-06-25-115940.png)  
+![Mobile View](https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
 
 ---
 
@@ -51,74 +51,73 @@ mobile:(https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
   - Smooth transitions and animations with AOS and Framer Motion
   - Visually appealing, modern layout and interactions
 
-
 ---
 
 ## 🧰 Tech Stack & Tools
 
 | Category        | Tools / Libraries                                                  |
-|----------------|---------------------------------------------------------------------|
-| Frontend       | React.js, React Router, Context API                                 |
-| Styling        | Tailwind CSS, DaisyUI                                               |
-| Animations     | Framer Motion, AOS, Lottie                                          |
-| Auth           | Firebase Authentication + JWT (HTTP-only Cookie)                   |
-| HTTP Client    | Axios (`withCredentials` enabled)                                  |
-| Notifications  | React Toastify, SweetAlert2                                         |
-| UI Components  | Lucide Icons, React Icons, Swiper                                   |
-| Build Tools    | Vite, ESLint                                                        |
+|-----------------|--------------------------------------------------------------------|
+| Frontend        | React.js, React Router, Context API                                |
+| Styling         | Tailwind CSS, DaisyUI                                              |
+| Animations      | Framer Motion, AOS, Lottie                                         |
+| Auth            | Firebase Authentication + JWT (HTTP-only Cookie)                  |
+| HTTP Client     | Axios (`withCredentials` enabled)                                 |
+| Notifications   | React Toastify, SweetAlert2                                        |
+| UI Components   | Lucide Icons, React Icons, Swiper                                  |
+| Build Tools     | Vite, ESLint                                                       |
 
 ---
-## 📦 Project Dependencies
 
-Below is a list of all the dependencies and dev dependencies used in this project:
+## 📦 Project Dependencies
 
 ### ✅ Runtime Dependencies (for the app to run)
 
-| Package                | Description                                 |
-|------------------------|---------------------------------------------|
-| `@react-pdf/renderer`  | To generate downloadable PDF invoices       |
-| `@tailwindcss/vite`    | Tailwind integration with Vite              |
-| `aos`                  | Animate On Scroll library                   |
-| `axios`                | Promise-based HTTP client                   |
-| `firebase`             | For authentication and backend integration  |
-| `framer-motion`        | Animation library for React                 |
-| `lottie-react`         | Render Lottie animations in React           |
-| `lucide-react`         | Icon library used across the UI             |
-| `motion`               | Motion utilities (also related to framer)   |
-| `react`                | Core React library                          |
-| `react-dom`            | React DOM rendering                         |
-| `react-icons`          | Popular icons in React                      |
-| `react-loading`        | Simple loading spinners                     |
-| `react-router`         | Routing library for React                   |
-| `react-toastify`       | Toast notification system                   |
-| `sweetalert2`          | Pop-up alerts and modals                    |
-| `swiper`               | Touch slider library                        |
-| `tailwindcss`          | Utility-first CSS framework                 |
+| Package                | Description                                  |
+|------------------------|----------------------------------------------|
+| `@react-pdf/renderer`  | To generate downloadable PDF invoices        |
+| `@tailwindcss/vite`    | Tailwind integration with Vite               |
+| `aos`                  | Animate On Scroll library                    |
+| `axios`                | Promise-based HTTP client                    |
+| `firebase`             | For authentication and backend integration   |
+| `framer-motion`        | Animation library for React                  |
+| `lottie-react`         | Render Lottie animations in React            |
+| `lucide-react`         | Icon library used across the UI              |
+| `motion`               | Motion utilities (also related to framer)    |
+| `react`                | Core React library                           |
+| `react-dom`            | React DOM rendering                          |
+| `react-icons`          | Popular icons in React                       |
+| `react-loading`        | Simple loading spinners                      |
+| `react-router`         | Routing library for React                    |
+| `react-toastify`       | Toast notification system                    |
+| `sweetalert2`          | Pop-up alerts and modals                     |
+| `swiper`               | Touch slider library                         |
+| `tailwindcss`          | Utility-first CSS framework                  |
 
 ---
 
 ### 🛠️ Development Dependencies (for development only)
 
-| Package                      | Purpose                                       |
-|------------------------------|-----------------------------------------------|
-| `@eslint/js`                 | JavaScript linting rules                      |
-| `@types/react`               | TypeScript types for React                    |
-| `@types/react-dom`           | TypeScript types for React DOM                |
-| `@vitejs/plugin-react`       | React plugin for Vite                         |
-| `daisyui`                    | Tailwind component library                    |
-| `eslint`                     | JavaScript/React linting tool                 |
-| `eslint-plugin-react-hooks`  | Best practices for React hooks                |
-| `eslint-plugin-react-refresh`| React fast refresh linting support            |
-| `globals`                    | Shared global variables for ESLint            |
-| `vite`                       | Next-generation frontend build tool           |
+| Package                      | Purpose                                        |
+|------------------------------|------------------------------------------------|
+| `@eslint/js`                 | JavaScript linting rules                       |
+| `@types/react`               | TypeScript types for React                     |
+| `@types/react-dom`           | TypeScript types for React DOM                 |
+| `@vitejs/plugin-react`       | React plugin for Vite                          |
+| `daisyui`                    | Tailwind component library                     |
+| `eslint`                     | JavaScript/React linting tool                  |
+| `eslint-plugin-react-hooks`  | Best practices for React hooks                 |
+| `eslint-plugin-react-refresh`| React fast refresh linting support             |
+| `globals`                    | Shared global variables for ESLint             |
+| `vite`                       | Next-generation frontend build tool            |
 
 ---
+
 ## 🛠️ Getting Started (Run Locally)
 
-bash
+```bash
 # 1. Clone the Repository & Go to Project Folder
-git clone [[https://github.com/programmarimran/HireNest-client.git](https://github.com/programmarimran/HireNest-client-assignment_11-.git)](https://github.com/programmarimran/HireNest-client-assignment_11.git)
-cd HireNest-client
+git clone https://github.com/programmarimran/HireNest-client-assignment_11.git
+cd HireNest-client-assignment_11
 
 # 2. Install Dependencies
 npm install
@@ -138,15 +137,3 @@ npm run dev
 
 # App will run at:
 # http://localhost:5173
-
-
-...
-
-## 👨‍💻 Developer Information
-
-| Detail         | Info                                           |
-|----------------|------------------------------------------------|
-| 👨‍💻 Developer   | Md Imran Hasan                                 |
-| 💼 Role         | React & MERN Stack Web Developer, JavaScript Enthusiast |
-| 📬 Email        | programmarimran@gmail.com                      |
-| 🌐 Portfolio    | Coming Soon                                    |
