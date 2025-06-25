@@ -22,23 +22,35 @@ mobile:(https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
 
 ## 🌟 Core Features
 
-- 🔐 **Authentication System**
-  - Firebase Auth (email/password login)
-  - JWT-based secured route protection with HTTP-only cookies
 - 🧑‍💼 **Service Posting and Management**
-  - Users can add, edit, or delete their services
-- 💼 **Hiring Functionality**
-  - Logged-in users can book services with real-time feedback
-- 🌙 **Theme Toggle (Dark/Light)**
-  - Implemented using Context API and Tailwind CSS
-- 🧠 **Role-Based Dashboard**
-  - Separate dashboard interfaces for service providers and regular users
-- 🎬 **Modern UI & Animations**
-  - Smooth transitions using AOS and Framer Motion
-- 🔔 **Interactive Notifications**
-  - Toast, SweetAlert, and real-time response feedback
-- 📊 **Protected Routes & Token Handling**
-  - JWT cookies with `withCredentials`, handled securely in both frontend and backend
+  - Users can post their own services
+  - Services can be edited or deleted anytime
+  - A user-friendly dashboard to manage posted services
+
+- 💼 **Service Booking System**
+  - Users can book services posted by others
+  - Service providers can view who booked their services
+  - Booking status (e.g., Pending, Approved) can be updated by the provider
+
+- 📋 **Role-Based Dashboards**
+  - Separate interfaces for regular users and service providers
+  - Easy access to manage and monitor activities
+
+- 🌐 **Modern Navigation & Hero Banner**
+  - Responsive and stylish navigation bar (navbar)
+  - Engaging hero section on the homepage
+
+- 📥 **Footer with Useful Links**
+  - Clean and informative footer on every page
+  - Includes contact info and important site links
+
+- 🌙 **Dark/Light Theme Toggle**
+  - Seamless theme switching using a toggle button
+
+- 🎨 **Clean & Animated User Interface**
+  - Smooth transitions and animations with AOS and Framer Motion
+  - Visually appealing, modern layout and interactions
+
 
 ---
 
