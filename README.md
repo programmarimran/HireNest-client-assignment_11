@@ -1,8 +1,8 @@
 # 🚀 HireNest – Your Ultimate Service Marketplace
 📁 **Category:** Service Marketplace  
 🌐 **Live Website:** [https://hire-nest-by-imran.web.app/](https://hire-nest-by-imran.web.app/)  
-📦 **Client Repo:** [GitHub - HireNest Client](https://github.com/programmarimran/HireNest-client-assignment_11-)  
-🛠️ **Server Repo:** [GitHub - HireNest Client](https://github.com/programmarimran/HireNest-server-assignment_11)  
+📦 **Client Repo:** [GitHub - HireNest-client-assignment_11](https://github.com/programmarimran/HireNest-client-assignment_11)  
+🛠️ **Server Repo:** [GitHub - HireNest-server-assignment_11](https://github.com/programmarimran/HireNest-server-assignment_11)  
 ---
 
 ## 📌 Overview
@@ -117,7 +117,7 @@ Below is a list of all the dependencies and dev dependencies used in this projec
 
 bash
 # 1. Clone the Repository & Go to Project Folder
-git clone [https://github.com/programmarimran/HireNest-client.git](https://github.com/programmarimran/HireNest-client-assignment_11-.git)
+git clone [[https://github.com/programmarimran/HireNest-client.git](https://github.com/programmarimran/HireNest-client-assignment_11-.git)](https://github.com/programmarimran/HireNest-client-assignment_11.git)
 cd HireNest-client
 
 # 2. Install Dependencies
