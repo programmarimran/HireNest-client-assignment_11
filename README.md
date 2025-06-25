@@ -1,14 +1,20 @@
 # 🚀 HireNest – Your Ultimate Service Marketplace
-  **Server Site Repository:**[https://github.com/programmarimran/HireNest-server-assignment_11](https://github.com/programmarimran/HireNest-server-assignment_11)
-🌐 **Live Website:** [https://hire-nest-by-imran.web.app/](https://hire-nest-by-imran.web.app/)  
 📁 **Category:** Service Marketplace  
-🛠 **Tech Stack:** MERN (MongoDB, Express.js, React, Node.js)
-
+🌐 **Live Website:** [https://hire-nest-by-imran.web.app/](https://hire-nest-by-imran.web.app/)  
+📦 **Client Repo:** [GitHub - HireNest Client](https://github.com/programmarimran/HireNest-client)  
+🛠️ 
 ---
 
 ## 📌 Overview
 
 **HireNest** is a full-stack service marketplace web application where users can **offer** their services and **hire** others. It provides a secure, role-based environment with real-time service booking, dynamic dashboards, and a modern UI experience. This project is part of my portfolio and fulfills assignment criteria for a full-stack development course.
+
+---
+
+## 🖼️ Preview
+
+![HireNest Preview](https://ibb.co/RkSFrgfX) (https://ibb.co/ccZC3wJs) (https://ibb.co/NQjW5Sy)
+
 
 ---
 
