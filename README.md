@@ -68,17 +68,79 @@ mobile:(https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
 | Build Tools    | Vite, ESLint                                                        |
 
 ---
+## 📦 Project Dependencies
 
-## 📦 Installed Dependencies
+Below is a list of all the dependencies and dev dependencies used in this project:
 
-```bash
-# Runtime Dependencies
-npm install axios firebase react-router react-toastify
-npm install sweetalert2 swiper aos lottie-react lucide-react react-icons
-npm install tailwindcss daisyui framer-motion
+### ✅ Runtime Dependencies (for the app to run)
 
-# Dev Dependencies
-npm install -D vite eslint @vitejs/plugin-react @types/react @types/react-dom eslint-plugin-react-hooks
+| Package                | Description                                 |
+|------------------------|---------------------------------------------|
+| `@react-pdf/renderer`  | To generate downloadable PDF invoices       |
+| `@tailwindcss/vite`    | Tailwind integration with Vite              |
+| `aos`                  | Animate On Scroll library                   |
+| `axios`                | Promise-based HTTP client                   |
+| `firebase`             | For authentication and backend integration  |
+| `framer-motion`        | Animation library for React                 |
+| `lottie-react`         | Render Lottie animations in React           |
+| `lucide-react`         | Icon library used across the UI             |
+| `motion`               | Motion utilities (also related to framer)   |
+| `react`                | Core React library                          |
+| `react-dom`            | React DOM rendering                         |
+| `react-icons`          | Popular icons in React                      |
+| `react-loading`        | Simple loading spinners                     |
+| `react-router`         | Routing library for React                   |
+| `react-toastify`       | Toast notification system                   |
+| `sweetalert2`          | Pop-up alerts and modals                    |
+| `swiper`               | Touch slider library                        |
+| `tailwindcss`          | Utility-first CSS framework                 |
+
+---
+
+### 🛠️ Development Dependencies (for development only)
+
+| Package                      | Purpose                                       |
+|------------------------------|-----------------------------------------------|
+| `@eslint/js`                 | JavaScript linting rules                      |
+| `@types/react`               | TypeScript types for React                    |
+| `@types/react-dom`           | TypeScript types for React DOM                |
+| `@vitejs/plugin-react`       | React plugin for Vite                         |
+| `daisyui`                    | Tailwind component library                    |
+| `eslint`                     | JavaScript/React linting tool                 |
+| `eslint-plugin-react-hooks`  | Best practices for React hooks                |
+| `eslint-plugin-react-refresh`| React fast refresh linting support            |
+| `globals`                    | Shared global variables for ESLint            |
+| `vite`                       | Next-generation frontend build tool           |
+
+---
+## 🛠️ Getting Started (Run Locally)
+
+bash
+# 1. Clone the Repository & Go to Project Folder
+git clone https://github.com/programmarimran/HireNest-client.git
+cd HireNest-client
+
+# 2. Install Dependencies
+npm install
+
+# 3. Create .env file and add the following
+# (create a .env file manually and paste this)
+VITE_api_url=https://your-server-api.com
+VITE_FIREBASE_API_KEY=your-firebase-api-key
+VITE_FIREBASE_AUTH_DOMAIN=your-auth-domain
+VITE_FIREBASE_PROJECT_ID=your-project-id
+VITE_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your-messaging-id
+VITE_FIREBASE_APP_ID=your-app-id
+
+# 4. Run the Development Server
+npm run dev
+
+# App will run at:
+# http://localhost:5173
+
+
+---
 
 
 ...
