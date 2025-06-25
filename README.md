@@ -117,7 +117,7 @@ Below is a list of all the dependencies and dev dependencies used in this projec
 
 bash
 # 1. Clone the Repository & Go to Project Folder
-git clone https://github.com/programmarimran/HireNest-client.git
+git clone [https://github.com/programmarimran/HireNest-client.git](https://github.com/programmarimran/HireNest-client-assignment_11-.git)
 cd HireNest-client
 
 # 2. Install Dependencies
@@ -140,16 +140,13 @@ npm run dev
 # http://localhost:5173
 
 
----
-
-
 ...
 
 ## 👨‍💻 Developer Information
 
-| Detail         | Info                                                               |
-|----------------|--------------------------------------------------------------------|
-| 👨‍💻 Developer   | Md Imran Hasan                                                    |
-| 💼 Role         | MERN Stack Web Developer,            |
-| 📬 Email        | programmarimran@gmail.com                                         |
-| 🌐 Portfolio    | Coming Soon                
+| Detail         | Info                                           |
+|----------------|------------------------------------------------|
+| 👨‍💻 Developer   | Md Imran Hasan                                 |
+| 💼 Role         | React & MERN Stack Web Developer, JavaScript Enthusiast |
+| 📬 Email        | programmarimran@gmail.com                      |
+| 🌐 Portfolio    | Coming Soon                                    |
