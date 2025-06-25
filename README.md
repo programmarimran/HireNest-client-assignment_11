@@ -14,9 +14,10 @@
 
 ## 🖼️ Preview
 
-![HireNest Preview](https://i.ibb.co/BVQr3GLY/Screenshot-2025-06-25-114535.png)  
-![Others Section](https://i.ibb.co/6VPDzBW/Screenshot-2025-06-25-115940.png)  
-![Mobile View](https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
+![HireNest Preview](https://i.ibb.co/BVQr3GLY/Screenshot-2025-06-25-114535.png)
+
+- [Others Section Screenshot](https://i.ibb.co/6VPDzBW/Screenshot-2025-06-25-115940.png)
+- [Mobile View Screenshot](https://i.ibb.co/KpGP45dt/Screenshot-2025-06-25-120135.png)
 
 ---
 
@@ -137,3 +138,15 @@ npm run dev
 
 # App will run at:
 # http://localhost:5173
+```
+
+---
+
+## 👨‍💻 Developer Information
+
+| Detail         | Info                                                   |
+|----------------|--------------------------------------------------------|
+| 👨‍💻 Developer   | Md Imran Hasan                                         |
+| 💼 Role         | React & MERN Stack Web Developer, JavaScript Enthusiast |
+| 📬 Email        | programmarimran@gmail.com                              |
+| 🌐 Portfolio    | Coming Soon                                            |
