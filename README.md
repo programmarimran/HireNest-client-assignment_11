@@ -13,7 +13,7 @@
 
 ## 🖼️ Preview
 
-![HireNest Preview](https://ibb.co/RkSFrgfX) (https://ibb.co/ccZC3wJs) (https://ibb.co/NQjW5Sy)
+![https://ibb.co/RkSFrgfX](https://ibb.co/RkSFrgfX)
 
 
 ---
