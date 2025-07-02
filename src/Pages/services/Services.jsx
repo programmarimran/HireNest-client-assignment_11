@@ -24,9 +24,7 @@ const Services = () => {
       <title>HireNest||All Services</title>
      <div className="text-center my-8">
   <h2
-    className={`text-2xl md:text-3xl font-bold mb-2 ${
-      darkIstrue ? "text-white" : "text-black"
-    }`}
+    className={`text-2xl md:text-3xl font-bold mb-2 text-primary`}
   >
     Explore All Services in One Place
   </h2>

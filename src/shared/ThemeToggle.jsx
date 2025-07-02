@@ -1,6 +1,6 @@
 import { use, useEffect, useState } from "react";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
-import ServiceContext from "../../contexts/ServiceContext";
+import ServiceContext from "../contexts/ServiceContext";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState("light");

@@ -17,16 +17,12 @@ const WhyChooseUs = () => {
     <div >
       <div>
         <h2
-          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
-            darkIstrue ? "text-white" : "text-black"
-          }`}
+          className={`text-2xl md:text-3xl font-bold text-center mb-2  text-primary`}
         >
           {data.title}
         </h2>
         <p
-          className={`text-center max-w-xl mx-auto mb-6 ${
-            darkIstrue ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`text-center max-w-xl mx-auto mb-6 text-gray-600 dark:text-gray-200`}
         >
           {data.description}
         </p>

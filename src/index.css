@@ -1,6 +1,8 @@
 
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 
 
@@ -10,10 +12,16 @@
  @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary:blue;
+  --color-primary:#2563EB;
   --color-secondary: teal;
 }
-
+ @plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-primary:#2563EB;
+  --color-secondary: teal;
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 .custom-modal-box {
   width: 90%;

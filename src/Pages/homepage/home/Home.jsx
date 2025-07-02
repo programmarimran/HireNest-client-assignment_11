@@ -1,10 +1,10 @@
 import React, { use } from "react";
 import { Link, useLoaderData } from "react-router";
-import ServiceCard from "../../components/ServiceCard";
-import Hero from "../../components/Hero";
-import ServiceContext from "../../contexts/ServiceContext";
-import WhyChooseUs from "../../components/WhyChooseUs";
-import UserReview from "../../components/UserReview";
+import ServiceCard from "../../../components/ServiceCard";
+import Hero from "../hero/Hero";
+import ServiceContext from "../../../contexts/ServiceContext";
+import WhyChooseUs from "../../../components/WhyChooseUs";
+import UserReview from "../../../components/UserReview";
 
 const Home = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -18,16 +18,12 @@ const Home = () => {
       </div>
       <section className="py-16 pb-4">
         <h2
-          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
-            darkIstrue ? "text-white" : "text-black"
-          }`}
+          className={`text-2xl md:text-3xl font-bold text-center mb-2 text-primary`}
         >
           🌟 Popular Services
         </h2>
         <p
-          className={`text-center max-w-xl mx-auto mb-6 ${
-            darkIstrue ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`text-center max-w-xl mx-auto mb-6 text-gray-600 dark:text-gray-200`}
         >
           Discover the most booked and top-rated services from our trusted
           providers. Get quality service at your doorstep – fast, easy, and

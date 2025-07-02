@@ -1,24 +1,25 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
+  createBrowserRouter
 } from "react-router";
 import RootLayout from "../layouts/RootLayout";
-import Home from "../Pages/services/Home";
 import Services from "../Pages/services/Services";
-import BookedServices from "../Pages/services/dashboard/BookedServices";
-import AddService from "../Pages/services/dashboard/AddService";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
-import ManageService from "../Pages/services/dashboard/ManageService";
-import ServiceToDo from "../Pages/services/dashboard/ServiceToDo";
 import Login from "../Pages/auth/Login";
 import SignUp from "../Pages/auth/SignUp";
 import AuthLayout from "../layouts/AuthLayout";
 import ExternalError from "../Pages/errors/ExternalError";
 import ServiceDetails from "../Pages/services/ServiceDetails";
 import InternalError from "../Pages/errors/InternalError";
-// import InternalError from "../Pages/errors/InternalError";
-
+import About from "../Pages/about/About";
+import Contact from "../Pages/contact/Contact";
+import Home from "../Pages/homepage/home/Home";
+import BookedServices from "../Pages/dashboard/BookedServices/BookedServices"
+import AddService from "../Pages/dashboard/addService/AddService"
+import ManageService from "../Pages/dashboard/manageServices/ManageService"
+import ServiceToDo from "../Pages/dashboard/serviceToDo/ServiceToDo"
+import DashboardAllServices from "../Pages/dashboard/dashboardAllServices/DashboardAllServices";
+import DashboardHome from "../Pages/dashboard/dashboardHome/DashboardHome";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
         path:"/services",
         loader:()=>fetch(`${import.meta.env.VITE_BasicServer}/services`),
         Component:Services
+      },
+      {
+        path:"/about",
+        Component:About
+      },
+      {
+        path:"/contact",
+        Component:Contact
       }
       
 
@@ -46,27 +55,31 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        Component:BookedServices
+        Component:DashboardHome
       }
       ,
       {
-       path:"/dashboard/booked-services",
+       path:"all-services",
+       Component:DashboardAllServices
+      },
+      {
+       path:"booked-services",
        Component:BookedServices
       },
       {
-        path:"/dashboard/add-service",
+        path:"add-service",
         Component:AddService
       },
       {
-        path:"/dashboard/manage-service",
-        element:<PrivateRoute><ManageService></ManageService></PrivateRoute>
+        path:"manage-service",
+        Component:ManageService
       },
       {
-        path:"/dashboard/service-to-do",
+        path:"service-to-do",
         Component:ServiceToDo
       },
       {
-        path:"/dashboard/service-details/:id",
+        path:"service-details/:id",
         loader:({params})=>fetch(`${import.meta.env.VITE_BasicServer}/services/${params.id}`),
         errorElement:<InternalError></InternalError>,
         Component:ServiceDetails

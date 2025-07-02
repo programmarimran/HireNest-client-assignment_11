@@ -1,7 +1,7 @@
 import React, { use, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../shared/Navbar";
 import { Outlet, useNavigation } from "react-router";
-import Footer from "../components/Footer";
+import Footer from "../shared/Footer";
 import ServiceContext from "../contexts/ServiceContext";
 import Loading from "../components/Loading";
 import AOS from "aos";
@@ -31,7 +31,7 @@ const UseLayout = () => {
           <Navbar></Navbar>
         </div>
       </header>
-      <main className={`${darkIstrue ? "bg-slate-800" : "bg-slate-100"}`}>
+      <main className={`bg-gray-50 dark:bg-gray-900`}>
         <section className="max-w-7xl mx-auto ">
           <div className=" w-11/12 mx-auto min-h-[calc(100vh-429px)]">
             {navigation.state === "loading" ? (

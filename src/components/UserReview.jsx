@@ -15,25 +15,24 @@ const CustomerReviews = () => {
 
   return (
     <div>
-   
       <div>
-         <h2
-          className={`text-2xl md:text-3xl font-bold text-center mb-2 ${
-            darkIstrue ? "text-white" : "text-black"
-          }`}
+        <h2
+          className={`text-2xl md:text-3xl font-bold text-center mb-2 text-primary`}
         >
           Hear From Our Happy Clients
         </h2>
         <p
-          className={`text-center max-w-xl mx-auto mb-6 ${
-            darkIstrue ? "text-gray-300" : "text-gray-600"
-          }`}
+          className={`text-center max-w-xl mx-auto mb-6 text-gray-600 dark:text-gray-200`}
         >
-          Real feedback from our satisfied customers who trusted our services. See what they have to say about their experience with HireNest!
+          Real feedback from our satisfied customers who trusted our services.
+          See what they have to say about their experience with HireNest!
         </p>
       </div>
 
-      <div data-aos="fade-up-right" className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6 px-4 md:px-0">
+      <div
+        data-aos="fade-up-right"
+        className="grid grid-cols-1 mt-6 md:grid-cols-3 lg:grid-cols-4 justify-center gap-6 px-4 md:px-0"
+      >
         {features?.map((item) => (
           <div
             key={item.id}
@@ -56,39 +55,29 @@ const CustomerReviews = () => {
               Location:{" "}
               <span
                 className={`${
-                darkIstrue ? "text-white" : "text-black"
-              } font-semibold`}
+                  darkIstrue ? "text-white" : "text-black"
+                } font-semibold`}
               >
                 {item.location}
               </span>
             </h1>
 
             <div className="flex space-x-1 items-center">
-              <span
-                className={`${
-                darkIstrue ? "text-white" : "text-black"
-              }`}
-              >
+              <span className={`${darkIstrue ? "text-white" : "text-black"}`}>
                 Rating:
               </span>
               {[1, 2, 3, 4, 5].map((num, i) =>
                 num <= item.rating ? (
                   <p
                     key={i}
-                    className={
-                     `${
-                darkIstrue ? "text-white" : "text-black"
-              }`
-                    }
+                    className={`${darkIstrue ? "text-white" : "text-black"}`}
                   >
                     ⭐
                   </p>
                 ) : (
                   <p
                     key={i}
-                    className={`${
-                darkIstrue ? "text-white" : "text-black"
-              }`}
+                    className={`${darkIstrue ? "text-white" : "text-black"}`}
                   >
                     ☆
                   </p>
@@ -106,8 +95,8 @@ const CustomerReviews = () => {
               />
               <h3
                 className={`font-bold text-2xl ${
-                darkIstrue ? "text-white" : "text-black"
-              }`}
+                  darkIstrue ? "text-white" : "text-black"
+                }`}
               >
                 {item.name}
               </h3>
