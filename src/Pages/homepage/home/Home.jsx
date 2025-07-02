@@ -8,6 +8,7 @@ import ServiceContext from "../../../contexts/ServiceContext";
 import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSection";
 import FeatureSection from "../featureSection/FeatureSection";
 import HireNestStatusCount from "../statusCount/HireNestStatusCount";
+import ClientLogosMarquee from "../clientLogosMarque/ClientLogosMarquee";
 
 const Home = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -16,30 +17,30 @@ const Home = () => {
   return (
     <div className=" pb-12">
       <title>HireNest||Home-Page</title>
-      <div className=" pt-6">
+      <div className=" pt-6 mb-20 md:mb-28">
         <Hero services={services}></Hero>
       </div>
-      <section className="py-16 pb-4">
+      <section className="mb-20 md:mb-28">
         <h2
           className={`text-2xl md:text-3xl font-bold text-center mb-2 text-primary`}
         >
           🌟 Popular Services
         </h2>
         <p
-          className={`text-center max-w-xl mx-auto mb-6 text-gray-600 dark:text-gray-200`}
+          className={`text-center max-w-xl mx-auto mb-10 text-gray-600 dark:text-gray-200`}
         >
           Discover the most booked and top-rated services from our trusted
           providers. Get quality service at your doorstep – fast, easy, and
           reliable!
-        </p>
+        </p >
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {services?.map((service) => (
             <ServiceCard key={service._id} service={service}></ServiceCard>
           ))}
         </div>
       </section>
-      <section className="py-8 pb-4 flex justify-center items-center">
+      <section className="mb-10 md:mb-8 flex justify-center items-center">
         <Link to={"/services"}>
           <button
             className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
@@ -52,13 +53,16 @@ const Home = () => {
           </button>
         </Link>
       </section>
-      <section className=" py-16 pb-4">
+      <section className="mb-20 md:mb-28">
         <FeatureSection></FeatureSection>
+      </section >
+      <section className="mb-20 md:mb-28">
+        <ClientLogosMarquee></ClientLogosMarquee>
       </section>
-      <section className="py-16 pb-4">
+      <section className="mb-20 md:mb-28">
         <CustomerReviewsSection></CustomerReviewsSection>
       </section>
-      <section className="py-16 pb-4">
+      <section className="mb-20 md:mb-28">
         <HireNestStatusCount></HireNestStatusCount>
       </section>
     </div>

@@ -24,7 +24,7 @@ const CustomerReviewsSection = () => {
       <h2 className="text-3xl font-bold text-center text-primary mb-10">
         What Our Clients Say About HireNest
       </h2>
-      <p className="text-center">
+      <p className="text-center mb-10">
         From home repairs to tech fixes — our users trust HireNest for quick,
         reliable, and affordable service. Read what they have to say about their
         experience with our platform.

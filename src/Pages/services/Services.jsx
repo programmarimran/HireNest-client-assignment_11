@@ -64,11 +64,11 @@ const Services = () => {
           />
         </label>
       </div>
-      <div className=" grid grid-cols-1  gap-6 pb-4">
-        {allServices?.map((service) => (
-          <ServiceCard key={service._id} service={service}></ServiceCard>
-        ))}
-      </div>
+       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+          {allServices?.map((service) => (
+            <ServiceCard key={service._id} service={service}></ServiceCard>
+          ))}
+        </div>
     </div>
   );
 };
