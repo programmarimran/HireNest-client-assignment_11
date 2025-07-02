@@ -56,6 +56,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: () => fetch(`${import.meta.env.VITE_BasicServer}/services`),
         Component: DashboardHome,
       },
       {

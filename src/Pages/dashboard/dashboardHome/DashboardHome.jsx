@@ -1,32 +1,44 @@
 import { FaHeart, FaClipboardList, FaCogs } from "react-icons/fa";
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import DashboardCard from "./dashboardCard/DashboardCard";
 import AuthContext from "../../../contexts/AuthContext";
+import axios from "axios";
 
 const DashboardHome = () => {
-  const { user } = useContext(AuthContext);
-  const [allRecipe, setAllRecipe] = useState([]);
-  const [wishlistRecipes, setWishlistRecipes] = useState([]);
+  const { user,logoutUser } = useContext(AuthContext);
+  const allRecipe = useLoaderData();
+  const [bookedServices, setBookedServices] = useState([]);
   const [myRecipes, setMyRecipes] = useState([]);
+  const baseURL = import.meta.env.VITE_BasicServer;
 
-  const baseURL = import.meta.env.VITE_serverBaseURL;
-
-  // fetch total recipes
-  useEffect(() => {
-    fetch(`${baseURL}/recipes`)
-      .then((res) => res.json())
-      .then((data) => setAllRecipe(data));
-  }, [baseURL]);
+  const [bookedLoading,setBookedLoading]=useState(true)
 
   // fetch wishlist recipes
   useEffect(() => {
-    if (user?.email) {
-      fetch(`${baseURL}/wishlist/recipes?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setWishlistRecipes(data));
-    }
-  }, [baseURL, user]);
+    setTimeout(() => {
+      axios
+        .get(
+          `${import.meta.env.VITE_BasicServer}/users/booked/services?email=${
+            user?.email
+          }`,
+          { withCredentials: true }
+        )
+        //********token handling start******* */
+        .then((res) => {
+          // console.log(res.status);
+          setBookedLoading(false);
+          setBookedServices(res?.data);
+        })
+        .catch((error) => {
+          // console.log(error.status);
+          if (error.status === 401 || error.status === 403) {
+            logoutUser();
+          }
+        });
+    }, 1000);
+    //********token handling end********* */
+  }, []);
 
   // fetch my recipes
   useEffect(() => {
@@ -50,7 +62,8 @@ const DashboardHome = () => {
       <Link to="/dashboard/booked-services">
         <DashboardCard
           title="Booked Services"
-          value={wishlistRecipes?.length || 0}
+          bookedLoading={bookedLoading}
+          value={bookedLoading?"not-showing":bookedServices?.length || 0}
           icon={<FaHeart className="text-3xl text-rose-500" />}
         />
       </Link>
