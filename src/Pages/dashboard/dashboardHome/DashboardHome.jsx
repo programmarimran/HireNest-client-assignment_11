@@ -9,12 +9,13 @@ const DashboardHome = () => {
   const { user,logoutUser } = useContext(AuthContext);
   const allRecipe = useLoaderData();
   const [bookedServices, setBookedServices] = useState([]);
-  const [myRecipes, setMyRecipes] = useState([]);
+  const [manageServices, setManageServices] = useState([]);
   const baseURL = import.meta.env.VITE_BasicServer;
 
   const [bookedLoading,setBookedLoading]=useState(true)
+  const [manageLoading,setManageLoading]=useState(true)
 
-  // fetch wishlist recipes
+  // fetch Booked servides
   useEffect(() => {
     setTimeout(() => {
       axios
@@ -39,15 +40,33 @@ const DashboardHome = () => {
     }, 1000);
     //********token handling end********* */
   }, []);
-
+// fetch manageservices 
   // fetch my recipes
   useEffect(() => {
-    if (user?.email) {
-      fetch(`${baseURL}/my-recipes?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => setMyRecipes(data));
-    }
-  }, [baseURL, user]);
+    setTimeout(() => {
+      axios
+        .get(
+          `${baseURL}/users/services?email=${
+            user.email
+          }`,
+          { withCredentials: true }
+        )
+        //********token handling start******* */
+        .then((res) => {
+          // console.log(res.status);
+          setManageLoading(false);
+          setManageServices(res?.data);
+        })
+        .catch((error) => {
+          // console.log(error.response.status)
+          // console.log(error.status);
+          if (error.status === 401 || error.status === 403) {
+            logoutUser();
+          }
+        });
+    }, 100);
+    //********token handling end********* */
+  }, []);
 
   return (
     <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,7 +90,7 @@ const DashboardHome = () => {
       <Link to="/dashboard/manage-service">
         <DashboardCard
           title="Manage Services"
-          value={myRecipes?.length || 0}
+          value={manageLoading?"not-showing":manageServices?.length || 0}
           icon={<FaClipboardList className="text-3xl text-emerald-500" />}
         />
       </Link>
