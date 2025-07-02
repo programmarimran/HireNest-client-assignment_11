@@ -1,5 +1,4 @@
 import React, { use, useEffect, useState } from "react";
-import ManageServiceCard from "../../../components/ManageServiceCard";
 import ServiceContext from "../../../contexts/ServiceContext";
 import axios from "axios";
 import AuthContext from "../../../contexts/AuthContext";
@@ -7,6 +6,7 @@ import Swal from "sweetalert2";
 import EditServiceModal from "../../../components/EditserviceModal";
 import { Link } from "react-router";
 import Loading from "../../../components/Loading";
+import ManageServicesTable from "./ManageServicesTable";
 
 const ManageService = () => {
   const { user, logoutUser } = use(AuthContext);
@@ -16,7 +16,7 @@ const ManageService = () => {
 
   const [userServices, setUserServices] = useState([]);
 
-  // console.log(userServices);
+  console.log(userServices);
   useEffect(() => {
     setTimeout(() => {
       axios
@@ -122,14 +122,11 @@ const ManageService = () => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
-          {userServices?.map((service) => (
-            <ManageServiceCard
-              handleDelete={handleDelete}
-              key={service._id}
-              service={service}
-            ></ManageServiceCard>
-          ))}
+        <div>
+          <ManageServicesTable
+            userServices={userServices}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
       <EditServiceModal

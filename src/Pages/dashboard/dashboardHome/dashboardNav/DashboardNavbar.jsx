@@ -1,18 +1,28 @@
 import React, { use } from "react";
 
 import { Link, NavLink } from "react-router";
-import { toast } from "react-toastify";
-import AuthContext from "../../../../contexts/AuthContext";
 import DashboardHambarger from "./dashboardHambarger/DashboardHambarger";
 import ThemeToggle from "../../../../shared/ThemeToggle";
 import Logo from "../../../../shared/Logo";
+import AuthContext from "../../../../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const DashboardNavbar = () => {
-  const { logOutUser, loading } = use(AuthContext);
+  const { logoutUser, loading } = use(AuthContext);
 
-  const handleLogoutUser = () => {
-    logOutUser().then(() => {
-      toast.warning("Logout Successfully");
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logoutUser();
+      }
     });
   };
 
@@ -62,13 +72,12 @@ const DashboardNavbar = () => {
       </div>
 
       {/* Navbar Middle for md only */}
-     
 
       {/* Navbar End */}
       <div className="navbar-end gap-2 md:gap-3">
         <ThemeToggle />
 
-        <button onClick={handleLogoutUser} className=" btn btn-primary">
+        <button onClick={handleLogout} className=" btn btn-primary">
           Logout
         </button>
       </div>

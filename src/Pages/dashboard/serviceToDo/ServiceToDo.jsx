@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { use, useEffect, useState } from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import ServiceToDoCard from "../../../components/ServiceToDoCard";
 import ServiceContext from "../../../contexts/ServiceContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Loading";
-
+import ServiceToDoTable from "./ServiceToDoTable";
 const ServiceToDo = () => {
   const { darkIstrue } = use(ServiceContext);
   const [loading, setLoading] = useState(true);
@@ -118,15 +117,12 @@ const ServiceToDo = () => {
         </p>
       </div>
 
-      <div className=" grid grid-cols-1 md:grid-cols-2  gap-6">
-        {provideBookedServices?.map((service) => (
-          <ServiceToDoCard
-            handleServiceStatus={handleServiceStatus}
-            handleDelete={handleDelete}
-            key={service._id}
-            service={service}
-          ></ServiceToDoCard>
-        ))}
+      <div>
+        <ServiceToDoTable
+          handleServiceStatus={handleServiceStatus}
+          handleDelete={handleDelete}
+          provideBookedServices={provideBookedServices}
+        ></ServiceToDoTable>
       </div>
     </div>
   );

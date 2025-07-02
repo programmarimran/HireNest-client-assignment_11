@@ -6,11 +6,11 @@ const Logo = () => {
     <Link to={"/"}>
       <div className=" flex items-center gap-2">
         <div className="avatar">
-          <div className="w-12">
+          <div className=" w-6 md:w-12">
             <img src={logo} />
           </div>
         </div>
-        <h1 className=" text-4xl font-bold">
+        <h1 className=" text-xl md:text-4xl font-bold">
           Hire<span className=" text-primary">N</span>est
         </h1>
       </div>

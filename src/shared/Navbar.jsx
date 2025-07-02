@@ -8,7 +8,6 @@ import UseNavbarProfile from "../components/nestedComponents/UseNavbarProfile";
 import AuthContext from "../contexts/AuthContext";
 import {
   FaArrowRightFromBracket,
-  FaDownLeftAndUpRightToCenter,
 } from "react-icons/fa6";
 import Logo from "./Logo";
 
