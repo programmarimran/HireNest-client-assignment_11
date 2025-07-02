@@ -1,0 +1,85 @@
+{
+  "hireNestInfo": {
+    "whyChooseUs": {
+      "title": "Why Choose HireNest?",
+      "description": "HireNest connects you with trusted professionals for all your service needs — from home repairs to deep cleaning, all in one platform.",
+      "features": [
+        {
+          "id": 1,
+          "title": "Verified Providers",
+          "icon": "✅",
+          "description": "All service providers are verified for quality, reliability, and professionalism."
+        },
+        {
+          "id": 2,
+          "title": "Wide Range of Services",
+          "icon": "🛠️",
+          "description": "Whether it's plumbing, AC repair, or laptop servicing, we've got you covered."
+        },
+        {
+          "id": 3,
+          "title": "Real-Time Booking",
+          "icon": "📅",
+          "description": "Schedule and book your required services instantly with flexible time slots."
+        },
+        {
+          "id": 4,
+          "title": "Affordable Pricing",
+          "icon": "💸",
+          "description": "Transparent and competitive pricing ensures you get the best service at the right value."
+        },
+        {
+          "id": 5,
+          "title": "Customer Support",
+          "icon": "📞",
+          "description": "Our support team is always ready to help you with any issues or queries."
+        }
+      ]
+    },
+    "userReviews": {
+      "title": "What Our Users Say",
+      "reviews": [
+        {
+          "id": 1,
+          "name": "Rakib A.",
+          "location": "Dhaka, Bangladesh",
+          "rating": 5,
+          "comment": "I booked an electrician through HireNest — super fast and professional!",
+          "image": "https://i.ibb.co/TMb8YW6G/female.png"
+        },
+        {
+          "id": 2,
+          "name": "Sarah T.",
+          "location": "Chattogram, Bangladesh",
+          "rating": 4,
+          "comment": "Booked a deep cleaning service. The workers were punctual and did a great job.",
+          "image": "https://i.ibb.co/YTpjHbHk/image-180x180-8.png"
+        },
+        {
+          "id": 3,
+          "name": "Ahmed N.",
+          "location": "Sylhet, Bangladesh",
+          "rating": 5,
+          "comment": "Very easy to use. I regularly book AC servicing through HireNest.",
+          "image": "https://i.ibb.co/TMb8YW6G/female.png"
+        },
+        {
+          "id": 4,
+          "name": "Lina K.",
+          "location": "Khulna, Bangladesh",
+          "rating": 5,
+          "comment": "Affordable and smooth experience. Highly recommend for laptop repair services.",
+          "image": "https://i.ibb.co/YTpjHbHk/image-180x180-8.png"
+        },
+        {
+          "id": 5,
+          "name": "Tanvir R.",
+          "location": "Rajshahi, Bangladesh",
+          "rating": 4,
+          "comment": "Customer support helped me instantly when I had a scheduling issue. Great service!",
+          "image": "https://i.ibb.co/TMb8YW6G/female.png"
+        }
+      ]
+    }
+  }
+}

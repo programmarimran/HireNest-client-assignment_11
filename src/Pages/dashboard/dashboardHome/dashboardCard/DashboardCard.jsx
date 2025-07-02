@@ -1,7 +1,7 @@
 import React from "react";
 
 const DashboardCard = ({ title, value, icon }) => {
-  console.log(value)
+  // console.log(value)
   return (
     <div className="bg-base-200 p-6 rounded-xl shadow-md text-center flex justify-center items-center flex-col">
       <div className="text-4xl mb-2">{icon}</div>

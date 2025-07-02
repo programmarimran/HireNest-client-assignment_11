@@ -3,8 +3,11 @@ import { Link, useLoaderData } from "react-router";
 import ServiceCard from "../../../shared/ServiceCard";
 import Hero from "../hero/Hero";
 import ServiceContext from "../../../contexts/ServiceContext";
-import WhyChooseUs from "../whyChoseUs/WhyChooseUs";
-import UserReview from "../userReview/UserReview";
+// import WhyChooseUs from "../whyChoseUs/WhyChooseUs";
+// import UserReview from "../userReview/UserReview";
+import CustomerReviewsSection from "../customerReviewSection/CustomerReviewsSection";
+import FeatureSection from "../featureSection/FeatureSection";
+import HireNestStatusCount from "../statusCount/HireNestStatusCount";
 
 const Home = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -30,7 +33,7 @@ const Home = () => {
           reliable!
         </p>
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-6 ">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
           {services?.map((service) => (
             <ServiceCard key={service._id} service={service}></ServiceCard>
           ))}
@@ -38,22 +41,25 @@ const Home = () => {
       </section>
       <section className="py-8 pb-4 flex justify-center items-center">
         <Link to={"/services"}>
-        <button
-          className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
-            darkIstrue
-              ? "bg-blue-600 hover:bg-blue-500 text-white"
-              : "bg-blue-500 hover:bg-blue-600 text-white"
-          }`}
-        >
-          Show All Service
-        </button>
+          <button
+            className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
+              darkIstrue
+                ? "bg-blue-600 hover:bg-blue-500 text-white"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
+          >
+            Show All Service
+          </button>
         </Link>
       </section>
-      <section className="py-16 pb-4">
-        <WhyChooseUs></WhyChooseUs>
+      <section className=" py-16 pb-4">
+        <FeatureSection></FeatureSection>
       </section>
       <section className="py-16 pb-4">
-        <UserReview></UserReview>
+        <CustomerReviewsSection></CustomerReviewsSection>
+      </section>
+      <section className="py-16 pb-4">
+        <HireNestStatusCount></HireNestStatusCount>
       </section>
     </div>
   );

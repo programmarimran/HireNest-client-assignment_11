@@ -16,7 +16,7 @@ const ManageService = () => {
 
   const [userServices, setUserServices] = useState([]);
 
-  console.log(userServices);
+  // console.log(userServices);
   useEffect(() => {
     setTimeout(() => {
       axios

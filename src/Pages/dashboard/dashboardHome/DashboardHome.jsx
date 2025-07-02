@@ -64,7 +64,7 @@ const DashboardHome = () => {
             logoutUser();
           }
         });
-    }, 100);
+    }, 1000);
     //********token handling end********* */
   }, []);
 
