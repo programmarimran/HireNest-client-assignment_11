@@ -1,6 +1,5 @@
 import React, {  useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import AuthContext from "../../../../../contexts/AuthContext";
 import DashboardResponsiveDrawer from "./DashboardResponsiveDrawer";
 
 const DashboardHambarger = () => {
@@ -39,7 +38,7 @@ const DashboardHambarger = () => {
               to="/dashboard/all-services"
               className={({ isActive }) => (isActive ? "active font-bold" : "")}
             >
-              All Recipes
+              All Services
             </NavLink>
           </li>
           <li>

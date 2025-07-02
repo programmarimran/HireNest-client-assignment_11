@@ -1,7 +1,7 @@
 import React, { use, useState } from "react";
 // import { useLoaderData } from "react-router";
 import ServiceContext from "../../contexts/ServiceContext";
-import ServiceCard from "../../components/ServiceCard";
+import ServiceCard from "../../shared/ServiceCard";
 import axios from "axios";
 import { useLoaderData } from "react-router";
 

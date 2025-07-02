@@ -1,10 +1,10 @@
 import React, { use } from "react";
 import { Link, useLoaderData } from "react-router";
-import ServiceCard from "../../../components/ServiceCard";
+import ServiceCard from "../../../shared/ServiceCard";
 import Hero from "../hero/Hero";
 import ServiceContext from "../../../contexts/ServiceContext";
-import WhyChooseUs from "../../../components/WhyChooseUs";
-import UserReview from "../../../components/UserReview";
+import WhyChooseUs from "../whyChoseUs/WhyChooseUs";
+import UserReview from "../userReview/UserReview";
 
 const Home = () => {
   const { darkIstrue } = use(ServiceContext);

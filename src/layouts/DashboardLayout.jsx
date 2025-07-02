@@ -59,7 +59,7 @@ const DashboardLayout = () => {
               to="/dashboard/all-services"
               className={({ isActive }) => (isActive ? "active font-bold" : "")}
             >
-              All Recipes
+              All Services
             </NavLink>
           </li>
           <li>

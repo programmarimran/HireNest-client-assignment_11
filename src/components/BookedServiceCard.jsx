@@ -1,165 +1,111 @@
-import React, { use } from "react";
-import ServiceContext from "../contexts/ServiceContext";
-import { Link } from "react-router";
+import React from "react";
 import { FaX } from "react-icons/fa6";
+import { Link } from "react-router";
 import DownloadInvoiceButton from "../pdfCreate/DowndoadInvoiceButton";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
-const BookedServiceCard = ({ service, handleBookedDeleteButton }) => {
-  // console.log(service);
-  const { darkIstrue } = use(ServiceContext);
-  const {
-    serviceId,
-    serviceName,
-    imageUrl,
-    specialInstruction,
-    price,
-    providerName,
-    serviceStatus,
-    serviceArea,
-    _id,
-    takingDate,
-    userName,
-  } = service;
 
+const BookedServicesTable = ({ services, handleBookedDeleteButton }) => {
   return (
-    <div
-      data-aos="fade-up-right"
-      className={` relative rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row p-4 gap-4 transition duration-300 ${
-        darkIstrue
-          ? "bg-gray-700 text-gray-100 border border-gray-500"
-          : "bg-gray-100 border border-gray-300 text-gray-900"
-      }`}
-    >
-      <div>
-        {/* Service Image */}
-        <img
-          src={imageUrl}
-          alt={serviceName}
-          className="w-full md:w-40 h-40 object-cover rounded-md"
-        />
-        {/* Provider Name */}
-        <div className="text-sm my-2">
-          Provided by:{" "}
-          <span
-            className={`font-medium ${
-              darkIstrue ? "text-gray-300" : "text-gray-800"
-            }`}
-          >
-            {providerName}
-          </span>
-        </div>
-      </div>
+    <div className="overflow-x-auto shadow rounded-xl mt-6">
+      <table className="table table-zebra">
+        <thead className="bg-base-200 dark:bg-gray-800 dark:text-gray-100">
+          <tr>
+            <th>#</th>
+            <th>Service</th>
+            <th>Area</th>
+            <th>Provider</th>
+            <th>Booked By</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>৳ Price</th>
+            <th>Invoice</th>
+            <th>Details</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody className="dark:bg-gray-900 dark:text-gray-100">
+          {services?.map((service, index) => (
+            <tr key={service._id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+              <td>{index + 1}</td>
 
-      <button
-        onClick={() => handleBookedDeleteButton(_id)}
-        className=" btn absolute top-4 right-4"
-      >
-        <FaX size={20}></FaX>
-      </button>
+              {/* Service Image + Name */}
+              <td>
+                <div className="flex items-center gap-3">
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                      <img src={service.imageUrl} alt={service.serviceName} />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-bold">{service.serviceName}</div>
+                    {service.specialInstruction && (
+                      <div className="text-xs text-yellow-600 dark:text-yellow-400">
+                        📌 {service.specialInstruction}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </td>
 
-      {/* Info */}
-      <div className="flex flex-col justify-between flex-1">
-        <div className=" flex flex-col justify-between">
-          {/* Service Name & Area */}
-          <div className="flex gap-4 items-center">
-            <h3 className="text-xl font-semibold">{serviceName}</h3>
-            <p
-              className={`text-sm font-medium ${
-                darkIstrue ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              ({serviceArea})
-            </p>
-          </div>
+              <td>{service.serviceArea}</td>
 
-          {/* Special Instruction */}
-          {specialInstruction && (
-            <p
-              className={`mt-1 text-sm ${
-                darkIstrue ? "text-yellow-200" : "text-yellow-700"
-              }`}
-            >
-              📌 Instruction: {specialInstruction}
-            </p>
-          )}
+              {/* Provider */}
+              <td>
+                <p className="text-sm font-medium">{service.providerName}</p>
+              </td>
 
-          {/* Taking Date and Status */}
-          <p className="mt-1 text-sm">
-            📅 Taking Date:{" "}
-            <span
-              className={`font-medium ${
-                darkIstrue ? "text-blue-300" : "text-blue-600"
-              }`}
-            >
-              {takingDate}
-            </span>
-          </p>
-          <p className="mt-1 text-sm">
-            🟠 Status:{" "}
-            <span
-              className={`font-semibold capitalize ${
-                serviceStatus === "pending"
-                  ? darkIstrue
-                    ? "text-orange-300"
-                    : "text-orange-600"
-                  : "text-green-500"
-              }`}
-            >
-              {serviceStatus}
-            </span>
-          </p>
+              {/* Booked By */}
+              <td>
+                <p className="text-sm italic">{service.userName}</p>
+              </td>
 
-          {/* User Name */}
-          <p className="mt-1 text-sm italic">
-            Booked by:{" "}
-            <span
-              className={`font-medium ${
-                darkIstrue ? "text-gray-200" : "text-gray-800"
-              }`}
-            >
-              {userName}
-            </span>
-          </p>
-        </div>
+              <td>
+                <span className="text-sm text-blue-600 dark:text-blue-400">{service.takingDate}</span>
+              </td>
 
-        {/* Footer */}
-        <div className="mt-4 flex justify-between items-center">
-          <div></div>
-          {/* Price & Button */}
-          <div className="text-right">
-            <p
-              className={`font-bold ${
-                darkIstrue ? "text-green-400" : "text-green-600"
-              }`}
-            >
-              ৳ {price}
-            </p>
-           <div className=" flex gap-4 items-center">
-             <DownloadInvoiceButton booking={service} />
-            <Link to={`/dashboard/service-details/${serviceId}`}>
-              <motion.button 
-              whileHover={{
-                  scale: 1.2,
-                  transition: { duration: 0 },
-                }}
-                whileTap={{ scale: 0.9 }}
-                className={`mt-1 px-3 py-1 text-sm rounded transition duration-200 ${
-                  darkIstrue
-                    ? "bg-blue-600 hover:bg-blue-500 text-white"
-                    : "bg-blue-500 hover:bg-blue-600 text-white"
-                }`}
-              >
-                View Detail
-              </motion.button>
-            </Link>
-           </div>
-            
-          </div>
-        </div>
-      </div>
+              <td>
+                <span
+                  className={`badge badge-sm font-semibold capitalize ${
+                    service.serviceStatus === "pending"
+                      ? "badge-warning"
+                      : "badge-success"
+                  }`}
+                >
+                  {service.serviceStatus}
+                </span>
+              </td>
+
+              <td className="font-bold text-green-600 dark:text-green-400">৳ {service.price}</td>
+
+              <td>
+                <DownloadInvoiceButton booking={service} />
+              </td>
+
+              <td>
+                <Link to={`/dashboard/service-details/${service.serviceId}`}>
+                  <button
+                    className="btn btn-sm btn-primary"
+                    title="View Details"
+                  >
+                    View
+                  </button>
+                </Link>
+              </td>
+
+              <td>
+                <button
+                  onClick={() => handleBookedDeleteButton(service._id)}
+                  className="btn btn-sm btn-error"
+                  title="Delete Booking"
+                >
+                  <FaX />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default BookedServiceCard;
+export default BookedServicesTable;

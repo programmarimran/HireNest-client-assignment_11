@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import ServiceContext from "../contexts/ServiceContext";
+import ServiceContext from "../../../contexts/ServiceContext";
 
 const diverseDishPromise = fetch("/extra-section.json").then((res) =>
   res.json()
