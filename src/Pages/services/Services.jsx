@@ -72,55 +72,62 @@ const Services = () => {
             : "No service found."}
         </p>
       </div>
-      <div className=" flex flex-col md:flex-row justify-between items-center gap-6 my-4">
-        <div className=" flex items-center w-3/4">
+      <div className=" flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 w-full my-4">
+        <div className=" flex items-center w-full md:w-3/4">
           <label className="input w-full">
-          <svg
-            className="h-[1em] opacity-50"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2.5"
-              fill="none"
-              stroke="currentColor"
+            <svg
+              className="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
             >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </g>
-          </svg>
-          <input
-            onChange={(e) => handleSearch(e.target.value)}
-            type="search"
-            required
-            placeholder="Search"
-          />
-        </label>
-        {/* <button className=" flex items-center bg-primary btn text-white"><FaSearch size={24}/>send</button> */}
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              onChange={(e) => handleSearch(e.target.value)}
+              type="search"
+              required
+              placeholder="Search"
+            />
+          </label>
+          {/* <button className=" flex items-center bg-primary btn text-white"><FaSearch size={24}/>send</button> */}
         </div>
-        <div className="flex items-center gap-4 w-1/4 ">
-          <h1 className="flex-shrink-0 text-xl">Shorted By Price</h1>
-          <select
-            onChange={(e) => handleSort(e.target.value)}
-            className=" input"
-            name=""
-            id=""
-          >
-            <option value="" disabled selected>
-              Select
-            </option>
-            <option value="default">Default</option>
-            <option value="Ascending">Ascending</option>
-            <option value="Descending">Descending</option>
-          </select>
+        <div className=" w-full md:w-1/4 ">
+          <div className="flex items-center w-full gap-4">
+            <h1 className="flex-shrink-0 text-xl">Shorted By Price</h1>
+            <select
+              onChange={(e) => handleSort(e.target.value)}
+              className=" input"
+              name=""
+              id=""
+            >
+              <option value="" disabled selected>
+                Select
+              </option>
+              <option value="default">Default</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
+            </select>
+          </div>
         </div>
       </div>
       <div>
-        {
-          allServices<1?<div className=" text-2xl text-center font-bold py-12"> No service found</div>:""
-        }
+        {allServices < 1 ? (
+          <div className=" text-2xl text-center font-bold py-12">
+            {" "}
+            No service found
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 ">
         {allServices?.map((service) => (
