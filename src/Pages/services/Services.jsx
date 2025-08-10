@@ -1,14 +1,17 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 // import { useLoaderData } from "react-router";
 import ServiceContext from "../../contexts/ServiceContext";
 import ServiceCard from "../../shared/ServiceCard";
 import axios from "axios";
 import { useLoaderData } from "react-router";
+import Pagination from "./Pagination";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
   const initialServices = useLoaderData();
-  const [allServices, setAllServices] = useState(initialServices);
+  const [allServices, setAllServices] = useState([]);
+  const [totalServices, setTotalServices] = useState(initialServices.length);
+  const [currentPage, setCurrentPage] = useState(1);
   //handle search intregation
   const handleSearch = (search) => {
     axios
@@ -31,7 +34,31 @@ const Services = () => {
     }
     setAllServices(sortedServices);
   };
-  console.log(allServices);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BasicServer}/service-count`)
+      .then((res) => {
+        //  console.log(res.data.count);
+        setTotalServices(res.data.count);
+
+        axios
+          .get(
+            `${
+              import.meta.env.VITE_BasicServer
+            }/services?page=${currentPage}&limit=${9}`
+          )
+          .then((res) => {
+            // console.log(res.data);
+            setAllServices(res.data);
+          });
+      });
+  }, [currentPage]);
+  // console.log(allServices);
+  // const totalServices = 500;
+  const totalPages = Math.ceil(totalServices / 9);
+  console.log(totalPages);
+
+  console.log(currentPage);
   return (
     <div className="py-16 ">
       <title>HireNest||All Services</title>
@@ -93,11 +120,16 @@ const Services = () => {
           </select>
         </div>
       </div>
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 ">
         {allServices?.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}
       </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
