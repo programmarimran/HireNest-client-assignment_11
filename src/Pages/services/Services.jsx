@@ -7,6 +7,7 @@ import axios from "axios";
 import Pagination from "./Pagination";
 import Loading from "../../components/Loading";
 import { useLoaderData } from "react-router";
+import { FaSearch } from "react-icons/fa";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -71,8 +72,9 @@ const Services = () => {
             : "No service found."}
         </p>
       </div>
-      <div className=" flex flex-col md:flex-row justify-between items-center gap-4 my-4">
-        <label className="input">
+      <div className=" flex flex-col md:flex-row justify-between items-center gap-6 my-4">
+        <div className=" flex items-center w-3/4">
+          <label className="input w-full">
           <svg
             className="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +98,9 @@ const Services = () => {
             placeholder="Search"
           />
         </label>
-        <div className="flex items-center gap-4 ">
+        {/* <button className=" flex items-center bg-primary btn text-white"><FaSearch size={24}/>send</button> */}
+        </div>
+        <div className="flex items-center gap-4 w-1/4 ">
           <h1 className="flex-shrink-0 text-xl">Shorted By Price</h1>
           <select
             onChange={(e) => handleSort(e.target.value)}
@@ -112,6 +116,11 @@ const Services = () => {
             <option value="Descending">Descending</option>
           </select>
         </div>
+      </div>
+      <div>
+        {
+          allServices<1?<div className=" text-2xl text-center font-bold py-12"> No service found</div>:""
+        }
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 ">
         {allServices?.map((service) => (
