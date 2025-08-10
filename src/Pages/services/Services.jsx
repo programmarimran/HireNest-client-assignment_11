@@ -51,7 +51,7 @@ const Services = () => {
             : "No service found."}
         </p>
       </div>
-      <div className=" flex justify-between items-center my-4">
+      <div className=" flex flex-col md:flex-row justify-between items-center gap-4 my-4">
         <label className="input">
           <svg
             className="h-[1em] opacity-50"
