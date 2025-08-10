@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services",
-        loader: () => fetch(`${import.meta.env.VITE_BasicServer}/services`),
+        loader: () => fetch(`${import.meta.env.VITE_BasicServer}/service-count`),
         Component: Services,
       },
       {

@@ -6,15 +6,17 @@ import axios from "axios";
 // import { useLoaderData } from "react-router";
 import Pagination from "./Pagination";
 import Loading from "../../components/Loading";
+import { useLoaderData } from "react-router";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
-  // const initialServices = useLoaderData();
+  const servicesCount = useLoaderData();
   const [allServices, setAllServices] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState("");
   const [loading, setLoading] = useState(true);
+ console.log(servicesCount.count)
   //handle search intregation
   const handleSearch = (search) => {
     axios
@@ -62,7 +64,7 @@ const Services = () => {
             darkIstrue ? "text-gray-300" : "text-gray-600"
           }`}
         >
-          {allServices.length > 0
+          {servicesCount.count > 0
             ? `Total ${allServices.length} service${
                 allServices.length > 1 ? "s" : ""
               } found`
