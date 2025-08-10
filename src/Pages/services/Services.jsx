@@ -7,7 +7,7 @@ import axios from "axios";
 import Pagination from "./Pagination";
 import Loading from "../../components/Loading";
 import { useLoaderData } from "react-router";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
@@ -17,7 +17,7 @@ const Services = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState("");
   const [loading, setLoading] = useState(true);
-  console.log(servicesCount.count);
+  // console.log(servicesCount.count);
   //handle search intregation
   const handleSearch = (search) => {
     axios
@@ -42,7 +42,7 @@ const Services = () => {
         }/services/public?page=${currentPage}&limit=9&sort=${sortType}`
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTotalPages(res.data.totalPages);
         setAllServices(res.data.data);
         setLoading(false);
@@ -51,7 +51,7 @@ const Services = () => {
   }, [currentPage, sortType]);
 
   if (loading) {
-    <Loading />;
+    return <Loading />;
   }
   return (
     <div className="py-16 ">

@@ -6,8 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hire Nest</title>
   </head>
-  <body>
+  <body className="scroll-smooth">
+    <!-- Initial Loader -->
+    <div
+      id="initial-loader"
+      class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50"
+    >
+      <div>
+        <div
+          class="loader-spinner border-4 border-blue-600 border-t-transparent rounded-full w-16 h-16 animate-spin"
+        ></div>
+        <p class=" text-green-500 my-4 -ml-2">....Please Wait</p>
+      </div>
+    </div>
+    <!-- React root -->
     <div id="root"></div>
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("initial-loader");
+        if (loader) {
+          loader.style.display = "none";
+        }
+      });
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+  <!-- <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body> -->
 </html>
