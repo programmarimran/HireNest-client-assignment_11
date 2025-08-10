@@ -3,15 +3,18 @@ import React, { use, useEffect, useState } from "react";
 import ServiceContext from "../../contexts/ServiceContext";
 import ServiceCard from "../../shared/ServiceCard";
 import axios from "axios";
-import { useLoaderData } from "react-router";
+// import { useLoaderData } from "react-router";
 import Pagination from "./Pagination";
+import Loading from "../../components/Loading";
 
 const Services = () => {
   const { darkIstrue } = use(ServiceContext);
-  const initialServices = useLoaderData();
+  // const initialServices = useLoaderData();
   const [allServices, setAllServices] = useState([]);
-  const [totalServices, setTotalServices] = useState(initialServices.length);
+  const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortType, setSortType] = useState("");
+  const [loading, setLoading] = useState(true);
   //handle search intregation
   const handleSearch = (search) => {
     axios
@@ -24,41 +27,29 @@ const Services = () => {
   };
   //handle sort by price
   const handleSort = (sortType) => {
-    let sortedServices = [...allServices];
-    if (sortType === "default") {
-      sortedServices = initialServices; // Reset to initial services
-    } else if (sortType === "ASC") {
-      sortedServices.sort((a, b) => a.price - b.price);
-    } else if (sortType === "DESC") {
-      sortedServices.sort((a, b) => b.price - a.price);
-    }
-    setAllServices(sortedServices);
+    setSortType(sortType);
   };
   useEffect(() => {
+    setLoading(true);
+
     axios
-      .get(`${import.meta.env.VITE_BasicServer}/service-count`)
+      .get(
+        `${
+          import.meta.env.VITE_BasicServer
+        }/services/public?page=${currentPage}&limit=9&sort=${sortType}`
+      )
       .then((res) => {
-        //  console.log(res.data.count);
-        setTotalServices(res.data.count);
+        console.log(res.data);
+        setTotalPages(res.data.totalPages);
+        setAllServices(res.data.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [currentPage, sortType]);
 
-        axios
-          .get(
-            `${
-              import.meta.env.VITE_BasicServer
-            }/services?page=${currentPage}&limit=${9}`
-          )
-          .then((res) => {
-            // console.log(res.data);
-            setAllServices(res.data);
-          });
-      });
-  }, [currentPage]);
-  // console.log(allServices);
-  // const totalServices = 500;
-  const totalPages = Math.ceil(totalServices / 9);
-  console.log(totalPages);
-
-  console.log(currentPage);
+  if (loading) {
+    <Loading />;
+  }
   return (
     <div className="py-16 ">
       <title>HireNest||All Services</title>
@@ -115,8 +106,8 @@ const Services = () => {
               Select
             </option>
             <option value="default">Default</option>
-            <option value="ASC">Ascending</option>
-            <option value="DESC">Descending</option>
+            <option value="Ascending">Ascending</option>
+            <option value="Descending">Descending</option>
           </select>
         </div>
       </div>
