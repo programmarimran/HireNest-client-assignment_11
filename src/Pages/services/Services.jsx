@@ -16,7 +16,7 @@ const Services = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState("");
   const [loading, setLoading] = useState(true);
- console.log(servicesCount.count)
+  console.log(servicesCount.count);
   //handle search intregation
   const handleSearch = (search) => {
     axios
@@ -65,8 +65,8 @@ const Services = () => {
           }`}
         >
           {servicesCount.count > 0
-            ? `Total ${allServices.length} service${
-                allServices.length > 1 ? "s" : ""
+            ? `Total ${servicesCount.count} service${
+                servicesCount.count > 1 ? "s" : ""
               } found`
             : "No service found."}
         </p>
